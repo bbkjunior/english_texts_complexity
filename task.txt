@@ -1,0 +1,47 @@
+Нужно написать скрипт, который позволит автоматически выявить из них тексты, относящиеся к уровню Beginner (A1).
+Ответом на задание будет набор id текстов, которые по относятся к уровню Beginner, сам скрипт и описание к нему (алгоритм).
+Срок выполнения: неделя (если нужно больше, пишите).
+
+
+Некоторые пояснения, чтобы одинаково понимать уровень Beginner )))
+Лексика. Тексты должны содержать лексику уровня A1  (! допустим небольшой процент A2):
+В этом ресурсе можно посмотреть распределение лексики по уровням: 
+http://vocabulary.englishprofile.org/staticfiles/about.html 
+login: englishprofile
+password: vocabulary
+
+Грамматика
+В основном:
+Present simple
+Pronouns: simple, personal
+Questions
+There is/are
+To be, including question+negatives  
+Допустимо: все, что уровень A1  по ссылке: 
+https://www.examenglish.com/CEFR/cefr_grammar.htm
+
+
+Adjectives: common and demonstrative
+Adverbs of frequency
+Comparatives and superlatives
+Going to
+How much/how many and very
+common uncountable nouns
+I’d like
+Imperatives (+/-)
+Intensifiers - very basic
+Modals: can/can’t/could/couldn’t
+Past simple of “to be”
+Past Simple
+Possessive adjectives 
+Possessive s
+Prepositions, common
+Prepositions of place
+Prepositions of time, including in/on/at
+Present continuous
+Present simple
+Pronouns: simple, personal
+Questions
+There is/are
+To be, including question+negatives
+Verb + ing: like/hate/love 
