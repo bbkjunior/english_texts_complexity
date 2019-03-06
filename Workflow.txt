@@ -1,8 +1,80 @@
 1. Парсим слова из словаря. образец поставленного фильтра сохранен на фотографии.
 2. Бьем слова на токены, убиваем пунктуацию, приводим к нижнему регистру
 
+
+
+
+3. пробуем анализировать слова. про нормальному до этого нужно будет вычислять грамматические особенности
+
 далее при анализе биграм учитывать отделившиеся слова
 или лучше просто по униграммам бить
 
 
-3. пробуем анализировать слова. про нормальному до этого нужно будет вычислять грамматические особенности
+можно делать допущения что человек знаком с названиями географической местности  и именами
+
+
+4. допустимая грамматика
+Здесь по сути у нас задача чтобы все множество допустимой грамматики не попало в словарь сложных слов
+Причем еще надо учесть тот факт, что к примеру глагол в Past Simple, которого нет в словаре-минимуме, должен по-прежнему быть в сложных словах. 
+В то же время мы должны убедиться что все  чьи леммы гаходятся в допустимом словаре не применены с недопустимой грамматикой
+Будем отталкиваться от этой задачи
+==========
+Adjectives: common and demonstrative
+>>common_adj file from https://www.ef.com/wwen/english-resources/english-vocabulary/top-50-adjectives/
+>>demonstrative This That These Those уже в словаре
+==========
+Adverbs of frequency
+>>always  usually normally generally often frequently sometimes occasionally seldom hardly ever rarely never
+--- always usually often sometimes never (оставил только это тк остальное совсем не базовый уровень)
+==========
+Comparatives and superlatives
+РАСПАРСИТЬ СЛОВО - УБЕДИТЬСЯ ЧТО ОНО ИЗ БАЗОВОГО СПИСКА, УБЕДИТЬСЯ ЧТО ОНО СРАВНИТ ИЛИ ПРЕВОСХОД (ПОСЛЕДНЕЕ НЕ ОБЯЗАТЕЛЬНО)
+==========
+Going to
+УБЕДИТЬСЯ ЧТО ГЛАГОЛ НЕ В ТРЕТЬЕЙ ФОРМЕ
+==========
+How much/how many and very
+попадет под обвычный пословный разбор
+==========
+common uncountable nouns
+нашел файл, вручную убрал реально сложные слова
+можно более обоснованно это сделать - сортировать по частотности, многозначности, сложности произношения 
+==========
+I’d like
+распарсится в I would like  войдет в базовый словарь 
+==========
+Imperatives (+/-)
+Don't Let's распарсится и войдет в словарь
+все допустимые слова под этой грамматикой войдут в допустимые
+==========
+Intensifiers - very basic
+very 
+a little 
+a bit  #добавил руками
+not very
+==========
+Modals: can/can’t/could/couldn’t
+could - добавил руками
+все распарсится и войдет в словарь
+==========
+Past simple of “to be”
+were - added
+==========
+Past Simple
+ПРИВЕСТИ ГЛАГОЛ К НАЧ ФОРМЕ, УБЕДИТЬСЯ, ЧТО ОН ВХОДИТ В СПИСОК, ПРОЕВРИТЬ, ЧТО В ПАСТ
+==========
+Possessive adjectives 
+my your her his its our their -- все уже есть 
+==========
+Possessive s
+==========
+Prepositions, common
+Prepositions of place
+Prepositions of time, including in/on/at
+Present continuous
+Present simple
+Pronouns: simple, personal
+Questions
+There is/are
+To be, including question+negatives
+Verb + ing: like/hate/love 
