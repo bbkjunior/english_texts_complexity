@@ -15,6 +15,13 @@
 
 4. допустимая грамматика
 Разобрать потенциально недопустимыую грамматику которая моет состоять из допустимых слов
+разбор  таблице
+
+
+
+
+5. штрфовать предложения за превышение количества неизвестных слов
+увеличивать штраф там где слова появились ранее
 
 
 Здесь по сути у нас задача чтобы все множество допустимой грамматики не попало в словарь сложных слов
@@ -111,30 +118,30 @@ than - убираем из словаря
 Adjectives – superlative – use of definite article
 уже включено в первый уровень
 ==========
-Adverbial phrases of time, place and frequency – including word order ////
-Adverbs of frequency ////
-Articles – with countable and
-uncountable nouns //// если мы говорим о чтении то на них можно вообще внимания не обращать. как по опыту так и по тфидф и прочим метрикам
-Countables and Uncountables:
-much/many
-Future Time (will and going to)
-Gerunds
-Going to
-Imperatives
-Modals – can/could
-Modals – have to
-Modals – should
+Adverbial phrases of time, place and frequency – including word order ////уже есть в уровне 1
+Adverbs of frequency ////уже есть в уровне 1
+Articles – with countable and uncountable nouns //// если мы говорим о чтении то на них можно вообще внимания не обращать. как по опыту так и по тфидф и прочим метрикам
+==========
+Countables and Uncountables: much/many//уже входит в словарь а1
+==========
+Future Time (will and going to)////уже есть в уровне 1
+Gerunds !!! отделять инговые окончания и смотреть что перед ним не 
+Going to//уже входит в словарь а1
+Imperatives//уже входит в словарь а1
+Modals – can/could//уже входит в словарь а1
+Modals – have to -- выделяь две фразы
+Modals – should -- не входит
 
-Past continuous
-Past simple
-Phrasal verbs – common
-Possessives – use of ‘s, s’
-Prepositional phrases (place, time and movement)
-Prepositions of time: on/in/at
-Present continuous
-Present continuous for future
-Present perfect
-Questions
+Past continuous -- was going were going
+Past simple -- грамматика
+Phrasal verbs – common --  достать словарь фразовых и предварительно проверять
+Possessives – use of ‘s, s’//уже входит в словарь а1
+Prepositional phrases (place, time and movement)//уже входит в словарь а1
+Prepositions of time: on/in/at//уже входит в словарь а1
+Present continuous//уже входит в словарь а1
+Present continuous for future//will be going
+Present perfect -- have has V3
+Questions//уже входит в словарь а1
 Verb + ing/infinitive: like/
 want-would like
 Wh-questions in past
