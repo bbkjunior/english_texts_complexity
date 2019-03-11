@@ -25,7 +25,7 @@ from sklearn.feature_extraction.text import TfidfTransformer
 parser = argparse.ArgumentParser(add_help=True)
 
 parser.add_argument('-d', '--print_debug_message', help='print out calculation process', action="store_true")
-parser.add_argument('-w', '--show_calucated_weights', help='who weights of the whole text', action="store_true")
+parser.add_argument('-w', '--show_calucated_weights', help='show weights of the whole text', action="store_true")
 parser.add_argument('-s', '--show_difficult', help='show difficult words weights', action="store_true")
 parser.add_argument('file', help='path to the file with raw text')
 args = parser.parse_args()
