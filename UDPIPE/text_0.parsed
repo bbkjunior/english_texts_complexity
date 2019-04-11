@@ -1,0 +1,461 @@
+# newdoc id = text_0.txt
+# newpar
+# sent_id = 1
+# text = "This is my friend Jimmy.
+1	"	"	PUNCT	FB	_	5	punct	_	SpaceAfter=No
+2	This	this	PRON	PD	Number=Sing|PronType=Dem	5	nsubj	_	_
+3	is	be	AUX	VA	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	cop	_	_
+4	my	my	DET	AP	Number=Sing|Poss=Yes|PronType=Prs	5	nmod:poss	_	_
+5	friend	friend	NOUN	S	Number=Sing	0	root	_	_
+6	Jimmy	Jimmy	PROPN	SP	_	5	nmod	_	SpaceAfter=No
+7	.	.	PUNCT	FS	_	5	punct	_	_
+
+# sent_id = 2
+# text = He is from India.
+1	He	he	PRON	PE	Gender=Masc|Number=Sing|Person=3|PronType=Prs	4	nsubj	_	_
+2	is	be	AUX	VA	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	4	cop	_	_
+3	from	from	ADP	E	_	4	case	_	_
+4	India	India	PROPN	SP	_	0	root	_	SpaceAfter=No
+5	.	.	PUNCT	FS	_	4	punct	_	_
+
+# sent_id = 3
+# text = Jimmy is a vegetarian.
+1	Jimmy	Jimmy	DET	AP	Number=Sing|Poss=Yes|PronType=Prs	4	nsubj	_	_
+2	is	be	AUX	VA	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	4	cop	_	_
+3	a	a	DET	RI	Definite=Ind|Number=Sing|PronType=Art	4	det	_	_
+4	vegetarian	vegetarian	NOUN	S	Number=Sing	0	root	_	SpaceAfter=No
+5	.	.	PUNCT	FS	_	4	punct	_	_
+
+# sent_id = 4
+# text = The best breakfast for him is a glass of orange juice, two apples and three bananas.
+1	The	the	DET	RD	Definite=Def|PronType=Art	3	det	_	_
+2	best	best	ADJ	A	Degree=Sup	3	amod	_	_
+3	breakfast	breakfast	NOUN	S	Number=Sing	8	nsubj	_	_
+4	for	for	ADP	E	_	5	case	_	_
+5	him	he	PRON	PE	Gender=Masc|Number=Sing|Person=3|PronType=Prs	3	nmod	_	_
+6	is	be	AUX	VA	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	8	cop	_	_
+7	a	a	DET	RI	Definite=Ind|Number=Sing|PronType=Art	8	det	_	_
+8	glass	glass	NOUN	S	Number=Sing	0	root	_	_
+9	of	of	ADP	E	_	11	case	_	_
+10	orange	orange	NOUN	S	Number=Sing	11	nmod	_	_
+11	juice	juice	NOUN	S	Number=Sing	8	nmod	_	SpaceAfter=No
+12	,	,	PUNCT	FF	_	14	punct	_	_
+13	two	two	NUM	N	NumType=Card	14	nummod	_	_
+14	apples	apple	NOUN	S	Number=Plur	8	conj	_	_
+15	and	and	CCONJ	CC	_	17	cc	_	_
+16	three	three	NUM	N	NumType=Card	17	nummod	_	_
+17	bananas	banana	NOUN	S	Number=Plur	8	conj	_	SpaceAfter=No
+18	.	.	PUNCT	FS	_	8	punct	_	_
+
+# sent_id = 5
+# text = Jimmy likes watermelons very much.
+1	Jimmy	Jimmy	DET	AP	Number=Sing|Poss=Yes|PronType=Prs	2	nmod:poss	_	SpacesAfter=\s\s
+2	likes	like	NOUN	S	Number=Plur	3	nsubj	_	_
+3	watermelons	watermelon	VERB	V	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	0	root	_	_
+4	very	very	ADV	B	_	5	advmod	_	_
+5	much	much	ADV	B	_	3	advmod	_	SpaceAfter=No
+6	.	.	PUNCT	FS	_	3	punct	_	_
+
+# sent_id = 6
+# text = A watermelon is green outside and red inside.
+1	A	a	DET	RI	Definite=Ind|Number=Sing|PronType=Art	2	det	_	_
+2	watermelon	watermelon	NOUN	S	Number=Sing	4	nsubj:pass	_	_
+3	is	be	AUX	VA	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	4	aux:pass	_	_
+4	green	gree	VERB	V	Tense=Past|VerbForm=Part	0	root	_	_
+5	outside	outside	ADP	E	_	8	case	_	_
+6	and	and	CCONJ	CC	_	7	cc	_	_
+7	red	red	ADJ	A	Degree=Pos	8	amod	_	_
+8	inside	inside	NOUN	S	Number=Sing	4	obl	_	SpaceAfter=No
+9	.	.	PUNCT	FS	_	4	punct	_	_
+
+# sent_id = 7
+# text = It is hard and soft inside.
+1	It	it	PRON	PE	Number=Sing|Person=3|PronType=Prs	3	expl	_	_
+2	is	be	AUX	VA	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	cop	_	_
+3	hard	hard	ADJ	A	Degree=Pos	6	amod	_	_
+4	and	and	CCONJ	CC	_	5	cc	_	_
+5	soft	soft	ADJ	A	Degree=Pos	3	conj	_	_
+6	inside	inside	NOUN	S	Number=Sing	0	root	_	SpaceAfter=No
+7	.	.	PUNCT	FS	_	6	punct	_	_
+
+# sent_id = 8
+# text = It is juicy and sweet.
+1	It	it	PRON	PE	Number=Sing|Person=3|PronType=Prs	3	nsubj	_	_
+2	is	be	AUX	VA	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	cop	_	_
+3	juicy	juicy	NOUN	S	Number=Sing	0	root	_	_
+4	and	and	CCONJ	CC	_	5	cc	_	_
+5	sweet	sweet	NOUN	S	Number=Sing	3	conj	_	SpaceAfter=No
+6	.	.	PUNCT	FS	_	3	punct	_	_
+
+# sent_id = 9
+# text = What a lovely fruit!
+1	What	what	PRON	PQ	PronType=Int	4	nmod	_	_
+2	a	a	DET	RI	Definite=Ind|Number=Sing|PronType=Art	4	det	_	_
+3	lovely	lovely	ADJ	A	Degree=Pos	4	amod	_	_
+4	fruit	fruit	NOUN	S	Number=Sing	0	root	_	SpaceAfter=No
+5	!	!	PUNCT	FS	_	4	punct	_	SpacesAfter=\n
+
+# sent_id = 10
+# text = A month ago Sally received a letter.
+1	A	a	DET	RI	Definite=Ind|Number=Sing|PronType=Art	2	det	_	_
+2	month	month	NOUN	S	Number=Sing	5	nsubj	_	_
+3	ago	ago	ADV	B	_	4	advmod	_	_
+4	Sally	Sally	ADV	B	_	5	advmod	_	_
+5	received	receive	VERB	V	Tense=Past|VerbForm=Part	0	root	_	_
+6	a	a	DET	RI	Definite=Ind|Number=Sing|PronType=Art	7	det	_	_
+7	letter	letter	NOUN	S	Number=Sing	5	obj	_	SpaceAfter=No
+8	.	.	PUNCT	FS	_	5	punct	_	_
+
+# sent_id = 11
+# text = It was an invitation for a wedding.
+1	It	it	PRON	PE	Number=Sing|Person=3|PronType=Prs	4	nsubj	_	_
+2	was	be	AUX	VA	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	4	cop	_	_
+3	an	a	DET	RI	Definite=Ind|Number=Sing|PronType=Art	4	det	_	_
+4	invitation	invitation	NOUN	S	Number=Sing	0	root	_	_
+5	for	for	ADP	E	_	7	case	_	_
+6	a	a	DET	RI	Definite=Ind|Number=Sing|PronType=Art	7	det	_	_
+7	wedding	wedding	NOUN	S	Number=Sing	4	nmod	_	SpaceAfter=No
+8	.	.	PUNCT	FS	_	4	punct	_	_
+
+# sent_id = 12
+# text = Her sister Victoria is getting married.
+1	Her	her	DET	AP	Poss=Yes|PronType=Prs	2	nmod:poss	_	_
+2	sister	sister	NOUN	S	Number=Sing	5	obl	_	_
+3	Victoria	Victoria	PROPN	SP	_	5	nsubj	_	_
+4	is	be	AUX	VA	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	aux	_	_
+5	getting	get	VERB	V	VerbForm=Ger	0	root	_	_
+6	married	marry	NOUN	S	Number=Sing	5	obj	_	SpaceAfter=No
+7	.	.	PUNCT	FS	_	5	punct	_	_
+
+# sent_id = 13
+# text = Last year Sally saw such a ceremony.
+1	Last	last	ADJ	NO	Degree=Pos|NumType=Ord	2	amod	_	_
+2	year	year	NOUN	S	Number=Sing	4	nsubj	_	_
+3	Sally	Sally	ADV	B	_	4	advmod	_	_
+4	saw	see	VERB	V	Mood=Ind|Person=3|Tense=Past|VerbForm=Fin	0	root	_	_
+5	such	such	DET	DD	PronType=Dem	7	det	_	_
+6	a	a	DET	RI	Definite=Ind|Number=Sing|PronType=Art	7	det	_	_
+7	ceremony	ceremony	NOUN	S	Number=Sing	4	obj	_	SpaceAfter=No
+8	.	.	PUNCT	FS	_	4	punct	_	_
+
+# sent_id = 14
+# text = It took place on Saturday.
+1	It	it	PRON	PE	Number=Sing|Person=3|PronType=Prs	2	nsubj	_	_
+2	took	take	VERB	V	Mood=Ind|Person=3|Tense=Past|VerbForm=Fin	0	root	_	_
+3	place	place	NOUN	S	Number=Sing	2	obj	_	_
+4	on	on	ADP	E	_	5	case	_	_
+5	Saturday	Saturday	NOUN	S	Number=Sing	2	obl	_	SpaceAfter=No
+6	.	.	PUNCT	FS	_	2	punct	_	_
+
+# sent_id = 15
+# text = There were a lot of guests, people wore nice clothes, met a husband and a wife near the church, threw confetti, ate a very tasty cake, made videos and took photos.
+1	There	there	ADV	B	_	4	advmod	_	_
+2	were	be	AUX	VA	Mood=Ind|Number=Plur|Tense=Past|VerbForm=Fin	4	cop	_	_
+3	a	a	DET	RI	Definite=Ind|Number=Sing|PronType=Art	4	det	_	_
+4	lot	lot	NOUN	S	Number=Sing	26	nsubj	_	_
+5	of	of	ADP	E	_	6	case	_	_
+6	guests	guest	NOUN	S	Number=Plur	4	nmod	_	SpaceAfter=No
+7	,	,	PUNCT	FF	_	4	punct	_	_
+8	people	people	VERB	V	Mood=Ind|Number=Plur|Tense=Pres|VerbForm=Fin	4	acl	_	_
+9	wore	wore	DET	DI	PronType=Ind	11	det	_	_
+10	nice	nice	NOUN	S	Number=Sing	11	nmod	_	_
+11	clothes	clothe	NOUN	S	Number=Plur	8	obj	_	SpaceAfter=No
+12	,	,	PUNCT	FF	_	4	punct	_	_
+13	met	met	VERB	V	Mood=Ind|Number=Plur|Tense=Pres|VerbForm=Fin	4	acl	_	_
+14	a	a	DET	RI	Definite=Ind|Number=Sing|PronType=Art	15	det	_	_
+15	husband	husband	NOUN	S	Number=Sing	13	obj	_	_
+16	and	and	CCONJ	CC	_	18	cc	_	_
+17	a	a	DET	RI	Definite=Ind|Number=Sing|PronType=Art	18	det	_	_
+18	wife	wife	NOUN	S	Gender=Masc|Number=Sing	15	conj	_	_
+19	near	near	ADP	E	_	21	case	_	_
+20	the	the	DET	RD	Definite=Def|PronType=Art	21	det	_	_
+21	church	church	NOUN	S	Number=Sing	18	nmod	_	SpaceAfter=No
+22	,	,	PUNCT	FF	_	18	punct	_	_
+23	threw	threw	ADV	B	_	24	advmod	_	_
+24	confetti	confetti	ADJ	NO	Degree=Pos|NumType=Ord	18	amod	_	SpaceAfter=No
+25	,	,	PUNCT	FF	_	4	punct	_	_
+26	ate	ate	VERB	V	Mood=Ind|Number=Plur|Tense=Pres|VerbForm=Fin	0	root	_	_
+27	a	a	DET	RI	Definite=Ind|Number=Sing|PronType=Art	30	det	_	_
+28	very	very	ADJ	A	Degree=Pos	29	amod	_	_
+29	tasty	tasty	NOUN	S	Number=Sing	30	nmod	_	_
+30	cake	cake	NOUN	S	Number=Sing	26	obj	_	SpaceAfter=No
+31	,	,	PUNCT	FF	_	32	punct	_	_
+32	made	make	VERB	V	Tense=Past|VerbForm=Part	26	conj	_	_
+33	videos	video	NOUN	S	Number=Plur	32	obj	_	_
+34	and	and	CCONJ	CC	_	35	cc	_	_
+35	took	take	VERB	V	Mood=Ind|Person=3|Tense=Past|VerbForm=Fin	33	conj	_	_
+36	photos	photo	NOUN	S	Number=Plur	35	obj	_	SpaceAfter=No
+37	.	.	PUNCT	FS	_	26	punct	_	SpacesAfter=\n\n
+
+# newpar
+# sent_id = 16
+# text = In her letter Victoria asked Sally to be her bridesmaid.
+1	In	in	ADP	E	_	3	case	_	_
+2	her	her	DET	AP	Poss=Yes|PronType=Prs	3	nmod:poss	_	_
+3	letter	letter	NOUN	S	Number=Sing	5	obl	_	_
+4	Victoria	Victoria	PROPN	SP	_	5	nsubj	_	_
+5	asked	ask	VERB	V	Mood=Ind|Person=3|Tense=Past|VerbForm=Fin	0	root	_	_
+6	Sally	Sally	PROPN	SP	_	5	obj	_	_
+7	to	to	PART	PART	_	10	mark	_	_
+8	be	be	AUX	VA	VerbForm=Inf	10	cop	_	_
+9	her	her	DET	AP	Poss=Yes|PronType=Prs	10	nmod:poss	_	_
+10	bridesmaid	bridesmaid	NOUN	S	Number=Sing	5	xcomp	_	SpaceAfter=No
+11	.	.	PUNCT	FS	_	5	punct	_	_
+
+# sent_id = 17
+# text = It means that on the day of wedding Sally must help Victoria when she puts her wedding dress on and brushes her hair.
+1	It	it	PRON	PE	Number=Sing|Person=3|PronType=Prs	2	nsubj	_	_
+2	means	mean	VERB	V	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	0	root	_	_
+3	that	that	SCONJ	CS	_	11	mark	_	_
+4	on	on	ADP	E	_	6	case	_	_
+5	the	the	DET	RD	Definite=Def|PronType=Art	6	det	_	_
+6	day	day	NOUN	S	Number=Sing	11	obl	_	_
+7	of	of	ADP	E	_	8	mark	_	_
+8	wedding	wedd	VERB	V	VerbForm=Ger	6	acl	_	_
+9	Sally	Sally	ADV	B	_	8	advmod	_	_
+10	must	must	AUX	VM	Mood=Ind|Person=3|Tense=Pres|VerbForm=Fin	11	aux	_	_
+11	help	help	VERB	V	VerbForm=Inf	2	ccomp	_	_
+12	Victoria	Victoria	PROPN	SP	_	11	obj	_	_
+13	when	when	SCONJ	CS	_	15	mark	_	_
+14	she	she	PRON	PE	Gender=Fem|Number=Sing|Person=3|PronType=Prs	15	nsubj	_	_
+15	puts	put	VERB	V	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	2	advcl	_	_
+16	her	her	DET	AP	Poss=Yes|PronType=Prs	18	nmod:poss	_	_
+17	wedding	wedding	VERB	V	Number=Sing|Tense=Pres|VerbForm=Part	18	acl	_	_
+18	dress	dress	NOUN	S	Number=Sing	15	obj	_	_
+19	on	on	ADP	E	_	15	advmod	_	_
+20	and	and	CCONJ	CC	_	21	cc	_	_
+21	brushes	brush	VERB	V	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	19	conj	_	_
+22	her	her	DET	AP	Poss=Yes|PronType=Prs	23	nmod:poss	_	_
+23	hair	hair	NOUN	S	Number=Sing	21	obj	_	SpaceAfter=No
+24	.	.	PUNCT	FS	_	2	punct	_	_
+
+# sent_id = 18
+# text = Sally must also accompany Victoria on her way to the church and carry a traditional bunch of flowers.
+1	Sally	Sally	ADV	B	_	4	advmod	_	_
+2	must	must	AUX	VM	Mood=Ind|Person=3|Tense=Pres|VerbForm=Fin	4	aux	_	_
+3	also	also	ADV	B	_	4	advmod	_	_
+4	accompany	accompany	VERB	V	VerbForm=Inf	0	root	_	_
+5	Victoria	Victoria	PROPN	SP	_	4	obj	_	_
+6	on	on	ADP	E	_	8	case	_	_
+7	her	her	DET	AP	Poss=Yes|PronType=Prs	8	nmod:poss	_	_
+8	way	way	NOUN	S	Number=Sing	4	obl	_	_
+9	to	to	ADP	E	_	11	case	_	_
+10	the	the	DET	RD	Definite=Def|PronType=Art	11	det	_	_
+11	church	church	NOUN	S	Number=Sing	8	nmod	_	_
+12	and	and	CCONJ	CC	_	13	cc	_	_
+13	carry	carry	VERB	V	VerbForm=Inf	4	conj	_	_
+14	a	a	DET	RI	Definite=Ind|Number=Sing|PronType=Art	16	det	_	_
+15	traditional	traditional	ADJ	A	Degree=Pos	16	amod	_	_
+16	bunch	bunch	NOUN	S	Number=Sing	13	obj	_	_
+17	of	of	ADP	E	_	18	case	_	_
+18	flowers	flower	NOUN	S	Number=Plur	16	nmod	_	SpaceAfter=No
+19	.	.	PUNCT	FS	_	4	punct	_	SpacesAfter=\n
+
+# sent_id = 19
+# text = Sally agreed with pleasure and bought a beautiful dress for the ceremony.
+1	Sally	Sally	ADV	B	_	2	advmod	_	_
+2	agreed	agree	VERB	V	Mood=Ind|Person=3|Tense=Past|VerbForm=Fin	0	root	_	_
+3	with	with	ADP	E	_	4	case	_	_
+4	pleasure	pleasure	NOUN	S	Number=Sing	2	obl	_	_
+5	and	and	CCONJ	CC	_	6	cc	_	_
+6	bought	buy	VERB	V	Mood=Ind|Person=3|Tense=Past|VerbForm=Fin	2	conj	_	_
+7	a	a	DET	RI	Definite=Ind|Number=Sing|PronType=Art	9	det	_	_
+8	beautiful	beautiful	ADJ	A	Degree=Pos	9	amod	_	_
+9	dress	dress	NOUN	S	Number=Sing	6	obj	_	_
+10	for	for	ADP	E	_	12	case	_	_
+11	the	the	DET	RD	Definite=Def|PronType=Art	12	det	_	_
+12	ceremony	ceremony	NOUN	S	Number=Sing	6	obl	_	SpaceAfter=No
+13	.	.	PUNCT	FS	_	2	punct	_	_
+
+# sent_id = 20
+# text = It was white and green with a long nice silk skirt.
+1	It	it	PRON	PE	Number=Sing|Person=3|PronType=Prs	3	nsubj	_	_
+2	was	be	AUX	VA	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	3	cop	_	_
+3	white	white	ADJ	A	Degree=Pos	0	root	_	_
+4	and	and	CCONJ	CC	_	5	cc	_	_
+5	green	gree	VERB	V	Tense=Past|VerbForm=Part	3	conj	_	_
+6	with	with	ADP	E	_	11	case	_	_
+7	a	a	DET	RI	Definite=Ind|Number=Sing|PronType=Art	11	det	_	_
+8	long	long	ADJ	A	Degree=Pos	9	amod	_	_
+9	nice	nice	NOUN	S	Number=Sing	10	nmod	_	_
+10	silk	silk	NOUN	S	Number=Sing	11	nmod	_	_
+11	skirt	skirt	NOUN	S	Number=Sing	5	obl	_	SpaceAfter=No
+12	.	.	PUNCT	FS	_	3	punct	_	_
+
+# sent_id = 21
+# text = But at home she understood that she couldn’t fit into it.
+1	But	but	CCONJ	CC	_	5	cc	_	_
+2	at	at	ADP	E	_	3	case	_	_
+3	home	home	NOUN	S	Number=Sing	5	obl	_	_
+4	she	she	PRON	PE	Gender=Fem|Number=Sing|Person=3|PronType=Prs	5	nsubj	_	_
+5	understood	understood	VERB	V	Mood=Ind|Person=3|Tense=Past|VerbForm=Fin	0	root	_	_
+6	that	that	SCONJ	CS	_	8	mark	_	_
+7	she	she	PRON	PE	Gender=Fem|Number=Sing|Person=3|PronType=Prs	8	nsubj	_	_
+8	couldn	couldn	VERB	V	Mood=Ind|Number=Plur|Tense=Pres|VerbForm=Fin	5	ccomp	_	SpaceAfter=No
+9	’t	’t	ADV	B	_	8	advmod	_	_
+10	fit	fit	VERB	V	Mood=Ind|Number=Plur|Tense=Pres|VerbForm=Fin	8	xcomp	_	_
+11	into	into	ADP	E	_	12	case	_	_
+12	it	it	PRON	PE	Number=Sing|Person=3|PronType=Prs	10	obl	_	SpaceAfter=No
+13	.	.	PUNCT	FS	_	5	punct	_	_
+
+# sent_id = 22
+# text = What a pity!
+1	What	what	PRON	PQ	PronType=Int	3	nmod	_	_
+2	a	a	DET	RI	Definite=Ind|Number=Sing|PronType=Art	3	det	_	_
+3	pity	pity	NOUN	S	Number=Sing	0	root	_	SpaceAfter=No
+4	!	!	PUNCT	FS	_	3	punct	_	SpacesAfter=\n
+
+# sent_id = 23
+# text = That is why Sally is on a diet now.
+1	That	that	PRON	PR	PronType=Rel	8	nsubj	_	_
+2	is	be	AUX	VA	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	8	cop	_	_
+3	why	why	ADV	B	_	4	advmod	_	_
+4	Sally	Sally	ADV	B	_	8	advmod	_	_
+5	is	be	AUX	VA	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	8	cop	_	_
+6	on	on	ADP	E	_	8	case	_	_
+7	a	a	DET	RI	Definite=Ind|Number=Sing|PronType=Art	8	det	_	_
+8	diet	diet	NOUN	S	Number=Sing	0	root	_	_
+9	now	now	ADV	B	_	8	advmod	_	SpaceAfter=No
+10	.	.	PUNCT	FS	_	8	punct	_	_
+
+# sent_id = 24
+# text = She does not eat cakes, sweets and fried potatoes.
+1	She	she	PRON	PE	Gender=Fem|Number=Sing|Person=3|PronType=Prs	4	nsubj	_	_
+2	does	do	AUX	VM	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	4	aux	_	_
+3	not	not	PART	PART	Polarity=Neg	4	advmod	_	_
+4	eat	eat	VERB	V	VerbForm=Inf	0	root	_	_
+5	cakes	cake	NOUN	S	Number=Plur	4	obj	_	SpaceAfter=No
+6	,	,	PUNCT	FF	_	7	punct	_	_
+7	sweets	sweet	NOUN	S	Number=Plur	5	conj	_	_
+8	and	and	CCONJ	CC	_	9	cc	_	_
+9	fried	fry	VERB	V	Mood=Ind|Person=3|Tense=Past|VerbForm=Fin	4	conj	_	_
+10	potatoes	potato	NOUN	S	Number=Plur	9	obj	_	SpaceAfter=No
+11	.	.	PUNCT	FS	_	4	punct	_	_
+
+# sent_id = 25
+# text = She doesn’t even eat some very sweet fruit.
+1	She	she	PRON	PE	Gender=Fem|Number=Sing|Person=3|PronType=Prs	3	nsubj	_	_
+2	doesn	doesn	ADV	B	_	3	advmod	_	SpaceAfter=No
+3	’t	’t	VERB	V	Mood=Ind|Number=Plur|Tense=Pres|VerbForm=Fin	0	root	_	_
+4	even	even	ADV	B	_	5	advmod	_	_
+5	eat	eat	VERB	V	Mood=Ind|Number=Plur|Tense=Pres|VerbForm=Fin	3	xcomp	_	_
+6	some	some	DET	DI	PronType=Ind	9	det	_	_
+7	very	very	ADV	B	_	8	advmod	_	_
+8	sweet	sweet	ADJ	A	Degree=Pos	9	amod	_	_
+9	fruit	fruit	NOUN	S	Number=Sing	5	obj	_	SpaceAfter=No
+10	.	.	PUNCT	FS	_	3	punct	_	_
+
+# sent_id = 26
+# text = She cooks vegetables, fish and boiled meat.
+1	She	she	DET	RD	Definite=Def|PronType=Art	3	det	_	_
+2	cooks	cook	NOUN	S	Number=Plur	3	nmod	_	_
+3	vegetables	vegetable	NOUN	S	Number=Plur	5	nsubj	_	SpaceAfter=No
+4	,	,	PUNCT	FF	_	3	punct	_	_
+5	fish	fish	VERB	V	Mood=Ind|Number=Plur|Tense=Pres|VerbForm=Fin	0	root	_	_
+6	and	and	CCONJ	CC	_	7	cc	_	_
+7	boiled	boil	VERB	V	Mood=Ind|Person=3|Tense=Past|VerbForm=Fin	5	conj	_	_
+8	meat	meat	NOUN	S	Number=Sing	7	obj	_	SpaceAfter=No
+9	.	.	PUNCT	FS	_	5	punct	_	_
+
+# sent_id = 27
+# text = She writes down everything she eats into a special notebook and adds up the calories.
+1	She	she	PRON	PE	Gender=Fem|Number=Sing|Person=3|PronType=Prs	2	nsubj	_	_
+2	writes	write	VERB	V	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	0	root	_	_
+3	down	down	ADV	B	_	6	advmod	_	_
+4	everything	everything	PRON	PE	Number=Sing|Person=3|PronType=Prs	6	obj	_	_
+5	she	she	PRON	PE	Gender=Fem|Number=Sing|Person=3|PronType=Prs	6	nsubj	_	_
+6	eats	eat	VERB	V	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	2	ccomp	_	_
+7	into	into	ADP	E	_	10	case	_	_
+8	a	a	DET	RI	Definite=Ind|Number=Sing|PronType=Art	10	det	_	_
+9	special	special	ADJ	A	Degree=Pos	10	amod	_	_
+10	notebook	notebook	NOUN	S	Number=Sing	6	obl	_	_
+11	and	and	CCONJ	CC	_	12	cc	_	_
+12	adds	add	NOUN	S	Number=Plur	10	conj	_	_
+13	up	up	ADP	E	_	15	case	_	_
+14	the	the	DET	RD	Definite=Def|PronType=Art	15	det	_	_
+15	calories	calory	NOUN	S	Number=Plur	10	nmod	_	SpaceAfter=No
+16	.	.	PUNCT	FS	_	2	punct	_	_
+
+# sent_id = 28
+# text = What is more, every morning she practices jogging and goes to the gym.
+1	What	what	PRON	PQ	PronType=Int	3	nsubj	_	_
+2	is	be	AUX	VA	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	cop	_	_
+3	more	more	ADV	B	Degree=Cmp	8	advmod	_	SpaceAfter=No
+4	,	,	PUNCT	FF	_	3	punct	_	_
+5	every	every	DET	DI	Number=Sing|PronType=Ind	6	det	_	_
+6	morning	morning	NOUN	S	Number=Sing	8	nsubj	_	_
+7	she	she	PRON	PE	Gender=Fem|Number=Sing|Person=3|PronType=Prs	8	nsubj	_	_
+8	practices	practice	VERB	V	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	0	root	_	_
+9	jogging	jogge	VERB	V	VerbForm=Ger	8	xcomp	_	_
+10	and	and	CCONJ	CC	_	11	cc	_	_
+11	goes	go	VERB	V	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	8	conj	_	_
+12	to	to	ADP	E	_	14	case	_	_
+13	the	the	DET	RD	Definite=Def|PronType=Art	14	det	_	_
+14	gym	gym	NOUN	S	Number=Sing	11	obl	_	SpaceAfter=No
+15	.	.	PUNCT	FS	_	8	punct	_	_
+
+# sent_id = 29
+# text = She lost three kilos, but she wants to lose two kilos more.
+1	She	she	PRON	PE	Gender=Fem|Number=Sing|Person=3|PronType=Prs	2	nsubj	_	_
+2	lost	lose	VERB	V	Mood=Ind|Person=3|Tense=Past|VerbForm=Fin	0	root	_	_
+3	three	three	NUM	N	NumType=Card	4	nummod	_	_
+4	kilos	kilo	NOUN	S	Number=Plur	2	obj	_	SpaceAfter=No
+5	,	,	PUNCT	FF	_	8	punct	_	_
+6	but	but	CCONJ	CC	_	8	cc	_	_
+7	she	she	DET	RD	Definite=Def|PronType=Art	8	det	_	_
+8	wants	want	NOUN	S	Number=Plur	4	conj	_	_
+9	to	to	PART	PART	_	10	mark	_	_
+10	lose	lose	VERB	V	VerbForm=Inf	8	acl	_	_
+11	two	two	NUM	N	NumType=Card	12	nummod	_	_
+12	kilos	kilo	NOUN	S	Number=Plur	10	obj	_	_
+13	more	more	ADV	B	Degree=Cmp	2	advmod	_	SpaceAfter=No
+14	.	.	PUNCT	FS	_	2	punct	_	_
+
+# sent_id = 30
+# text = Everyone tells her she looks great, but she doesn’t agree.
+1	Everyone	everyone	PRON	PE	Number=Sing|Person=3|PronType=Prs	2	nsubj	_	_
+2	tells	tell	VERB	V	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	0	root	_	_
+3	her	her	DET	AP	Poss=Yes|PronType=Prs	5	nmod:poss	_	_
+4	she	she	PRON	PE	Gender=Fem|Number=Sing|Person=3|PronType=Prs	5	nsubj	_	_
+5	looks	look	VERB	V	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	2	ccomp	_	_
+6	great	great	ADJ	A	Degree=Pos	5	xcomp	_	SpaceAfter=No
+7	,	,	PUNCT	FF	_	10	punct	_	_
+8	but	but	CCONJ	CC	_	10	cc	_	_
+9	she	she	PRON	PE	Gender=Fem|Number=Sing|Person=3|PronType=Prs	10	nsubj	_	_
+10	doesn	doesn	VERB	V	Mood=Ind|Number=Plur|Tense=Pres|VerbForm=Fin	5	conj	_	SpaceAfter=No
+11	’t	’t	ADJ	A	Degree=Sup	12	amod	_	_
+12	agree	agree	NOUN	S	Number=Sing	10	obj	_	SpaceAfter=No
+13	.	.	PUNCT	FS	_	2	punct	_	_
+
+# sent_id = 31
+# text = She is dreaming about a slice of wedding cake and does not want to give up.
+1	She	she	PRON	PE	Gender=Fem|Number=Sing|Person=3|PronType=Prs	3	nsubj	_	_
+2	is	be	AUX	VA	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	3	aux	_	_
+3	dreaming	dream	VERB	V	VerbForm=Ger	0	root	_	_
+4	about	about	ADP	E	_	6	case	_	_
+5	a	a	DET	RI	Definite=Ind|Number=Sing|PronType=Art	6	det	_	_
+6	slice	slice	NOUN	S	Number=Sing	3	obl	_	_
+7	of	of	ADP	E	_	8	mark	_	_
+8	wedding	wedding	VERB	V	VerbForm=Ger	6	acl	_	_
+9	cake	cake	NOUN	S	Number=Sing	8	obj	_	_
+10	and	and	CCONJ	CC	_	13	cc	_	_
+11	does	do	AUX	VM	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	13	aux	_	_
+12	not	not	PART	PART	Polarity=Neg	13	advmod	_	_
+13	want	want	VERB	V	VerbForm=Inf	3	conj	_	_
+14	to	to	PART	PART	_	15	mark	_	_
+15	give	give	VERB	V	VerbForm=Inf	13	advcl	_	_
+16	up	up	ADP	E	_	15	compound:prt	_	SpaceAfter=No
+17	.	.	PUNCT	FS	_	3	punct	_	_
+
+# sent_id = 32
+# text = Dieting is not easy!
+1	Dieting	Dieting	NOUN	S	Number=Sing	4	nsubj	_	_
+2	is	be	AUX	VA	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	4	cop	_	_
+3	not	not	PART	PART	Polarity=Neg	4	advmod	_	_
+4	easy	easy	ADJ	A	Degree=Pos	0	root	_	SpaceAfter=No
+5	!	!	PUNCT	FS	_	4	punct	_	SpacesAfter=\n
+
+# sent_id = 33
+# text = "
+1	"	"	PUNCT	FB	_	0	root	_	SpacesAfter=\n
+
