@@ -124,6 +124,7 @@ log off
 log on
 log out
 look up
+look for
 magic away
 make after
 make up
