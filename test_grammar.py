@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import copy
 from text_properties_calc import get_map
 from ud_class import Model
@@ -538,7 +540,7 @@ def test():
     if PRINT_POSITIVE: print()
     
     if args.show_known_errors:
-        #been уходит в именную группу, в то время как остальные слова маркеры в глагольный группе
+        #been inside NP while other markers are inside VP
         sentence = "There will have been a lot of cars in the garage"
         map, gr_log, voc_log = get_map(sentence, model)
         ideal_gram = {'1': 'there_is_are','4':'FutPerf'}
@@ -546,4 +548,255 @@ def test():
         if PRINT_POSITIVE: print("NOW CHECKING <", sentence, ">")
         assert_analysis_results(gr_log, voc_log, ideal_gram, ideal_voc, sentence)
         if PRINT_POSITIVE: print()
+
+    sentence = "There have been many friends"
+    map, gr_log, voc_log = get_map(sentence, model)
+    ideal_gram = {'1':'there_is_are', '3':'PrPerf'}
+    ideal_voc = {}
+    if PRINT_POSITIVE: print("NOW CHECKING <", sentence, ">")
+    assert_analysis_results(gr_log, voc_log, ideal_gram, ideal_voc, sentence)
+    if PRINT_POSITIVE: print()
+
+    if PRINT_POSITIVE: print("==========GERUND==========")
+    sentence = "I like going there"
+    map, gr_log, voc_log = get_map(sentence, model)
+    ideal_gram = {'2': 'PresSimp','3':'Gerund'}
+    ideal_voc = {}
+    if PRINT_POSITIVE: print("NOW CHECKING <", sentence, ">")
+    assert_analysis_results(gr_log, voc_log, ideal_gram, ideal_voc, sentence)
+    if PRINT_POSITIVE: print()
+
+    sentence = "Does he hate skiing?"
+    map, gr_log, voc_log = get_map(sentence, model)
+    ideal_gram = {'3': 'PresSimp','4':'Gerund'}
+    ideal_voc = {}
+    if PRINT_POSITIVE: print("NOW CHECKING <", sentence, ">")
+    assert_analysis_results(gr_log, voc_log, ideal_gram, ideal_voc, sentence)
+    if PRINT_POSITIVE: print()
+
+    if PRINT_POSITIVE: print("==========Have_TO==========")
+    sentence = "I have to go there"
+    map, gr_log, voc_log = get_map(sentence, model)
+    ideal_gram = {'4': 'modal_have_to', '2': 'PresSimp'}
+    ideal_voc = {}
+    if PRINT_POSITIVE: print("NOW CHECKING <", sentence, ">")
+    assert_analysis_results(gr_log, voc_log, ideal_gram, ideal_voc, sentence)
+    if PRINT_POSITIVE: print()
+
+    sentence = "Does he have to attend school?"
+    map, gr_log, voc_log = get_map(sentence, model)
+    ideal_gram = {'5': 'modal_have_to', '3': 'PresSimp'}
+    ideal_voc = {}
+    if PRINT_POSITIVE: print("NOW CHECKING <", sentence, ">")
+    assert_analysis_results(gr_log, voc_log, ideal_gram, ideal_voc, sentence)
+    if PRINT_POSITIVE: print()
+
+    if PRINT_POSITIVE: print("==========PHRASAL VEBRS==========")
+    sentence = "I WANT TO GIVE UP SMOKING"
+    map, gr_log, voc_log = get_map(sentence, model)
+    ideal_gram = {'2': 'PresSimp'}
+    ideal_voc = {'4': 'phrasal_verb', '5': 'phrasal_verb'}
+    if PRINT_POSITIVE: print("NOW CHECKING <", sentence, ">")
+    assert_analysis_results(gr_log, voc_log, ideal_gram, ideal_voc, sentence)
+    if PRINT_POSITIVE: print()
+
+    sentence = "You have to turn this ugly light off"
+    map, gr_log, voc_log = get_map(sentence, model)
+    ideal_gram = {'2': 'PresSimp','4': 'modal_have_to'}
+    ideal_voc = {'4': 'dist_phrasal_verb', '8': 'dist_phrasal_verb'}
+    if PRINT_POSITIVE: print("NOW CHECKING <", sentence, ">")
+    assert_analysis_results(gr_log, voc_log, ideal_gram, ideal_voc, sentence)
+    if PRINT_POSITIVE: print()
+
+    if args.show_known_errors:
+        #Доработать фразовые глаголы с to be
+        sentence = "Why are you upset"
+        map, gr_log, voc_log = get_map(sentence, model)
+        ideal_gram = {'2': 'PresSimp'}
+        ideal_voc = {'2': 'dist_phrasal_verb', '4': 'dist_phrasal_verb'}
+        if PRINT_POSITIVE: print("NOW CHECKING <", sentence, ">")
+        assert_analysis_results(gr_log, voc_log, ideal_gram, ideal_voc, sentence)
+        if PRINT_POSITIVE: print()
+
+    sentence = "Who has kicked him out"
+    map, gr_log, voc_log = get_map(sentence, model)
+    ideal_gram = {'3': 'PrPerf'}
+    ideal_voc = {'3': 'phrasal_verb', '5': 'phrasal_verb'}
+    if PRINT_POSITIVE: print("NOW CHECKING <", sentence, ">")
+    assert_analysis_results(gr_log, voc_log, ideal_gram, ideal_voc, sentence)
+    if PRINT_POSITIVE: print()
+
+    sentence = "You will have to let this big fat boss in"
+    map, gr_log, voc_log = get_map(sentence, model)
+    ideal_gram = {'3': 'FutSimp','5':'modal_have_to'}
+    ideal_voc = {'5': 'dist_phrasal_verb', '10': 'dist_phrasal_verb'}
+    if PRINT_POSITIVE: print("NOW CHECKING <", sentence, ">")
+    assert_analysis_results(gr_log, voc_log, ideal_gram, ideal_voc, sentence)
+    if PRINT_POSITIVE: print()
+
+    if PRINT_POSITIVE: print("==========CONDITIONAL_0==========")
+    sentence = "IF I HAVE MONEY I GO TO CLUB"
+    map, gr_log, voc_log = get_map(sentence, model)
+    ideal_gram = {'1': 'ZeroCond','3':'PresSimp','6':'PresSimp'}
+    ideal_voc = {}
+    if PRINT_POSITIVE: print("NOW CHECKING <", sentence, ">")
+    assert_analysis_results(gr_log, voc_log, ideal_gram, ideal_voc, sentence)
+    if PRINT_POSITIVE: print()
+
+    sentence = "If he doesn't have much time he brings food from somewhere else"
+    map, gr_log, voc_log = get_map(sentence, model)
+    ideal_gram = {'1': 'ZeroCond','5':'PresSimp','9':'PresSimp'}
+    ideal_voc = {}
+    if PRINT_POSITIVE: print("NOW CHECKING <", sentence, ">")
+    assert_analysis_results(gr_log, voc_log, ideal_gram, ideal_voc, sentence)
+    if PRINT_POSITIVE: print()
+
+    sentence = "They normally start talking when the teacher goes out of the class"
+    map, gr_log, voc_log = get_map(sentence, model)
+    ideal_gram = {'5': 'ZeroCond','3':'PresSimp','4':'Gerund','8':'PresSimp'}
+    ideal_voc = {}
+    if PRINT_POSITIVE: print("NOW CHECKING <", sentence, ">")
+    assert_analysis_results(gr_log, voc_log, ideal_gram, ideal_voc, sentence)
+    if PRINT_POSITIVE: print()
+
+    if PRINT_POSITIVE: print("==========CONDITIONAL_1==========")
+    sentence = "If I am hungry, I will get something to eat"
+    map, gr_log, voc_log = get_map(sentence, model)
+    ideal_gram = {'1': 'FirstCond','3':'PresSimp','8':'FutSimp'}
+    ideal_voc = {}
+    if PRINT_POSITIVE: print("NOW CHECKING <", sentence, ">")
+    assert_analysis_results(gr_log, voc_log, ideal_gram, ideal_voc, sentence)
+    if PRINT_POSITIVE: print()
+    
+    sentence = "I will bring a blanket,  if it is that cold"
+    map, gr_log, voc_log = get_map(sentence, model)
+    ideal_gram = {'7': 'FirstCond','9':'PresSimp','3':'FutSimp'}
+    ideal_voc = {}
+    if PRINT_POSITIVE: print("NOW CHECKING <", sentence, ">")
+    assert_analysis_results(gr_log, voc_log, ideal_gram, ideal_voc, sentence)
+    if PRINT_POSITIVE: print()
+
+    if PRINT_POSITIVE: print("==========CONDITIONAL_2==========")
+    if args.show_known_errors:
+        #did оказывается в одном поддереве с go и триггерится вопрос в Past simple
+        sentence = "If I did that, I would go away"
+        map, gr_log, voc_log = get_map(sentence, model)
+        ideal_gram = {'1': 'SecondCond','3':'PastSimp'}
+        ideal_voc = {}
+        if PRINT_POSITIVE: print("NOW CHECKING <", sentence, ">")
+        assert_analysis_results(gr_log, voc_log, ideal_gram, ideal_voc, sentence)
+        if PRINT_POSITIVE: print()
+
+    sentence = "If I had that, I would go away"
+    map, gr_log, voc_log = get_map(sentence, model)
+    ideal_gram = {'1': 'SecondCond','3':'PastSimp'}
+    ideal_voc = {}
+    if PRINT_POSITIVE: print("NOW CHECKING <", sentence, ">")
+    assert_analysis_results(gr_log, voc_log, ideal_gram, ideal_voc, sentence)
+    if PRINT_POSITIVE: print()
+
+    sentence = "These guys would enjoy if they had time"
+    map, gr_log, voc_log = get_map(sentence, model)
+    ideal_gram = {'5': 'SecondCond','7':'PastSimp'}
+    ideal_voc = {}
+    if PRINT_POSITIVE: print("NOW CHECKING <", sentence, ">")
+    assert_analysis_results(gr_log, voc_log, ideal_gram, ideal_voc, sentence)
+    if PRINT_POSITIVE: print()
+
+    if PRINT_POSITIVE: print("==========CONDITIONAL_3==========")
+    sentence = "If he had talked to me, I would have listened to him"
+    map, gr_log, voc_log = get_map(sentence, model)
+    ideal_gram = {'1': 'ThirdCond','4':'PastPerf','11': 'would_have_V3'}
+    ideal_voc = {}
+    if PRINT_POSITIVE: print("NOW CHECKING <", sentence, ">")
+    assert_analysis_results(gr_log, voc_log, ideal_gram, ideal_voc, sentence)
+    if PRINT_POSITIVE: print()
+
+    sentence = "You would have won the prize, if you had participated in the competition"
+    map, gr_log, voc_log = get_map(sentence, model)
+    ideal_gram = {'8': 'ThirdCond','4':'would_have_V3','11': 'PastPerf'}
+    ideal_voc = {}
+    if PRINT_POSITIVE: print("NOW CHECKING <", sentence, ">")
+    assert_analysis_results(gr_log, voc_log, ideal_gram, ideal_voc, sentence)
+    if PRINT_POSITIVE: print()
+
+    if PRINT_POSITIVE: print("==========PRESENT SIMPLE PASSIVE==========")
+    sentence = "I am informed about this sitation and will start troubleshooting right now"
+    map, gr_log, voc_log = get_map(sentence, model)
+    ideal_gram = {'3': 'PresSimp_Passive', '9':'FutSimp', '10':'Gerund'}
+    ideal_voc = {}
+    if PRINT_POSITIVE: print("NOW CHECKING <", sentence, ">")
+    assert_analysis_results(gr_log, voc_log, ideal_gram, ideal_voc, sentence)
+    if PRINT_POSITIVE: print()
+
+    sentence = "This company is sponsored by government"
+    map, gr_log, voc_log = get_map(sentence, model)
+    ideal_gram = {'4': 'PresSimp_Passive'}
+    ideal_voc = {}
+    if PRINT_POSITIVE: print("NOW CHECKING <", sentence, ">")
+    assert_analysis_results(gr_log, voc_log, ideal_gram, ideal_voc, sentence)
+    if PRINT_POSITIVE: print()
+
+    if PRINT_POSITIVE: print("==========PAST SIMPLE PASSIVE==========")
+    sentence = "I was informed about this sitation and will start troubleshooting right now"
+    map, gr_log, voc_log = get_map(sentence, model)
+    ideal_gram = {'3': 'PastSimp_Passive', '9':'FutSimp', '10':'Gerund'}
+    ideal_voc = {}
+    if PRINT_POSITIVE: print("NOW CHECKING <", sentence, ">")
+    assert_analysis_results(gr_log, voc_log, ideal_gram, ideal_voc, sentence)
+    if PRINT_POSITIVE: print()
+
+    if PRINT_POSITIVE: print("==========FUT SIMPLE PASSIVE==========")
+    sentence = "I will be brought to the stadium by my bus"
+    map, gr_log, voc_log = get_map(sentence, model)
+    ideal_gram = {'4': 'FutSimp_Passive'}
+    ideal_voc = {}
+    if PRINT_POSITIVE: print("NOW CHECKING <", sentence, ">")
+    assert_analysis_results(gr_log, voc_log, ideal_gram, ideal_voc, sentence)
+    if PRINT_POSITIVE: print()
+
+    if PRINT_POSITIVE: print("==========Present cont  PASSIVE==========")
+    sentence = "I am being terrified by pixies"
+    map, gr_log, voc_log = get_map(sentence, model)
+    ideal_gram = {'4': 'PresCont_Passive'}
+    ideal_voc = {}
+    if PRINT_POSITIVE: print("NOW CHECKING <", sentence, ">")
+    assert_analysis_results(gr_log, voc_log, ideal_gram, ideal_voc, sentence)
+    if PRINT_POSITIVE: print()
+
+    if PRINT_POSITIVE: print("==========Past cont  PASSIVE==========")
+    sentence = "I was being terrified by pixies"
+    map, gr_log, voc_log = get_map(sentence, model)
+    ideal_gram = {'4': 'PastCont_Passive'}
+    ideal_voc = {}
+    if PRINT_POSITIVE: print("NOW CHECKING <", sentence, ">")
+    assert_analysis_results(gr_log, voc_log, ideal_gram, ideal_voc, sentence)
+    if PRINT_POSITIVE: print()
+
+    if PRINT_POSITIVE: print("==========Pres Perf  PASSIVE==========")
+    sentence = "This house has already been built"
+    map, gr_log, voc_log = get_map(sentence, model)
+    ideal_gram = {'6': 'PresPerf_Passive'}
+    ideal_voc = {}
+    if PRINT_POSITIVE: print("NOW CHECKING <", sentence, ">")
+    assert_analysis_results(gr_log, voc_log, ideal_gram, ideal_voc, sentence)
+    if PRINT_POSITIVE: print()
+
+    if PRINT_POSITIVE: print("==========Past Perf  PASSIVE==========")
+    sentence = "This house had been built before I came"
+    map, gr_log, voc_log = get_map(sentence, model)
+    ideal_gram = {'5': 'PastPerf_Passive','8':'PastSimp'}
+    ideal_voc = {}
+    if PRINT_POSITIVE: print("NOW CHECKING <", sentence, ">")
+    assert_analysis_results(gr_log, voc_log, ideal_gram, ideal_voc, sentence)
+    if PRINT_POSITIVE: print()
+
+    if PRINT_POSITIVE: print("==========Fut Perfect  PASSIVE==========")
+    sentence = "This house will have been built by January"
+    map, gr_log, voc_log = get_map(sentence, model)
+    ideal_gram = {'6': 'FutPerf_Passive'}
+    ideal_voc = {}
+    if PRINT_POSITIVE: print("NOW CHECKING <", sentence, ">")
+    assert_analysis_results(gr_log, voc_log, ideal_gram, ideal_voc, sentence)
+    if PRINT_POSITIVE: print()
 test()

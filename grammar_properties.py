@@ -1,4 +1,4 @@
-from vocabulary import phrasal_list_EASY, phrasal_list_big
+from vocabulary import phrasal_list_big
 
 def get_verb_phrase_properties(verb_phrases_dict,grammar_properties_log,pos_word_dict,vocab_properties_log):
     conditional_list = []
@@ -7,7 +7,8 @@ def get_verb_phrase_properties(verb_phrases_dict,grammar_properties_log,pos_word
             continious = False
             head_word_lower = head_of_subtree_plus_index.split("_")[1].lower()
             head_lemma_lower = head_of_subtree_plus_index.split("_")[2].lower()
-            if(head_word_lower.endswith("ing")):
+            #print(pos_word_dict[head_of_subtree_index][1])
+            if(head_word_lower.endswith("ing") and 'VerbForm=Inf' not in pos_word_dict[head_of_subtree_index][1][3]):
                 continious = True  
             be_words = ['am','is','are',"was","were","'s","'re","'m"]
             present_be = ['am','is','are',"'s","'re","'m"]
@@ -20,7 +21,7 @@ def get_verb_phrase_properties(verb_phrases_dict,grammar_properties_log,pos_word
                 be_head = head_word_lower
             elif(head_word_lower in aux_be_words):
                 aux_be_head = head_of_subtree_index
-                print("AUX detected")
+                #print("AUX detected")
             have_words = ["have","has","had","'ve"]
             have_head = False
             if(head_word_lower in have_words):
@@ -69,11 +70,12 @@ def get_verb_phrase_properties(verb_phrases_dict,grammar_properties_log,pos_word
                 #GERUND
                 #print(dep_el[5])
                 if "VerbForm=Ger" in dep_el[5] or dep_el[1].endswith("ing"):#грубое округление с расчетом на то что не герундиев оканчивающихся на инг мало
-                    if (len(dep_el[1])>4 and not head_V3 and not head_V2):#доп филтрр от коротких существительных
+                    if (len(dep_el[1])>4 and not head_V3 and not head_V2 and dep_el[3] != 'PRON'):#доп филтрр от коротких существительных
                         grammar_properties_log[dep_el[0]] = "Gerund"
                 
                 potential_phrasal_verb = head_lemma_lower + ' ' + dep_el[2]
                 #print("potential_phrasal_verb",potential_phrasal_verb)
+                """
                 if( potential_phrasal_verb in  phrasal_list_EASY):
                     #print("EASY PV DETECTED")
                     if abs(int(dep_el[0]) - int(head_of_subtree_index)) > 2:
@@ -82,7 +84,8 @@ def get_verb_phrase_properties(verb_phrases_dict,grammar_properties_log,pos_word
                     else:
                         vocab_properties_log[dep_el[0]] = "easy_phrasal_verb"
                         vocab_properties_log[head_of_subtree_index] = "easy_phrasal_verb"
-                elif(potential_phrasal_verb in phrasal_list_big):
+                """
+                if(potential_phrasal_verb in phrasal_list_big):
                     if abs(int(dep_el[0]) - int(head_of_subtree_index)) > 2:
                         vocab_properties_log[dep_el[0]] = "dist_phrasal_verb"
                         vocab_properties_log[head_of_subtree_index] = "dist_phrasal_verb"
@@ -101,7 +104,7 @@ def get_verb_phrase_properties(verb_phrases_dict,grammar_properties_log,pos_word
                     if(have_head == "has" or have_head == "has"):
                         grammar_properties_log[dep_el[0]] = "PrPerf"
                         another_tense_assigned_inside_subtree = True
-                    elif(have_head == "had"):
+                    elif(have_head == "had" and 'VerbForm=Inf' not in pos_word_dict[head_of_subtree_index][1][3]):
                         grammar_properties_log[dep_el[0]] = "PastPerf"
                         another_tense_assigned_inside_subtree = True
                     
@@ -126,7 +129,7 @@ def get_verb_phrase_properties(verb_phrases_dict,grammar_properties_log,pos_word
                 elif(dep_el[1].lower() == "will" or dep_el[1].lower() == "shall"):
                     future = True
                     future_index = dep_el[0]
-                elif(dep_el[1].lower() == "had"):
+                elif(dep_el[1].lower() == "had" and 'VerbForm=Inf' not in pos_word_dict[head_of_subtree_index][1][3]):
                     if(continious):
                         grammar_properties_log[head_of_subtree_index] = "PastPerfCont"#had (been) doing
                     else:
@@ -154,7 +157,7 @@ def get_verb_phrase_properties(verb_phrases_dict,grammar_properties_log,pos_word
             elif(be_non_head == "been" and perfect and (head_V3 or head_V2) and not future):
                 grammar_properties_log[head_of_subtree_index] = "PresPerf_Passive"
             elif(be_non_head == "been" and perfect and (head_V3 or head_V2) and future):
-                grammar_properties_log[head_of_subtree_index] = "FuturePerf_Passive"
+                grammar_properties_log[head_of_subtree_index] = "FutPerf_Passive"
             elif (continious and future and perfect):
                 grammar_properties_log[head_of_subtree_index] = "FutPerfCont"
             elif (continious and future):
@@ -276,7 +279,7 @@ def get_non_verb_phrase_properties(non_verb_phrases_dict,grammar_properties_log,
             if (dep_el[1].lower() == "there"):
                 there_index = dep_el[0]
             if "VerbForm=Ger" in dep_el[5] or dep_el[1].endswith("ing"):#грубое округление с расчетом на то что не герундиев оканчивающихся на инг мало
-                if (len(dep_el[1])>4):#доп филтрр от коротких существительных
+                if (len(dep_el[1])>4 and dep_el[3] != "PRON"):#доп филтрр от коротких существительных
                     #print("GERUND FOUND")
                     grammar_properties_log[dep_el[0]] = "Gerund"
             if (dep_el[1].lower() == "would"):

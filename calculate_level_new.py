@@ -1,21 +1,25 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from ud_class import Model
-from vocabulary import final_basic_vocabulary, phrasal_list_big
+from vocabulary import cefr_dictionary, phrasal_list_big
 from grammar_properties import get_non_verb_phrase_properties, get_verb_phrase_properties 
 from collections import OrderedDict
 import copy
+from sklearn.feature_extraction.text import TfidfVectorizer
+import pandas as pd
+import nltk
+from nltk.corpus import stopwords
+stopWords = set(stopwords.words('english'))
+from string import punctuation
+full_punctuation = punctuation + "–" + "," + "»" + "«" + "…" +'’'
 
-"""
 import argparse
 parser = argparse.ArgumentParser(add_help=True)
 parser.add_argument('-d', '--debug', action='store_true')
+parser.add_argument('file', help='path to the file with raw text')
 args = parser.parse_args()
 
-DEBUG = False
-if (args.debug ):
-    DEBUG = True"""
-DEBUG = False
+DEBUG = args.debug
 model = Model('./UDPIPE/english-ud-2.0-170801.udpipe')
 
 def get_conllu(text_line, model, print_output = DEBUG):
@@ -32,7 +36,7 @@ def get_conllu(text_line, model, print_output = DEBUG):
                 else:
                     print(line)
     return conllu
-    
+
 def get_conllu_text_map(conllu_parsed_object):
     conllu_text_map = []
     conllu_sentence_map = []
@@ -51,9 +55,27 @@ def get_conllu_text_map(conllu_parsed_object):
     if(len(conllu_sentence_map) > 0):
         conllu_text_map.append(conllu_sentence_map)
     return conllu_text_map
-    
-    
-def create_map(conllu_map, tf_idf_dict, apply_tf_idf = True):
+
+def lemmatize_from_udmap(conllu_map):
+    sentences_list = []
+    for sentence in conllu_map:
+        line = ''
+        for word in sentence: 
+            line += word[2] + ' '
+        sentences_list.append(line.strip())
+        #print()
+    return sentences_list
+
+def get_tf_idf_dict(lemm_text_list, save_to_csv = False):
+    vect = TfidfVectorizer(stop_words = stopWords)
+    tfidf_matrix = vect.fit_transform(lemm_text_list)
+    df = pd.DataFrame(tfidf_matrix.toarray(), columns = vect.get_feature_names())
+    #print(df.head())
+    if (save_to_csv): df.to_csv("./text_0_tfidf.xlsx", sep = '\t')
+    tf_idf_dict = df.to_dict()
+    return tf_idf_dict
+
+def create_map(conllu_map, tf_idf_dict):
     text_map = []
     sentence_ind = 0
     for sentence in conllu_map:
@@ -63,26 +85,20 @@ def create_map(conllu_map, tf_idf_dict, apply_tf_idf = True):
             weight = OrderedDict([("word", word[1]),("lemma",word[2]), ("vocabulary_prop",(OrderedDict([("vocab_importane", 0),("nominal_index",word[0])])))])
             
             lemma_lower = word[2].lower()
-            if (apply_tf_idf):
-                if (lemma_lower in tf_idf_dict):
-                    tf_idf_i = tf_idf_dict[lemma_lower][sentence_ind]
-                    if(word[3] not in pos_exclude_list):
-                        weight['vocabulary_prop']["vocab_importane"] = tf_idf_i
-                    elif(tf_idf_i > 0 ):
-                        #print(word)
-                        weight['vocabulary_prop']["vocab_importane"] = tf_idf_i * 0.5
+            if (lemma_lower in tf_idf_dict):
+                weight['vocabulary_prop']["vocab_importane"] = tf_idf_dict[lemma_lower][sentence_ind]
             sentence_map.append(weight)
         text_map.append(sentence_map)
         sentence_ind += 1
     return text_map
-    
-def vocabulary_analysis(text_map_input, dictionary, debug = False):
+
+def vocabulary_analysis(text_map_input, levels_dictionaries, debug = False):
     text_map = copy.deepcopy(text_map_input)
-    a1_vocab = []
-    other_vocab = []
-    a1_weight = 0
-    other_weight = 0
-    for sentence in text_map:
+    level_collected_vocab = OrderedDict([('A1',[]),('A2',[]),('B1',[]), ('B2',[]), ('C',[]),('undefined_level',[])])
+    level_collected_weight = OrderedDict([('A1',0),('A2',0),('B1',0),('B2',0),('C',0)])
+    level_list = ['A1','A2','B1','B2','C']
+
+    for sentence in text_map[0]:
         for word in sentence:
             low_lemma = word['lemma'].lower()
             low_lemma_clean = ''
@@ -90,18 +106,30 @@ def vocabulary_analysis(text_map_input, dictionary, debug = False):
                 if char not in full_punctuation:
                     low_lemma_clean += char
             
-            if(low_lemma_clean not in dictionary):
-                other_vocab.append((low_lemma_clean,word['vocabulary_prop']['vocab_importane']))
-                other_weight += word['vocabulary_prop']['vocab_importane']
-            else:
-                a1_vocab.append((low_lemma_clean,word['vocabulary_prop']['vocab_importane']))
-                a1_weight += word['vocabulary_prop']['vocab_importane']
-    if debug:
-        print(a1_weight, a1_vocab)
-        print("OTHER VOCAB")
-        print(other_weight, other_vocab)
-            
-#vocabulary_analysis(text_map_ex, final_basic_vocabulary)      
+            found_in_dict = False
+            for level in level_list:
+                #print("level on air", level)
+                if 'phrasal_verb' in word['vocabulary_prop']:
+                    word['vocabulary_prop']['level'] = 'B1'
+                    break
+                if(low_lemma_clean in levels_dictionaries[level]):
+                    #print("WORD FOUND",low_lemma_clean,  level)
+                    level_collected_vocab[level].append((low_lemma_clean,word['vocabulary_prop']['vocab_importane']))
+                    level_collected_weight[level] += word['vocabulary_prop']['vocab_importane']
+                    word['vocabulary_prop']['level'] = level
+                    found_in_dict = True
+                    break
+            if not found_in_dict:
+                level_collected_vocab['undefined_level'].append((low_lemma_clean,word['vocabulary_prop']['vocab_importane']))
+    total_identified_weights = 0
+    for key, val in  level_collected_weight.items():
+        total_identified_weights += val
+
+    for key, val in  level_collected_weight.items():
+        if(total_identified_weights > 0):
+            level_collected_weight[key] = round(level_collected_weight[key]/total_identified_weights,2)
+
+    return text_map, level_collected_vocab, level_collected_weight
 
 def build_subtree_branch(head_word_nominal_index, pos_word_dict,verb_phrases_dict, word_leave):
     if (int(head_word_nominal_index)!= 0):
@@ -224,46 +252,87 @@ def grammar_analysis(conllu_map,text_map_input, show_trees = DEBUG, show_log = D
                 
     return text_map, grammar_properties_log, vocab_properties_log
         
-#grammar_analysis(conllu_text_map_ex,text_map_dep)
 
-    
+
+def calculate_grammar(text_map):
+    level_list = ['A1','A2','B1','B2','C']
+    a1_gramm = {'PresSimp','PresCont','there_is_are'}
+    a2_gramm = {'PastCont','modal_have_to','ZeroCond','FirstCond','Gerund','PrPerf','FutSimp'}
+    b1_gramm = {'FutCont','PastPerf','PrPerfCont','SecondCond','ThirdCond','PresSimp_Passive', 'PastSimp_Passive','FutSimp_Passive'}
+    b2_gramm = {'FutPerfCont', 'FutPerf','PastPerfCont'}
+    c_gramm = {'PastPerf_Passive','PrPerf_Passive','FutPerf_Passive','PresCont_Passive','PastCont_Passive'}
+    level_gramm = OrderedDict([('A1',a1_gramm),('A2',a2_gramm),('B1',b1_gramm), ('B2',b2_gramm), ('C',c_gramm)])
+    level_collected_gramm = OrderedDict([('A1',[]),('A2',[]),('B1',[]), ('B2',[]), ('C',[])])
+    level_grammar_collected_weight = OrderedDict([('A1',0),('A2',0),('B1',0),('B2',0),('C',0)])
+
+    for sentence in text_map[0]:
+        for word in sentence:
+            if 'grammar_prop' in word:
+                #print("GRAMMAR FOUND", word['grammar_prop'])
+                for level in level_list:
+                    if word['grammar_prop'] in level_gramm[level]:
+                        level_collected_gramm[level].append((word['lemma'], word['grammar_prop']))
+                        level_grammar_collected_weight[level] += 1
+    total_identified_weights = 0
+    for key, val in  level_grammar_collected_weight.items():
+        total_identified_weights += val
+
+    for key, val in  level_grammar_collected_weight.items():
+        if(total_identified_weights > 0 ):
+            level_grammar_collected_weight[key] = round(level_grammar_collected_weight[key]/total_identified_weights,2)
+
+    return level_collected_gramm,level_grammar_collected_weight
+
 def get_map(text_line,model):
     conllu = get_conllu(text_line, model, print_output = DEBUG)
     conllu_text_map = get_conllu_text_map(conllu)
     #print(conllu_text_map)
-    
-    tfidf = False
-    if tfidf:
-        lemm_sentences = lemmatize_from_udmap(conllu_text_map)
-        tf_idf_dict = get_tf_idf_dict (lemm_sentences)
-    else:
-        tf_idf_dict = None
-    
-    text_map = create_map(conllu_text_map, tf_idf_dict, apply_tf_idf = False)
-    
-    #vocabulary_analysis(text_map_dep, final_basic_vocabulary)
-    text_analysis_map, grammar_properties_log, vocab_properties_log = grammar_analysis(conllu_text_map, text_map)
-    
-    return text_analysis_map, grammar_properties_log, vocab_properties_log
-    
-   
-if DEBUG:
-    map, grammar_properties_log, vocab_properties_log = get_map("If I did that, I would go away", model)
-    for word in map[0]:
-        print (word,"\n")
-#get_map("I like going there", model) Gerund example
-#get_map("The cat will be there", model)
-#get_map("Mrs Scolefield  has really-really liked going there", model)# has to root
-#get_map("Mr. Scolefield is going there", model)
-#Is he going there""He is a cat" --- на этом примере Tense не отрабатывает --- решение - посылать на еще одну обработку без корня
-#Had I gone there --- Had уходит в корень - время определяется неправильно
+    lemm_sentences = lemmatize_from_udmap(conllu_text_map)
+    tf_idf_dict = get_tf_idf_dict (lemm_sentences)
+    text_map = create_map(conllu_text_map, tf_idf_dict)
+    text_analysis_map = grammar_analysis(conllu_text_map, text_map)
 
-
-        
+    text_map_voc, level_collected_vocab, level_collected_weight = vocabulary_analysis(text_analysis_map, cefr_dictionary)
+    level_collected_gramm, level_grammar_collected_weight = calculate_grammar(text_analysis_map)
     
 
+    return text_analysis_map, level_collected_vocab, level_collected_weight, level_collected_gramm, level_grammar_collected_weight
 
-    
-    
-            
+def calculate_level(vocab_dict, vocab_weights_dict, grammar_dict, grammar_count_dict):
+    print("====VOCABULARY LISTS===")
+    for key, values_list in vocab_dict.items():
+        print("======",key,"=======")
+        for val in values_list:
+            print(val)
+    print('\n\n')
+    print("====VOCABULARY WEIGHTS===")
+    for key, values_list in vocab_weights_dict.items():
+        print("======",key,"=======")
+        print(values_list)
+    print('\n\n')
+    print("====GRAMMAR LIST===")
+    for key, values_list in grammar_dict.items():
+        print("======",key,"=======")
+        print("total occurencies", len(values_list))
+        for val in values_list:
+            print(val)
+    print('\n\n')
+    print("====GRAMMAR PERCENTAGE===")
+    for key, values_list in grammar_count_dict.items():
+        print("======",key,"=======")
+        print(values_list)
+
+text = ''
+with open(args.file, "r", encoding = "utf-8") as text_file:
+    for line in text_file.readlines():
+        text += line + ' '
+text_analysis_map, level_collected_vocab, level_collected_weight, level_collected_gramm, level_grammar_collected_weight = get_map(text, model)
+
+for sentence in text_analysis_map[0]:
+    for word in sentence:
+        print(word,'\n')
+    print("====================")
+print('\n\n')
+
+calculate_level(level_collected_vocab, level_collected_weight, level_collected_gramm, level_grammar_collected_weight)
 
