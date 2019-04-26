@@ -1,0 +1,41 @@
+# newdoc
+# newpar
+# sent_id = 1
+# text = I advise him to do much sport
+['1', 'I', 'I', 'PRON', 'PRP', 'Case=Nom|Number=Sing|Person=1|PronType=Prs', '2', 'nsubj', '_', '_']
+['2', 'advise', 'advise', 'VERB', 'VBP', 'Mood=Ind|Tense=Pres|VerbForm=Fin', '0', 'root', '_', '_']
+['3', 'him', 'he', 'PRON', 'PRP', 'Case=Acc|Gender=Masc|Number=Sing|Person=3|PronType=Prs', '2', 'obj', '_', '_']
+['4', 'to', 'to', 'PART', 'TO', '_', '5', 'mark', '_', '_']
+['5', 'do', 'do', 'VERB', 'VB', 'VerbForm=Inf', '2', 'xcomp', '_', '_']
+['6', 'much', 'much', 'ADJ', 'JJ', 'Degree=Pos', '7', 'amod', '_', '_']
+['7', 'sport', 'sport', 'NOUN', 'NN', 'Number=Sing', '5', 'obj', '_', 'SpaceAfter=No']
+VERB SUBTREES
+2_advise_advise
+['1', 'I', 'I', 'PRON', 'PRP', 'Case=Nom|Number=Sing|Person=1|PronType=Prs', '2', 'nsubj', '_', '_']
+['3', 'him', 'he', 'PRON', 'PRP', 'Case=Acc|Gender=Masc|Number=Sing|Person=3|PronType=Prs', '2', 'obj', '_', '_']
+['5', 'do', 'do', 'VERB', 'VB', 'VerbForm=Inf', '2', 'xcomp', '_', '_']
+==========
+5_do_do
+['4', 'to', 'to', 'PART', 'TO', '_', '5', 'mark', '_', '_']
+['7', 'sport', 'sport', 'NOUN', 'NN', 'Number=Sing', '5', 'obj', '_', 'SpaceAfter=No']
+==========
+NON-VERB SUBTREES
+7_sport_sport
+['6', 'much', 'much', 'ADJ', 'JJ', 'Degree=Pos', '7', 'amod', '_', '_']
+==========
+grammar_properties_log {'2': 'PresSimp'}
+vocab_properties_log {}
+OrderedDict([('word', 'I'), ('lemma', 'I'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '1')]))]) 
+
+OrderedDict([('word', 'advise'), ('lemma', 'advise'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '2')])), ('grammar_prop', 'PresSimp')]) 
+
+OrderedDict([('word', 'him'), ('lemma', 'he'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '3')]))]) 
+
+OrderedDict([('word', 'to'), ('lemma', 'to'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '4')]))]) 
+
+OrderedDict([('word', 'do'), ('lemma', 'do'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '5')]))]) 
+
+OrderedDict([('word', 'much'), ('lemma', 'much'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '6')]))]) 
+
+OrderedDict([('word', 'sport'), ('lemma', 'sport'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '7')]))]) 
+

@@ -139,7 +139,7 @@ def get_verb_phrase_properties(verb_phrases_dict,grammar_properties_log,pos_word
                     perfect = True
                     if(continious):
                         grammar_properties_log[head_of_subtree_index] = "PrPerfCont"
-                    elif(would_V3_index == -1):
+                    elif(would_V3_index == -1  and (head_V3 or head_V2)):
                         grammar_properties_log[head_of_subtree_index] = "PrPerf"
                     elif(int(would_V3_index) > 0):
                         grammar_properties_log[head_of_subtree_index] = "would_have_V3"
@@ -155,7 +155,7 @@ def get_verb_phrase_properties(verb_phrases_dict,grammar_properties_log,pos_word
             if(be_non_head == "been" and past_perf and (head_V3 or head_V2)):
                 grammar_properties_log[head_of_subtree_index] = "PastPerf_Passive"
             elif(be_non_head == "been" and perfect and (head_V3 or head_V2) and not future):
-                grammar_properties_log[head_of_subtree_index] = "PresPerf_Passive"
+                grammar_properties_log[head_of_subtree_index] = "PrPerf_Passive"
             elif(be_non_head == "been" and perfect and (head_V3 or head_V2) and future):
                 grammar_properties_log[head_of_subtree_index] = "FutPerf_Passive"
             elif (continious and future and perfect):
@@ -261,11 +261,12 @@ def get_non_verb_phrase_properties(non_verb_phrases_dict,grammar_properties_log,
     future_list = ["will","shall"]
     be_list = ["be", "been"]
     be_phrasal_list = ["after", "along","away","upset","down", "up"]
+    modal_verbs_list = ['can','may','should','would']
     for head_of_subtree_plus_index, dependent_elements in non_verb_phrases_dict.items():
         perfect = False
         future = False
         be_index = -1
-        would = False
+        
         past_perf = False
         when_condition_index = -1
         if_condition_index = -1
@@ -273,7 +274,13 @@ def get_non_verb_phrase_properties(non_verb_phrases_dict,grammar_properties_log,
         past = False
         #Catch there is_are
         there_index = -1 
+        #modal verbs
+        modal = None
+        would = None
         for dep_el in dependent_elements:
+            #catch modal verbs
+            if (dep_el[1].lower() == "can"):
+                modal_index = dep_el[0]
         
             #Catch there is_are
             if (dep_el[1].lower() == "there"):
@@ -282,8 +289,10 @@ def get_non_verb_phrase_properties(non_verb_phrases_dict,grammar_properties_log,
                 if (len(dep_el[1])>4 and dep_el[3] != "PRON"):#доп филтрр от коротких существительных
                     #print("GERUND FOUND")
                     grammar_properties_log[dep_el[0]] = "Gerund"
-            if (dep_el[1].lower() == "would"):
-                would = True
+            if (dep_el[1].lower() in modal_verbs_list):
+                modal = dep_el[0]
+                if (dep_el[1].lower() == "would"):
+                    would = True
             elif (dep_el[1].lower() == "if"):
                 if_condition_index = dep_el[0]
             elif(dep_el[1].lower() == "when"):
@@ -293,7 +302,7 @@ def get_non_verb_phrase_properties(non_verb_phrases_dict,grammar_properties_log,
                 if dep_el[1].lower() == "be" and would:
                     grammar_properties_log[dep_el[0]] = "would_Vinf"
                     grammar_properties_log["would_Vinf"] = dep_el[0]
-                elif(dep_el[1].lower() == "been" and would):
+                elif(dep_el[1].lower() == "been" and modal):
                     grammar_properties_log[dep_el[0]] = "would_have_V3"
                     grammar_properties_log["would_have_V3"] = dep_el[0]
             if(dep_el[1].lower() in be_phrasal_list and int(be_index) > 0 and int(be_index) < int(dep_el[0])):
@@ -316,9 +325,8 @@ def get_non_verb_phrase_properties(non_verb_phrases_dict,grammar_properties_log,
             elif (dep_el[1].lower() == "had"):
                 past_perf = True
                 
-                
         if (be_index > 0):            
-            if (perfect and not future and not would):
+            if (perfect and not future and not modal):
                 grammar_properties_log[str(be_index)] = "PrPerf"
             elif (perfect and future):
                 grammar_properties_log[str(be_index)] = "FutPerf"
@@ -326,9 +334,14 @@ def get_non_verb_phrase_properties(non_verb_phrases_dict,grammar_properties_log,
                 grammar_properties_log[str(be_index)] = "FutSimp"
             elif(past_perf):
                 grammar_properties_log[str(be_index)] = "PastPerf"
+            elif(modal):
+                grammar_properties_log[str(be_index)] = "PresSimp"
                 
             if(int(there_index) > 0 and int(there_index) < be_index):
                 grammar_properties_log[str(there_index)] = "there_is_are"
+        else:
+           if(modal):
+                grammar_properties_log[modal] = "PresSimp" 
                 
                 
         #print("if_condition_index",if_condition_index)         

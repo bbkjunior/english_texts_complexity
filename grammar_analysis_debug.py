@@ -15,7 +15,7 @@ args = parser.parse_args()
 DEBUG = False
 if (args.debug ):
     DEBUG = True"""
-DEBUG = False
+DEBUG = True
 model = Model('./UDPIPE/english-ud-2.0-170801.udpipe')
 
 def get_conllu(text_line, model, print_output = DEBUG):
@@ -248,7 +248,7 @@ def get_map(text_line,model):
     
    
 if DEBUG:
-    map, grammar_properties_log, vocab_properties_log = get_map("If I did that, I would go away", model)
+    map, grammar_properties_log, vocab_properties_log = get_map("The weather can be very different", model)
     for word in map[0]:
         print (word,"\n")
 #get_map("I like going there", model) Gerund example

@@ -11,7 +11,7 @@ OrderedDict([('word', 'doctor'), ('lemma', 'doctor'), ('vocabulary_prop', Ordere
 ====================
 OrderedDict([('word', 'I'), ('lemma', 'I'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '1')]))]) 
 
-OrderedDict([('word', 'know'), ('lemma', 'know'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0.5), ('nominal_index', '2')])), ('grammar_prop', 'PresSimp')]) 
+OrderedDict([('word', 'know'), ('lemma', 'know'), ('vocabulary_prop', 
 
 OrderedDict([('word', 'many'), ('lemma', 'many'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0.5), ('nominal_index', '3')]))]) 
 

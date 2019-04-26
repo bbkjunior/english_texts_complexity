@@ -13,7 +13,7 @@ with open("./materials/phrasal_verbs.txt", "r") as pv_doc:
 
 #UPLOAD BASIC VOCABULARY	
 basic_vocabulary = []
-with open("./materials/A1_vocab_processed.txt", "r",encoding = "ISO-8859-1") as voc:
+with open("./materials/CEFR/a1_vocab_processed.txt", "r") as voc:
     for word in voc.readlines():
         basic_vocabulary.append(word[:-1].lower())
 #basic_vocabulary = set(basic_vocabulary)
@@ -51,7 +51,7 @@ word_to_find = None
 if word_to_find:
     print (word_to_find)
 A2 = []
-with open("./materials/A2_vocab_processed.txt", "r") as voc:
+with open("./materials/CEFR/a2_vocab_processed.txt", "r") as voc:
     for word in voc.readlines():
         if word_to_find:
                 if word_to_find in word:
@@ -66,9 +66,10 @@ if word_to_find:
     print(word_to_find in A2)
 
 B1 = []
-with open("./materials/B1_vocab_processed.txt", "r") as voc:
+with open("./materials/CEFR/b1_vocab_processed.txt", "r") as voc:
     for word in voc.readlines():
         if word_to_find:
+            print (word)
             if word_to_find in word:
                 print (word, 'B1')
         B1.append(word[:-1].lower())
@@ -80,7 +81,7 @@ if word_to_find:
     print(word_to_find in B1)
 
 B2 = []
-with open("./materials/B2_vocab_processed.txt", "r") as voc:
+with open("./materials/CEFR/b2_vocab_processed.txt", "r") as voc:
     for word in voc.readlines():
         if word_to_find:
             if word_to_find in word:
@@ -94,13 +95,23 @@ if word_to_find:
     print(len(B2))
     print(word_to_find in B2)
 
-C = []
-with open("./materials/C_vocab_processed.txt", "r") as voc:
+c1 = []
+with open("./materials/CEFR/c1_vocab_processed.txt", "r") as voc:
     for word in voc.readlines():
         if word_to_find:
             if word_to_find in word:
                 print (word, 'C')
-        C.append(word[:-1].lower())
+        c1.append(word[:-1].lower())
+
+c2 = []
+with open("./materials/CEFR/c2_vocab_processed.txt", "r") as voc:
+    for word in voc.readlines():
+        if word_to_find:
+            if word_to_find in word:
+                print (word, 'C')
+        c2.append(word[:-1].lower())
+C = set(c1).union(set(c2))
+
 if word_to_find:
     print(len(B2))
 C = set(C) - final_basic_vocabulary

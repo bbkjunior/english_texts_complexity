@@ -12,10 +12,12 @@ from nltk.corpus import stopwords
 stopWords = set(stopwords.words('english'))
 from string import punctuation
 full_punctuation = punctuation + "–" + "," + "»" + "«" + "…" +'’'
+import operator
 
 import argparse
 parser = argparse.ArgumentParser(add_help=True)
 parser.add_argument('-d', '--debug', action='store_true')
+parser.add_argument('-s', '--show_output', action='store_true')
 parser.add_argument('file', help='path to the file with raw text')
 args = parser.parse_args()
 
@@ -92,44 +94,6 @@ def create_map(conllu_map, tf_idf_dict):
         sentence_ind += 1
     return text_map
 
-def vocabulary_analysis(text_map_input, levels_dictionaries, debug = False):
-    text_map = copy.deepcopy(text_map_input)
-    level_collected_vocab = OrderedDict([('A1',[]),('A2',[]),('B1',[]), ('B2',[]), ('C',[]),('undefined_level',[])])
-    level_collected_weight = OrderedDict([('A1',0),('A2',0),('B1',0),('B2',0),('C',0)])
-    level_list = ['A1','A2','B1','B2','C']
-
-    for sentence in text_map[0]:
-        for word in sentence:
-            low_lemma = word['lemma'].lower()
-            low_lemma_clean = ''
-            for char in low_lemma:
-                if char not in full_punctuation:
-                    low_lemma_clean += char
-            
-            found_in_dict = False
-            for level in level_list:
-                #print("level on air", level)
-                if 'phrasal_verb' in word['vocabulary_prop']:
-                    word['vocabulary_prop']['level'] = 'B1'
-                    break
-                if(low_lemma_clean in levels_dictionaries[level]):
-                    #print("WORD FOUND",low_lemma_clean,  level)
-                    level_collected_vocab[level].append((low_lemma_clean,word['vocabulary_prop']['vocab_importane']))
-                    level_collected_weight[level] += word['vocabulary_prop']['vocab_importane']
-                    word['vocabulary_prop']['level'] = level
-                    found_in_dict = True
-                    break
-            if not found_in_dict:
-                level_collected_vocab['undefined_level'].append((low_lemma_clean,word['vocabulary_prop']['vocab_importane']))
-    total_identified_weights = 0
-    for key, val in  level_collected_weight.items():
-        total_identified_weights += val
-
-    for key, val in  level_collected_weight.items():
-        if(total_identified_weights > 0):
-            level_collected_weight[key] = round(level_collected_weight[key]/total_identified_weights,2)
-
-    return text_map, level_collected_vocab, level_collected_weight
 
 def build_subtree_branch(head_word_nominal_index, pos_word_dict,verb_phrases_dict, word_leave):
     if (int(head_word_nominal_index)!= 0):
@@ -251,7 +215,44 @@ def grammar_analysis(conllu_map,text_map_input, show_trees = DEBUG, show_log = D
             
                 
     return text_map, grammar_properties_log, vocab_properties_log
-        
+def vocabulary_analysis(text_map_input, levels_dictionaries, debug = False):
+    text_map = copy.deepcopy(text_map_input)
+    level_collected_vocab = OrderedDict([('A1',[]),('A2',[]),('B1',[]), ('B2',[]), ('C',[]),('undefined_level',[])])
+    level_collected_weight = OrderedDict([('A1',0),('A2',0),('B1',0),('B2',0),('C',0)])
+    level_list = ['A1','A2','B1','B2','C']
+
+    for sentence in text_map[0]:
+        for word in sentence:
+            low_lemma = word['lemma'].lower()
+            low_lemma_clean = ''
+            for char in low_lemma:
+                if char not in full_punctuation:
+                    low_lemma_clean += char
+            
+            found_in_dict = False
+            for level in level_list:
+                #print("level on air", level)
+                if 'phrasal_verb' in word['vocabulary_prop']:
+                    word['vocabulary_prop']['level'] = 'B1'
+                    break
+                if(low_lemma_clean in levels_dictionaries[level]):
+                    #print("WORD FOUND",low_lemma_clean,  level)
+                    level_collected_vocab[level].append((low_lemma_clean,word['vocabulary_prop']['vocab_importane']))
+                    level_collected_weight[level] += word['vocabulary_prop']['vocab_importane']
+                    word['vocabulary_prop']['level'] = level
+                    found_in_dict = True
+                    break
+            if not found_in_dict:
+                level_collected_vocab['undefined_level'].append((low_lemma_clean,word['vocabulary_prop']['vocab_importane']))
+    total_identified_weights = 0
+    for key, val in  level_collected_weight.items():
+        total_identified_weights += val
+
+    for key, val in  level_collected_weight.items():
+        if(total_identified_weights > 0):
+            level_collected_weight[key] = round(level_collected_weight[key]/total_identified_weights,4)
+
+    return text_map, level_collected_vocab, level_collected_weight        
 
 
 def calculate_grammar(text_map):
@@ -279,7 +280,7 @@ def calculate_grammar(text_map):
 
     for key, val in  level_grammar_collected_weight.items():
         if(total_identified_weights > 0 ):
-            level_grammar_collected_weight[key] = round(level_grammar_collected_weight[key]/total_identified_weights,2)
+            level_grammar_collected_weight[key] = round(level_grammar_collected_weight[key]/total_identified_weights,4)
 
     return level_collected_gramm,level_grammar_collected_weight
 
@@ -291,36 +292,57 @@ def get_map(text_line,model):
     tf_idf_dict = get_tf_idf_dict (lemm_sentences)
     text_map = create_map(conllu_text_map, tf_idf_dict)
     text_analysis_map = grammar_analysis(conllu_text_map, text_map)
-
     text_map_voc, level_collected_vocab, level_collected_weight = vocabulary_analysis(text_analysis_map, cefr_dictionary)
-    level_collected_gramm, level_grammar_collected_weight = calculate_grammar(text_analysis_map)
+    level_collected_gramm, level_grammar_collected_weight = calculate_grammar(text_map_voc)
     
 
-    return text_analysis_map, level_collected_vocab, level_collected_weight, level_collected_gramm, level_grammar_collected_weight
+    return text_map_voc, level_collected_vocab, level_collected_weight, level_collected_gramm, level_grammar_collected_weight
 
 def calculate_level(vocab_dict, vocab_weights_dict, grammar_dict, grammar_count_dict):
-    print("====VOCABULARY LISTS===")
-    for key, values_list in vocab_dict.items():
-        print("======",key,"=======")
-        for val in values_list:
-            print(val)
-    print('\n\n')
-    print("====VOCABULARY WEIGHTS===")
-    for key, values_list in vocab_weights_dict.items():
-        print("======",key,"=======")
-        print(values_list)
-    print('\n\n')
-    print("====GRAMMAR LIST===")
-    for key, values_list in grammar_dict.items():
-        print("======",key,"=======")
-        print("total occurencies", len(values_list))
-        for val in values_list:
-            print(val)
-    print('\n\n')
-    print("====GRAMMAR PERCENTAGE===")
-    for key, values_list in grammar_count_dict.items():
-        print("======",key,"=======")
-        print(values_list)
+    final_calculation_dict = OrderedDict([('A1',0),('A2',0),('B1',0),('B2',0),('C',0)])
+    if args.show_output:
+        print("====VOCABULARY LISTS===")
+        for key, values_list in vocab_dict.items():
+            print("======",key,"=======")
+            for val in values_list:
+                print(val)
+        print('\n\n')
+        print("====VOCABULARY WEIGHTS===")
+
+    for key, level_vocab_weight in vocab_weights_dict.items():
+        final_calculation_dict[key] += 0.7 * level_vocab_weight
+        if args.show_output: 
+            print("======",key,"=======")
+            print(level_vocab_weight)
+
+    if args.show_output:
+        print('\n\n')
+        print("====GRAMMAR LIST===")
+        for key, values_list in grammar_dict.items():
+            print("======",key,"=======")
+            print("total occurencies", len(values_list))
+            for val in values_list:
+                print(val)
+        print('\n\n')
+        print("====GRAMMAR WEIGHTS===")
+
+    for key, level_grammar_weight in grammar_count_dict.items():
+        final_calculation_dict[key] += 0.3 * level_grammar_weight
+        if args.show_output:
+            print(key, level_grammar_weight)
+            print("======",key,"=======")
+            print(level_grammar_weight)
+    
+    sorted_final_calculation = sorted(final_calculation_dict.items(), key=operator.itemgetter(1),reverse = True)
+    if args.show_output:
+        print('\n\n')
+        print("====OVERALL CALCULATION===")
+        for lvl in sorted_final_calculation:
+            print(lvl)
+
+    level_repsone = {'level': sorted_final_calculation[0][0]}
+
+    return level_repsone
 
 text = ''
 with open(args.file, "r", encoding = "utf-8") as text_file:
@@ -328,11 +350,14 @@ with open(args.file, "r", encoding = "utf-8") as text_file:
         text += line + ' '
 text_analysis_map, level_collected_vocab, level_collected_weight, level_collected_gramm, level_grammar_collected_weight = get_map(text, model)
 
-for sentence in text_analysis_map[0]:
-    for word in sentence:
-        print(word,'\n')
-    print("====================")
-print('\n\n')
+if args.show_output:
+    for sentence in text_analysis_map[0]:
+        for word in sentence:
+            print(word,'\n')
+        print("====================")
+    print('\n\n')
 
-calculate_level(level_collected_vocab, level_collected_weight, level_collected_gramm, level_grammar_collected_weight)
+level = calculate_level(level_collected_vocab, level_collected_weight, level_collected_gramm, level_grammar_collected_weight)
+
+print (level)
 
