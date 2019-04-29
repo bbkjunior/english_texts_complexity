@@ -3,9 +3,11 @@
 from ud_class import Model
 from vocabulary import cefr_dictionary, phrasal_list_big
 from grammar_properties import get_non_verb_phrase_properties, get_verb_phrase_properties 
+
 from collections import OrderedDict
 import copy
 from sklearn.feature_extraction.text import TfidfVectorizer
+import numpy as np
 import pandas as pd
 import nltk
 from nltk.corpus import stopwords
@@ -25,6 +27,7 @@ DEBUG = args.debug
 model = Model('./UDPIPE/english-ud-2.0-170801.udpipe')
 
 def get_conllu(text_line, model, print_output = DEBUG):
+    """получаем разобранный текст"""
     sentences = model.tokenize(text_line)
     for s in sentences:
         model.tag(s)
@@ -40,12 +43,12 @@ def get_conllu(text_line, model, print_output = DEBUG):
     return conllu
 
 def get_conllu_text_map(conllu_parsed_object):
+    """извлекаем только нуную инвормацию (без пунктуации)"""
     conllu_text_map = []
     conllu_sentence_map = []
     for line in conllu_parsed_object.split('\n'):
         if line :
             if line[0].isdigit():
-                #print(line.split('\t'))
                 split_items = line.split('\t')
                 if split_items[3] != "PUNCT":
                     conllu_sentence_map.append(split_items)
@@ -53,22 +56,22 @@ def get_conllu_text_map(conllu_parsed_object):
                 if(len(conllu_sentence_map) > 0):
                     conllu_text_map.append(conllu_sentence_map)
                     conllu_sentence_map = []   
-                    #print("appended")
     if(len(conllu_sentence_map) > 0):
         conllu_text_map.append(conllu_sentence_map)
     return conllu_text_map
 
 def lemmatize_from_udmap(conllu_map):
+    """лемматизируем текст из результатов работы udpipe"""
     sentences_list = []
     for sentence in conllu_map:
         line = ''
         for word in sentence: 
             line += word[2] + ' '
         sentences_list.append(line.strip())
-        #print()
     return sentences_list
 
 def get_tf_idf_dict(lemm_text_list, save_to_csv = False):
+    """считаем tf-idf, экспортируем словарь со значениями"""
     vect = TfidfVectorizer(stop_words = stopWords)
     tfidf_matrix = vect.fit_transform(lemm_text_list)
     df = pd.DataFrame(tfidf_matrix.toarray(), columns = vect.get_feature_names())
@@ -78,6 +81,7 @@ def get_tf_idf_dict(lemm_text_list, save_to_csv = False):
     return tf_idf_dict
 
 def create_map(conllu_map, tf_idf_dict):
+    """создаем карту текста (лист из списка свойств слов в формате json"""
     text_map = []
     sentence_ind = 0
     for sentence in conllu_map:
@@ -88,7 +92,7 @@ def create_map(conllu_map, tf_idf_dict):
             
             lemma_lower = word[2].lower()
             if (lemma_lower in tf_idf_dict):
-                weight['vocabulary_prop']["vocab_importane"] = tf_idf_dict[lemma_lower][sentence_ind]
+                weight['vocabulary_prop']["vocab_importane"] = round(tf_idf_dict[lemma_lower][sentence_ind] * 10,0)#для того чтобы была эквивалентность количеству условных единиц слова
             sentence_map.append(weight)
         text_map.append(sentence_map)
         sentence_ind += 1
@@ -96,6 +100,7 @@ def create_map(conllu_map, tf_idf_dict):
 
 
 def build_subtree_branch(head_word_nominal_index, pos_word_dict,verb_phrases_dict, word_leave):
+    """функция для заполнения синтаксического поддерева"""
     if (int(head_word_nominal_index)!= 0):
         current_head_word = pos_word_dict[head_word_nominal_index][0]
         current_head_pos = pos_word_dict[head_word_nominal_index][1][1]
@@ -108,12 +113,12 @@ def build_subtree_branch(head_word_nominal_index, pos_word_dict,verb_phrases_dic
 
 
 def grammar_analysis(conllu_map,text_map_input, show_trees = DEBUG, show_log = DEBUG):
+    """собираем грамматическую информацию и инфу о фразовых глаголах"""
     assert len(conllu_map) == len(text_map_input) #sentences count is equal
     text_map = copy.deepcopy(text_map_input)
     
     for sentence_conllu, text_map_sentence in zip(conllu_map,text_map):
-        #СОБИРАЕМ СПИСОК СВАОЙСТВ ВСЕХ СЛОВ ПРЕДЛОЖЕНИЯ ДЛЯ ПОСЛЕДУЮЩЕГО ОБРАЩЕНИЯ
-        pos_word_dict = {}
+        pos_word_dict = {}#СОБИРАЕМ СПИСОК СВАОЙСТВ ВСЕХ СЛОВ ПРЕДЛОЖЕНИЯ ДЛЯ ПОСЛЕДУЮЩЕГО ОБРАЩЕНИЯ
         for pos_word in sentence_conllu:
             pos_word_dict[pos_word[0]] = (pos_word[0]+'_'+pos_word[1]+'_'+pos_word[2], pos_word[2:])
         
@@ -149,11 +154,7 @@ def grammar_analysis(conllu_map,text_map_input, show_trees = DEBUG, show_log = D
                             vocab_properties_log[second_index] = "phrasal_verb"
         
         for word_leave in sentence_conllu: 
-            #if word_leave[2] == "there": there_is_are = True
-            #if word_leave[1].lower() in be_list and there_is_are"
-            #print(word_leave[1], "head_word_nominal_index =", word_leave[6])
             if (int(word_leave[6]) != 0):
-                #print(pos_word_dict[word_leave[6]],pos_word_dict[word_leave[6]][1][1])
                 if(pos_word_dict[word_leave[6]][1][1] != "VERB"):
                     build_subtree_branch(word_leave[6], pos_word_dict, non_verb_phrases_dict, word_leave)
                 else:
@@ -178,7 +179,6 @@ def grammar_analysis(conllu_map,text_map_input, show_trees = DEBUG, show_log = D
                 print("==========")
         if (len(list(non_verb_phrases_dict.keys()))>0):
             get_non_verb_phrase_properties(non_verb_phrases_dict, grammar_properties_log,pos_word_dict,vocab_properties_log)
-        
                 
         if show_log:
             print("grammar_properties_log", grammar_properties_log) 
@@ -216,11 +216,12 @@ def grammar_analysis(conllu_map,text_map_input, show_trees = DEBUG, show_log = D
                 
     return text_map, grammar_properties_log, vocab_properties_log
 def vocabulary_analysis(text_map_input, levels_dictionaries, debug = False):
+    """собираем список слов по уровням"""
     text_map = copy.deepcopy(text_map_input)
     level_collected_vocab = OrderedDict([('A1',[]),('A2',[]),('B1',[]), ('B2',[]), ('C',[]),('undefined_level',[])])
     level_collected_weight = OrderedDict([('A1',0),('A2',0),('B1',0),('B2',0),('C',0)])
     level_list = ['A1','A2','B1','B2','C']
-
+    unique_words = []
     for sentence in text_map[0]:
         for word in sentence:
             low_lemma = word['lemma'].lower()
@@ -228,22 +229,21 @@ def vocabulary_analysis(text_map_input, levels_dictionaries, debug = False):
             for char in low_lemma:
                 if char not in full_punctuation:
                     low_lemma_clean += char
-            
-            found_in_dict = False
-            for level in level_list:
-                #print("level on air", level)
-                if 'phrasal_verb' in word['vocabulary_prop']:
-                    word['vocabulary_prop']['level'] = 'B1'
-                    break
-                if(low_lemma_clean in levels_dictionaries[level]):
-                    #print("WORD FOUND",low_lemma_clean,  level)
-                    level_collected_vocab[level].append((low_lemma_clean,word['vocabulary_prop']['vocab_importane']))
-                    level_collected_weight[level] += word['vocabulary_prop']['vocab_importane']
-                    word['vocabulary_prop']['level'] = level
-                    found_in_dict = True
-                    break
-            if not found_in_dict:
-                level_collected_vocab['undefined_level'].append((low_lemma_clean,word['vocabulary_prop']['vocab_importane']))
+            if low_lemma_clean not in unique_words:
+                unique_words.append(low_lemma_clean)
+                found_in_dict = False
+                for level in level_list:
+                    if 'phrasal_verb' in word['vocabulary_prop']:
+                        word['vocabulary_prop']['level'] = 'B1'
+                        break
+                    if(low_lemma_clean in levels_dictionaries[level]):
+                        level_collected_vocab[level].append((low_lemma_clean,word['vocabulary_prop']['vocab_importane']))
+                        level_collected_weight[level] += word['vocabulary_prop']['vocab_importane']
+                        word['vocabulary_prop']['level'] = level
+                        found_in_dict = True
+                        break
+                if not found_in_dict:
+                    level_collected_vocab['undefined_level'].append((low_lemma_clean,word['vocabulary_prop']['vocab_importane']))
     total_identified_weights = 0
     for key, val in  level_collected_weight.items():
         total_identified_weights += val
@@ -256,6 +256,7 @@ def vocabulary_analysis(text_map_input, levels_dictionaries, debug = False):
 
 
 def calculate_grammar(text_map):
+    """анализируем реально присутствующую в тексте грамматику"""
     level_list = ['A1','A2','B1','B2','C']
     a1_gramm = {'PresSimp','PresCont','there_is_are'}
     a2_gramm = {'PastCont','modal_have_to','ZeroCond','FirstCond','Gerund','PrPerf','FutSimp'}
@@ -269,7 +270,6 @@ def calculate_grammar(text_map):
     for sentence in text_map[0]:
         for word in sentence:
             if 'grammar_prop' in word:
-                #print("GRAMMAR FOUND", word['grammar_prop'])
                 for level in level_list:
                     if word['grammar_prop'] in level_gramm[level]:
                         level_collected_gramm[level].append((word['lemma'], word['grammar_prop']))
@@ -287,18 +287,16 @@ def calculate_grammar(text_map):
 def get_map(text_line,model):
     conllu = get_conllu(text_line, model, print_output = DEBUG)
     conllu_text_map = get_conllu_text_map(conllu)
-    #print(conllu_text_map)
     lemm_sentences = lemmatize_from_udmap(conllu_text_map)
     tf_idf_dict = get_tf_idf_dict (lemm_sentences)
     text_map = create_map(conllu_text_map, tf_idf_dict)
     text_analysis_map = grammar_analysis(conllu_text_map, text_map)
     text_map_voc, level_collected_vocab, level_collected_weight = vocabulary_analysis(text_analysis_map, cefr_dictionary)
     level_collected_gramm, level_grammar_collected_weight = calculate_grammar(text_map_voc)
-    
-
     return text_map_voc, level_collected_vocab, level_collected_weight, level_collected_gramm, level_grammar_collected_weight
 
 def calculate_level(vocab_dict, vocab_weights_dict, grammar_dict, grammar_count_dict):
+    """подсчитываем финальные показатели. Грамматике дается вес 0.3 лексике - 0.7"""
     final_calculation_dict = OrderedDict([('A1',0),('A2',0),('B1',0),('B2',0),('C',0)])
     if args.show_output:
         print("====VOCABULARY LISTS===")
@@ -306,14 +304,24 @@ def calculate_level(vocab_dict, vocab_weights_dict, grammar_dict, grammar_count_
             print("======",key,"=======")
             for val in values_list:
                 print(val)
+     #percentile method   
+    key_level_value_dict = {'A1':20, 'A2':40,'B1':60,'B2':80,'C':100}
+    vocab_complexity_list = []
+    for key, values_list in vocab_dict.items():
+        if key != "undefined_level":
+            for val in values_list:
+                one_element_list = [key_level_value_dict[key]] * int(val[1])
+                vocab_complexity_list.extend(one_element_list)
+                
+    vocab_complexity = np.percentile(vocab_complexity_list, 75)
+    if args.show_output:
         print('\n\n')
         print("====VOCABULARY WEIGHTS===")
-
-    for key, level_vocab_weight in vocab_weights_dict.items():
-        final_calculation_dict[key] += 0.7 * level_vocab_weight
-        if args.show_output: 
-            print("======",key,"=======")
-            print(level_vocab_weight)
+        for key, level_vocab_weight in vocab_weights_dict.items():
+            final_calculation_dict[key] += 0.7 * level_vocab_weight
+            if args.show_output: 
+                print("======",key,"=======")
+                print(level_vocab_weight)
 
     if args.show_output:
         print('\n\n')
@@ -323,17 +331,36 @@ def calculate_level(vocab_dict, vocab_weights_dict, grammar_dict, grammar_count_
             print("total occurencies", len(values_list))
             for val in values_list:
                 print(val)
+
         print('\n\n')
         print("====GRAMMAR WEIGHTS===")
-
     for key, level_grammar_weight in grammar_count_dict.items():
         final_calculation_dict[key] += 0.3 * level_grammar_weight
         if args.show_output:
-            print(key, level_grammar_weight)
             print("======",key,"=======")
             print(level_grammar_weight)
+
+        grammar_complexity_list = []    
+    #percentile method  
+    for key, values_list in grammar_dict.items():
+            for val in values_list:
+                one_element_list = [key_level_value_dict[key]] 
+                grammar_complexity_list.extend(one_element_list)
+    grammar_complexity = np.percentile(grammar_complexity_list, 75)
+    overal_complexity = 0.7 * vocab_complexity + 0.3 * grammar_complexity
+
+    if args.show_output:
+        print("vocab_complexity_list",vocab_complexity_list )
+        print("vocab_complexity 75 percentile",vocab_complexity ) 
+        print("grammar_complexity_list",grammar_complexity_list)
+        print("Grammar_complexity 75 percentile",grammar_complexity )
+        print("NEW TYPE COMPLEXITY", overal_complexity)
+
+    find_distance_dict = OrderedDict([('A1',0),('A2',0),('B1',0),('B2',0),('C',0)])
+    for key, value in key_level_value_dict.items():
+        find_distance_dict[key] = abs(key_level_value_dict[key] - overal_complexity) + 0.1
     
-    sorted_final_calculation = sorted(final_calculation_dict.items(), key=operator.itemgetter(1),reverse = True)
+    sorted_final_calculation = sorted(find_distance_dict.items(), key=operator.itemgetter(1))
     if args.show_output:
         print('\n\n')
         print("====OVERALL CALCULATION===")
@@ -341,7 +368,7 @@ def calculate_level(vocab_dict, vocab_weights_dict, grammar_dict, grammar_count_
             print(lvl)
 
     level_repsone = {'level': sorted_final_calculation[0][0]}
-
+    
     return level_repsone
 
 text = ''

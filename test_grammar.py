@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import copy
-from text_properties_calc import get_map
+from grammar_analysis_debug import get_map
 from ud_class import Model
 import argparse
 
@@ -776,7 +776,7 @@ def test():
     if PRINT_POSITIVE: print("==========Pres Perf  PASSIVE==========")
     sentence = "This house has already been built"
     map, gr_log, voc_log = get_map(sentence, model)
-    ideal_gram = {'6': 'PresPerf_Passive'}
+    ideal_gram = {'6': 'PrPerf_Passive'}
     ideal_voc = {}
     if PRINT_POSITIVE: print("NOW CHECKING <", sentence, ">")
     assert_analysis_results(gr_log, voc_log, ideal_gram, ideal_voc, sentence)

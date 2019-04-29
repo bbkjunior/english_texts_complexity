@@ -1,6 +1,6 @@
 from vocabulary import phrasal_list_big
-
 def get_verb_phrase_properties(verb_phrases_dict,grammar_properties_log,pos_word_dict,vocab_properties_log):
+    """вычисление грамматических параметров в поддереве глагольной группы"""
     conditional_list = []
     for head_of_subtree_plus_index, dependent_elements in verb_phrases_dict.items():
             head_of_subtree_index = head_of_subtree_plus_index.split("_")[0]
@@ -254,8 +254,8 @@ def get_verb_phrase_properties(verb_phrases_dict,grammar_properties_log,pos_word
             grammar_properties_log["would_Vinf"] = str(conditional_list[0][0])
 			
 def get_non_verb_phrase_properties(non_verb_phrases_dict,grammar_properties_log,pos_word_dict,vocab_properties_log):
-    """оцениваем линейно без отсылки к поддереву"""
-    pr_simple_be = ["am", "is", "are"]
+    """вычисление грамматических параметров в поддереве именной группы"""
+    pr_simple_be = ["am", "is", "are","'s","'m"]
     past_simp_be = ["was","were"]
     perfect_list = ["have","has"]
     future_list = ["will","shall"]
@@ -281,13 +281,11 @@ def get_non_verb_phrase_properties(non_verb_phrases_dict,grammar_properties_log,
             #catch modal verbs
             if (dep_el[1].lower() == "can"):
                 modal_index = dep_el[0]
-        
             #Catch there is_are
             if (dep_el[1].lower() == "there"):
                 there_index = dep_el[0]
             if "VerbForm=Ger" in dep_el[5] or dep_el[1].endswith("ing"):#грубое округление с расчетом на то что не герундиев оканчивающихся на инг мало
                 if (len(dep_el[1])>4 and dep_el[3] != "PRON"):#доп филтрр от коротких существительных
-                    #print("GERUND FOUND")
                     grammar_properties_log[dep_el[0]] = "Gerund"
             if (dep_el[1].lower() in modal_verbs_list):
                 modal = dep_el[0]

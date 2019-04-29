@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+"""Код для проверки и дебага грамматического детектора. Надо поменять DEBUG на True и ввести в конце предложение, которое требуется пронать через анализ"""
 from ud_class import Model
 from vocabulary import final_basic_vocabulary, phrasal_list_big
 from grammar_properties import get_non_verb_phrase_properties, get_verb_phrase_properties 
@@ -19,6 +20,7 @@ DEBUG = True
 model = Model('./UDPIPE/english-ud-2.0-170801.udpipe')
 
 def get_conllu(text_line, model, print_output = DEBUG):
+    """получаем разобранный текст"""
     sentences = model.tokenize(text_line)
     for s in sentences:
         model.tag(s)
@@ -34,12 +36,12 @@ def get_conllu(text_line, model, print_output = DEBUG):
     return conllu
     
 def get_conllu_text_map(conllu_parsed_object):
+    """извлекаем только нуную инвормацию (без пунктуации)"""
     conllu_text_map = []
     conllu_sentence_map = []
     for line in conllu_parsed_object.split('\n'):
         if line :
             if line[0].isdigit():
-                #print(line.split('\t'))
                 split_items = line.split('\t')
                 if split_items[3] != "PUNCT":
                     conllu_sentence_map.append(split_items)
@@ -47,13 +49,13 @@ def get_conllu_text_map(conllu_parsed_object):
                 if(len(conllu_sentence_map) > 0):
                     conllu_text_map.append(conllu_sentence_map)
                     conllu_sentence_map = []   
-                    #print("appended")
     if(len(conllu_sentence_map) > 0):
         conllu_text_map.append(conllu_sentence_map)
     return conllu_text_map
     
     
 def create_map(conllu_map, tf_idf_dict, apply_tf_idf = True):
+    """создаем карту текста (лист из списка свойств слов в формате json"""
     text_map = []
     sentence_ind = 0
     for sentence in conllu_map:
@@ -69,39 +71,12 @@ def create_map(conllu_map, tf_idf_dict, apply_tf_idf = True):
                     if(word[3] not in pos_exclude_list):
                         weight['vocabulary_prop']["vocab_importane"] = tf_idf_i
                     elif(tf_idf_i > 0 ):
-                        #print(word)
                         weight['vocabulary_prop']["vocab_importane"] = tf_idf_i * 0.5
             sentence_map.append(weight)
         text_map.append(sentence_map)
         sentence_ind += 1
     return text_map
-    
-def vocabulary_analysis(text_map_input, dictionary, debug = False):
-    text_map = copy.deepcopy(text_map_input)
-    a1_vocab = []
-    other_vocab = []
-    a1_weight = 0
-    other_weight = 0
-    for sentence in text_map:
-        for word in sentence:
-            low_lemma = word['lemma'].lower()
-            low_lemma_clean = ''
-            for char in low_lemma:
-                if char not in full_punctuation:
-                    low_lemma_clean += char
-            
-            if(low_lemma_clean not in dictionary):
-                other_vocab.append((low_lemma_clean,word['vocabulary_prop']['vocab_importane']))
-                other_weight += word['vocabulary_prop']['vocab_importane']
-            else:
-                a1_vocab.append((low_lemma_clean,word['vocabulary_prop']['vocab_importane']))
-                a1_weight += word['vocabulary_prop']['vocab_importane']
-    if debug:
-        print(a1_weight, a1_vocab)
-        print("OTHER VOCAB")
-        print(other_weight, other_vocab)
-            
-#vocabulary_analysis(text_map_ex, final_basic_vocabulary)      
+         
 
 def build_subtree_branch(head_word_nominal_index, pos_word_dict,verb_phrases_dict, word_leave):
     if (int(head_word_nominal_index)!= 0):
@@ -241,14 +216,13 @@ def get_map(text_line,model):
     
     text_map = create_map(conllu_text_map, tf_idf_dict, apply_tf_idf = False)
     
-    #vocabulary_analysis(text_map_dep, final_basic_vocabulary)
     text_analysis_map, grammar_properties_log, vocab_properties_log = grammar_analysis(conllu_text_map, text_map)
     
     return text_analysis_map, grammar_properties_log, vocab_properties_log
     
    
 if DEBUG:
-    map, grammar_properties_log, vocab_properties_log = get_map("The weather can be very different", model)
+    map, grammar_properties_log, vocab_properties_log = get_map("I'm a great representatives", model)
     for word in map[0]:
         print (word,"\n")
 #get_map("I like going there", model) Gerund example
