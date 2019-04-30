@@ -120,7 +120,7 @@ def get_verb_phrase_properties(verb_phrases_dict,grammar_properties_log,pos_word
                     grammar_properties_log[dep_el[0]] = "modal_have_to"
                                     
 
-                if (dep_el[1].lower() == "am" or dep_el[1].lower() == "is" or dep_el[1].lower() == "are"):
+                if (dep_el[1].lower() in present_be):
                     if (continious):
                         grammar_properties_log[head_of_subtree_index] = "PresCont"
                 elif(dep_el[1].lower() == "was" or dep_el[1].lower() == "were"):
@@ -140,11 +140,14 @@ def get_verb_phrase_properties(verb_phrases_dict,grammar_properties_log,pos_word
                     if(continious):
                         grammar_properties_log[head_of_subtree_index] = "PrPerfCont"
                     elif(would_V3_index == -1  and (head_V3 or head_V2)):
+                        
                         grammar_properties_log[head_of_subtree_index] = "PrPerf"
+                        
                     elif(int(would_V3_index) > 0):
                         grammar_properties_log[head_of_subtree_index] = "would_have_V3"
                         grammar_properties_log["would_have_V3"] = head_of_subtree_index
-                elif(dep_el[1].lower() == "do" or dep_el[1].lower() == "does"):
+                elif((dep_el[1].lower() == "do" or dep_el[1].lower() == "does") and not( head_V2 or head_V3)):
+                    #print("HERE", head_V3)
                     grammar_properties_log[head_of_subtree_index] = "PresSimp"
                     present_index = dep_el[0]
                 elif(dep_el[1].lower() == "did"):
@@ -167,8 +170,11 @@ def get_verb_phrase_properties(verb_phrases_dict,grammar_properties_log,pos_word
             elif(future and not head_V2 and not head_V3):
                 grammar_properties_log[head_of_subtree_index] = "FutSimp"
             #print("head_prop", pos_word_dict[head_of_subtree_index])    
+            #print("head_of_subtree_index",head_of_subtree_index, "",grammar_properties_log)
             if(head_of_subtree_index not in grammar_properties_log and not another_tense_assigned_inside_subtree):#если нет вспомогательных маркеров
+                #print("head_of_subtree_index now",head_of_subtree_index)
                 head_properties = pos_word_dict[head_of_subtree_index]
+                #print("head_prop", head_properties)
                 if ("Tense=Pres" in head_properties[1][3] ):
                     grammar_properties_log[head_of_subtree_index] = "PresSimp"
                     present_index = dep_el[0]
@@ -187,6 +193,11 @@ def get_verb_phrase_properties(verb_phrases_dict,grammar_properties_log,pos_word
                     else:
                         grammar_properties_log[head_of_subtree_index] = "PastSimp" 
                         past_index = dep_el[0]
+                elif("Mood=Imp|VerbForm=Fin" in head_properties[1][3]):
+                    grammar_properties_log[head_of_subtree_index] = "PresSimp"
+                elif(head_properties[1][2] == "MD"):
+                    pass#DETECT MODAL VERBS HOW TO?
+                    #grammar_properties_log[head_of_subtree_index] = "modal"
 
                                  
                 elif("Tense" not in head_properties[1][3] or head_of_subtree_index not in grammar_properties_log):

@@ -152,13 +152,13 @@ def grammar_analysis(conllu_map,text_map_input, show_trees = DEBUG, show_log = D
                         else:
                             vocab_properties_log[first_index] = "phrasal_verb"
                             vocab_properties_log[second_index] = "phrasal_verb"
-        
         for word_leave in sentence_conllu: 
             if (int(word_leave[6]) != 0):
-                if(pos_word_dict[word_leave[6]][1][1] != "VERB"):
-                    build_subtree_branch(word_leave[6], pos_word_dict, non_verb_phrases_dict, word_leave)
-                else:
-                    build_subtree_branch(word_leave[6], pos_word_dict, verb_phrases_dict, word_leave)
+                if word_leave[6] in pos_word_dict:
+                    if(pos_word_dict[word_leave[6]][1][1] != "VERB"):
+                        build_subtree_branch(word_leave[6], pos_word_dict, non_verb_phrases_dict, word_leave)
+                    else:
+                        build_subtree_branch(word_leave[6], pos_word_dict, verb_phrases_dict, word_leave)
 
         if (show_trees):
             print("VERB SUBTREES")
@@ -221,7 +221,7 @@ def vocabulary_analysis(text_map_input, levels_dictionaries, debug = False):
     level_collected_vocab = OrderedDict([('A1',[]),('A2',[]),('B1',[]), ('B2',[]), ('C',[]),('undefined_level',[])])
     level_collected_weight = OrderedDict([('A1',0),('A2',0),('B1',0),('B2',0),('C',0)])
     level_list = ['A1','A2','B1','B2','C']
-    unique_words = []
+    #unique_words = [] Вопрос обсуждаемый - брать все слова или только уникальные
     for sentence in text_map[0]:
         for word in sentence:
             low_lemma = word['lemma'].lower()
@@ -229,21 +229,21 @@ def vocabulary_analysis(text_map_input, levels_dictionaries, debug = False):
             for char in low_lemma:
                 if char not in full_punctuation:
                     low_lemma_clean += char
-            if low_lemma_clean not in unique_words:
-                unique_words.append(low_lemma_clean)
-                found_in_dict = False
-                for level in level_list:
-                    if 'phrasal_verb' in word['vocabulary_prop']:
-                        word['vocabulary_prop']['level'] = 'B1'
-                        break
-                    if(low_lemma_clean in levels_dictionaries[level]):
-                        level_collected_vocab[level].append((low_lemma_clean,word['vocabulary_prop']['vocab_importane']))
-                        level_collected_weight[level] += word['vocabulary_prop']['vocab_importane']
-                        word['vocabulary_prop']['level'] = level
-                        found_in_dict = True
-                        break
-                if not found_in_dict:
-                    level_collected_vocab['undefined_level'].append((low_lemma_clean,word['vocabulary_prop']['vocab_importane']))
+            #if low_lemma_clean not in unique_words:
+            #unique_words.append(low_lemma_clean)
+            found_in_dict = False
+            for level in level_list:
+                if 'phrasal_verb' in word['vocabulary_prop']:
+                    word['vocabulary_prop']['level'] = 'B1'
+                    break
+                if(low_lemma_clean in levels_dictionaries[level]):
+                    level_collected_vocab[level].append((low_lemma_clean,word['vocabulary_prop']['vocab_importane']))
+                    level_collected_weight[level] += word['vocabulary_prop']['vocab_importane']
+                    word['vocabulary_prop']['level'] = level
+                    found_in_dict = True
+                    break
+            if not found_in_dict:
+                level_collected_vocab['undefined_level'].append((low_lemma_clean,word['vocabulary_prop']['vocab_importane']))
     total_identified_weights = 0
     for key, val in  level_collected_weight.items():
         total_identified_weights += val
@@ -347,18 +347,18 @@ def calculate_level(vocab_dict, vocab_weights_dict, grammar_dict, grammar_count_
                 one_element_list = [key_level_value_dict[key]] 
                 grammar_complexity_list.extend(one_element_list)
     grammar_complexity = np.percentile(grammar_complexity_list, 75)
-    overal_complexity = 0.7 * vocab_complexity + 0.3 * grammar_complexity
+    overal_complexity = 0.7 * vocab_complexity + 0.3 * grammar_complexity + 0.1
 
     if args.show_output:
-        print("vocab_complexity_list",vocab_complexity_list )
+        #print("vocab_complexity_list",vocab_complexity_list )
         print("vocab_complexity 75 percentile",vocab_complexity ) 
-        print("grammar_complexity_list",grammar_complexity_list)
+        #print("grammar_complexity_list",grammar_complexity_list)
         print("Grammar_complexity 75 percentile",grammar_complexity )
         print("NEW TYPE COMPLEXITY", overal_complexity)
 
     find_distance_dict = OrderedDict([('A1',0),('A2',0),('B1',0),('B2',0),('C',0)])
     for key, value in key_level_value_dict.items():
-        find_distance_dict[key] = abs(key_level_value_dict[key] - overal_complexity) + 0.1
+        find_distance_dict[key] = abs(key_level_value_dict[key] - overal_complexity) 
     
     sorted_final_calculation = sorted(find_distance_dict.items(), key=operator.itemgetter(1))
     if args.show_output:

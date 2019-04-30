@@ -207,12 +207,14 @@ def get_map(text_line,model):
     conllu_text_map = get_conllu_text_map(conllu)
     #print(conllu_text_map)
     
+    """
     tfidf = False
     if tfidf:
-        lemm_sentences = lemmatize_from_udmap(conllu_text_map)
-        tf_idf_dict = get_tf_idf_dict (lemm_sentences)
+    lemm_sentences = lemmatize_from_udmap(conllu_text_map)
+    tf_idf_dict = get_tf_idf_dict (lemm_sentences)
     else:
-        tf_idf_dict = None
+    """    
+    tf_idf_dict = None
     
     text_map = create_map(conllu_text_map, tf_idf_dict, apply_tf_idf = False)
     
@@ -222,7 +224,7 @@ def get_map(text_line,model):
     
    
 if DEBUG:
-    map, grammar_properties_log, vocab_properties_log = get_map("I'm a great representatives", model)
+    map, grammar_properties_log, vocab_properties_log = get_map("You must have gone with me", model)
     for word in map[0]:
         print (word,"\n")
 #get_map("I like going there", model) Gerund example

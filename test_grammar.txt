@@ -1,0 +1,379 @@
+==========CHECKING PRESENT SIMPLE==========
+NOW CHECKING < I go to school >
+Gramamr OK (real log is) {'2': 'PresSimp'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < I do not go to school >
+Gramamr OK (real log is) {'4': 'PresSimp'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < Do I go to school? >
+Gramamr OK (real log is) {'3': 'PresSimp'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < Does he go to school? >
+Gramamr OK (real log is) {'3': 'PresSimp'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < HE DOESN'T GO TO this stupid SCHOOL? >
+Gramamr OK (real log is) {'4': 'PresSimp'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < I am a pilot >
+Gramamr OK (real log is) {'2': 'PresSimp'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < He is a stupid doctor >
+Gramamr OK (real log is) {'2': 'PresSimp'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < They are here >
+Gramamr OK (real log is) {'2': 'PresSimp'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < Are you there? >
+Gramamr OK (real log is) {'1': 'PresSimp'}
+Vocab OK (real log is) {}
+
+==========CHECKING PAST SIMPLE==========
+NOW CHECKING < I went to school >
+Gramamr OK (real log is) {'2': 'PastSimp'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < I didn't go to school >
+Gramamr OK (real log is) {'4': 'PastSimp'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < Did I go to school >
+Gramamr OK (real log is) {'3': 'PastSimp'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < I were there >
+Gramamr OK (real log is) {'2': 'PastSimp'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < My little freind was there >
+Gramamr OK (real log is) {'4': 'PastSimp'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < Was my brother here? >
+Gramamr OK (real log is) {'1': 'PastSimp'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < Were your brothers in this little country? >
+Gramamr OK (real log is) {'1': 'PastSimp'}
+Vocab OK (real log is) {}
+
+==========CHECKING FUTURE SIMPLE==========
+NOW CHECKING < I will go to school next summer >
+Gramamr OK (real log is) {'3': 'FutSimp'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < They will really go to school next summer >
+Gramamr OK (real log is) {'4': 'FutSimp'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < Will they really go to school with us >
+Gramamr OK (real log is) {'4': 'FutSimp'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < My friend will be there until eight o'clock >
+Gramamr OK (real log is) {'4': 'FutSimp'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < Will my dad be here >
+Gramamr OK (real log is) {'4': 'FutSimp'}
+Vocab OK (real log is) {}
+
+==========CHECKING PRESENT CONTINUOUS==========
+NOW CHECKING < I am going there >
+Gramamr OK (real log is) {'3': 'PresCont'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < My car is running out of fuel >
+Gramamr OK (real log is) {'4': 'PresCont'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < They are trying to sort this out >
+Gramamr OK (real log is) {'3': 'PresCont'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < Are they going with you? >
+Gramamr OK (real log is) {'3': 'PresCont'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < Is he trying to reveal the mystery with you? >
+Gramamr OK (real log is) {'3': 'PresCont'}
+Vocab OK (real log is) {}
+
+==========CHECKING PAST CONTINUOUS==========
+NOW CHECKING < I was going to the party >
+Gramamr OK (real log is) {'3': 'PastCont'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < They were looking for you >
+Gramamr OK (real log is) {'3': 'PastCont'}
+Vocab OK (real log is) {'3': 'phrasal_verb', '4': 'phrasal_verb'}
+
+NOW CHECKING < Were they trying to find you? >
+Gramamr OK (real log is) {'3': 'PastCont'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < Was he going to the zoo that time? >
+Gramamr OK (real log is) {'3': 'PastCont'}
+Vocab OK (real log is) {}
+
+==========CHECKING FUTURE CONTINUOUS==========
+NOW CHECKING < My car will be working well the next Tuesday >
+Gramamr OK (real log is) {'5': 'FutCont'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < Will he be getting ready for the homework? >
+Gramamr OK (real log is) {'4': 'FutCont'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < I will be going throguht the arkness >
+Gramamr OK (real log is) {'4': 'FutCont'}
+Vocab OK (real log is) {}
+
+==========CHECKING PRESENT PERFECT==========
+NOW CHECKING < I have gone for a walk last night >
+Gramamr OK (real log is) {'3': 'PrPerf'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < I have been to Londong many-many years ago >
+Gramamr OK (real log is) {'3': 'PrPerf'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < Have you ever been there? >
+Gramamr OK (real log is) {'4': 'PrPerf'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < He hasn't been there for ages >
+Gramamr OK (real log is) {'4': 'PrPerf'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < Has he gave up smoking >
+Gramamr OK (real log is) {'3': 'PrPerf'}
+Vocab OK (real log is) {'3': 'phrasal_verb', '4': 'phrasal_verb'}
+
+==========CHECKING PAST PERFECT==========
+NOW CHECKING < I had tried that food before >
+Gramamr OK (real log is) {'3': 'PastPerf'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < I had been in the cabinet with that person >
+Gramamr OK (real log is) {'3': 'PastPerf'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < Had they already tried this food >
+Gramamr OK (real log is) {'4': 'PastPerf'}
+Vocab OK (real log is) {}
+
+==========CHECKING FUTURE PERFECT==========
+NOW CHECKING < I will have done that till eleven a.m >
+Gramamr OK (real log is) {'4': 'FutPerf'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < I will have been to London until seven >
+Gramamr OK (real log is) {'4': 'FutPerf'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < Will these strong seamen have ever been to our river till next year? >
+Gramamr OK (real log is) {'7': 'FutPerf'}
+Vocab OK (real log is) {}
+
+==========CHECKING PRESENT PERFECT CONTINUOUS==========
+NOW CHECKING < I have been waiting for them for even hours >
+Gramamr OK (real log is) {'4': 'PrPerfCont'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < He has been trying to figure this our >
+Gramamr OK (real log is) {'4': 'PrPerfCont'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < Has he been playing footbal more than three hours? >
+Gramamr OK (real log is) {'4': 'PrPerfCont'}
+Vocab OK (real log is) {}
+
+==========CHECKING PAST PERFECT CONTINUOUS==========
+NOW CHECKING < I had been waiting for them for even hours >
+Gramamr OK (real log is) {'4': 'PastPerfCont'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < Had I been waiting for them for even hours >
+Gramamr OK (real log is) {'4': 'PastPerfCont'}
+Vocab OK (real log is) {}
+
+==========CHECKING FUTURE PERFECT CONTINUOUS==========
+NOW CHECKING < They will have been going there for three days by that time >
+Gramamr OK (real log is) {'5': 'FutPerfCont'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < Will they have been trying to perform this stuff? >
+Gramamr OK (real log is) {'5': 'FutPerfCont'}
+Vocab OK (real log is) {}
+
+==========THERE IS ARE==========
+NOW CHECKING < There is a cat here >
+Gramamr OK (real log is) {'1': 'there_is_are', '2': 'PresSimp'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < There really are a lot of cats here >
+Gramamr OK (real log is) {'1': 'there_is_are', '3': 'PresSimp'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < There will really be a lot of people in the stadium >
+Gramamr OK (real log is) {'4': 'FutSimp', '1': 'there_is_are'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < Will there really be many of them? >
+Gramamr OK (real log is) {'4': 'FutSimp', '2': 'there_is_are'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < The friends will be there >
+Gramamr OK (real log is) {'4': 'FutSimp'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < There will have been a lot of cars in the garage >
+3 FutSimp ||||IS NOT CORRECT GRAMMAR||||
+1 there_is_are ||||IS MISSING FROM GRAMMAR ANALYSIS||||
+4 FutPerf ||||IS MISSING FROM GRAMMAR ANALYSIS||||
+||||GRAMMAR NOT CORRECT|||| {'3': 'FutSimp'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < There have been many friends >
+Gramamr OK (real log is) {'1': 'there_is_are', '3': 'PrPerf'}
+Vocab OK (real log is) {}
+
+==========GERUND==========
+NOW CHECKING < I like going there >
+Gramamr OK (real log is) {'3': 'Gerund', '2': 'PresSimp'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < Does he hate skiing? >
+Gramamr OK (real log is) {'3': 'PresSimp', '4': 'Gerund'}
+Vocab OK (real log is) {}
+
+==========Have_TO==========
+NOW CHECKING < I have to go there >
+Gramamr OK (real log is) {'4': 'modal_have_to', '2': 'PresSimp'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < Does he have to attend school? >
+Gramamr OK (real log is) {'3': 'PresSimp', '5': 'modal_have_to'}
+Vocab OK (real log is) {}
+
+==========PHRASAL VEBRS==========
+NOW CHECKING < I WANT TO GIVE UP SMOKING >
+Gramamr OK (real log is) {'2': 'PresSimp'}
+Vocab OK (real log is) {'4': 'phrasal_verb', '5': 'phrasal_verb'}
+
+NOW CHECKING < You have to turn this ugly light off >
+Gramamr OK (real log is) {'4': 'modal_have_to', '2': 'PresSimp'}
+Vocab OK (real log is) {'8': 'dist_phrasal_verb', '4': 'dist_phrasal_verb'}
+
+NOW CHECKING < Why are you upset >
+||||VOCAB LOG ITMES QUANTITY IS NOT EQUAL||||
+2 dist_phrasal_verb ||||IS MISSING FROM GRAMMAR ANALYSIS||||
+4 dist_phrasal_verb ||||IS MISSING FROM GRAMMAR ANALYSIS||||
+Gramamr OK (real log is) {'2': 'PresSimp'}
+||||VOCAB NOT CORRECT|||| {}
+
+NOW CHECKING < Who has kicked him out >
+Gramamr OK (real log is) {'3': 'PrPerf'}
+Vocab OK (real log is) {'3': 'phrasal_verb', '5': 'phrasal_verb'}
+
+NOW CHECKING < You will have to let this big fat boss in >
+Gramamr OK (real log is) {'5': 'modal_have_to', '3': 'FutSimp'}
+Vocab OK (real log is) {'10': 'dist_phrasal_verb', '5': 'dist_phrasal_verb'}
+
+==========CONDITIONAL_0==========
+NOW CHECKING < IF I HAVE MONEY I GO TO CLUB >
+Gramamr OK (real log is) {'3': 'PresSimp', '6': 'PresSimp', '1': 'ZeroCond'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < If he doesn't have much time he brings food from somewhere else >
+Gramamr OK (real log is) {'5': 'PresSimp', '9': 'PresSimp', '1': 'ZeroCond'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < They normally start talking when the teacher goes out of the class >
+Gramamr OK (real log is) {'4': 'Gerund', '3': 'PresSimp', '8': 'PresSimp', '5': 'ZeroCond'}
+Vocab OK (real log is) {}
+
+==========CONDITIONAL_1==========
+NOW CHECKING < If I am hungry, I will get something to eat >
+Gramamr OK (real log is) {'8': 'FutSimp', '3': 'PresSimp', '1': 'FirstCond'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < I will bring a blanket,  if it is that cold >
+Gramamr OK (real log is) {'3': 'FutSimp', '9': 'PresSimp', '7': 'FirstCond'}
+Vocab OK (real log is) {}
+
+==========CONDITIONAL_2==========
+NOW CHECKING < If I did that, I would go away >
+8 PastSimp ||||IS NOT CORRECT GRAMMAR||||
+||||GRAMMAR NOT CORRECT|||| {'3': 'PastSimp', '8': 'PastSimp', '1': 'SecondCond'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < If I had that, I would go away >
+Gramamr OK (real log is) {'3': 'PastSimp', '1': 'SecondCond'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < These guys would enjoy if they had time >
+Gramamr OK (real log is) {'7': 'PastSimp', '5': 'SecondCond'}
+Vocab OK (real log is) {}
+
+==========CONDITIONAL_3==========
+NOW CHECKING < If he had talked to me, I would have listened to him >
+Gramamr OK (real log is) {'4': 'PastPerf', '11': 'would_have_V3', '1': 'ThirdCond'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < You would have won the prize, if you had participated in the competition >
+Gramamr OK (real log is) {'4': 'would_have_V3', '11': 'PastPerf', '8': 'ThirdCond'}
+Vocab OK (real log is) {}
+
+==========PRESENT SIMPLE PASSIVE==========
+NOW CHECKING < I am informed about this sitation and will start troubleshooting right now >
+Gramamr OK (real log is) {'3': 'PresSimp_Passive', '10': 'Gerund', '9': 'FutSimp'}
+Vocab OK (real log is) {}
+
+NOW CHECKING < This company is sponsored by government >
+Gramamr OK (real log is) {'4': 'PresSimp_Passive'}
+Vocab OK (real log is) {}
+
+==========PAST SIMPLE PASSIVE==========
+NOW CHECKING < I was informed about this sitation and will start troubleshooting right now >
+Gramamr OK (real log is) {'3': 'PastSimp_Passive', '10': 'Gerund', '9': 'FutSimp'}
+Vocab OK (real log is) {}
+
+==========FUT SIMPLE PASSIVE==========
+NOW CHECKING < I will be brought to the stadium by my bus >
+Gramamr OK (real log is) {'4': 'FutSimp_Passive'}
+Vocab OK (real log is) {}
+
+==========Present cont  PASSIVE==========
+NOW CHECKING < I am being terrified by pixies >
+Gramamr OK (real log is) {'4': 'PresCont_Passive'}
+Vocab OK (real log is) {}
+
+==========Past cont  PASSIVE==========
+NOW CHECKING < I was being terrified by pixies >
+Gramamr OK (real log is) {'4': 'PastCont_Passive'}
+Vocab OK (real log is) {}
+
+==========Pres Perf  PASSIVE==========
+NOW CHECKING < This house has already been built >
+Gramamr OK (real log is) {'6': 'PrPerf_Passive'}
+Vocab OK (real log is) {}
+
+==========Past Perf  PASSIVE==========
+NOW CHECKING < This house had been built before I came >
+Gramamr OK (real log is) {'5': 'PastPerf_Passive', '8': 'PastSimp'}
+Vocab OK (real log is) {}
+
+==========Fut Perfect  PASSIVE==========
+NOW CHECKING < This house will have been built by January >
+Gramamr OK (real log is) {'6': 'FutPerf_Passive'}
+Vocab OK (real log is) {}
+
