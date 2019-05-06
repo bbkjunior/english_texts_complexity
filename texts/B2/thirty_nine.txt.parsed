@@ -1,0 +1,559 @@
+OrderedDict([('word', 'I'), ('lemma', 'I'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '1'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'returned'), ('lemma', 'return'), ('vocabulary_prop', OrderedDict([('vocab_importane', 4.0), ('nominal_index', '2'), ('level', 'A2')])), ('grammar_prop', 'PastSimp')]) 
+
+OrderedDict([('word', 'to'), ('lemma', 'to'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '3'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'my'), ('lemma', 'my'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '4'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'flat'), ('lemma', 'flat'), ('vocabulary_prop', OrderedDict([('vocab_importane', 4.0), ('nominal_index', '5'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'at'), ('lemma', 'at'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '6'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'about'), ('lemma', 'about'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '7'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'three'), ('lemma', 'three'), ('vocabulary_prop', OrderedDict([('vocab_importane', 3.0), ('nominal_index', '8'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', "o'clock"), ('lemma', "o'clock"), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '9'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'on'), ('lemma', 'on'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '10'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'that'), ('lemma', 'that'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '11'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'May'), ('lemma', 'May'), ('vocabulary_prop', OrderedDict([('vocab_importane', 4.0), ('nominal_index', '12'), ('level', 'A1')])), ('grammar_prop', 'PresSimp')]) 
+
+OrderedDict([('word', 'afternoon'), ('lemma', 'afternoon'), ('vocabulary_prop', OrderedDict([('vocab_importane', 4.0), ('nominal_index', '13'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'very'), ('lemma', 'very'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '14'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'unhappy'), ('lemma', 'unhappy'), ('vocabulary_prop', OrderedDict([('vocab_importane', 4.0), ('nominal_index', '15'), ('level', 'A2')]))]) 
+
+OrderedDict([('word', 'with'), ('lemma', 'with'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '16'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'life'), ('lemma', 'life'), ('vocabulary_prop', OrderedDict([('vocab_importane', 3.0), ('nominal_index', '17'), ('level', 'A1')]))]) 
+
+====================
+OrderedDict([('word', 'I'), ('lemma', 'I'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '1'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'had'), ('lemma', 'have'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '2'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'been'), ('lemma', 'be'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '3'), ('level', 'A1')])), ('grammar_prop', 'PastPerf')]) 
+
+OrderedDict([('word', 'back'), ('lemma', 'back'), ('vocabulary_prop', OrderedDict([('vocab_importane', 4.0), ('nominal_index', '4'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'in'), ('lemma', 'in'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '5'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'Britain'), ('lemma', 'Britain'), ('vocabulary_prop', OrderedDict([('vocab_importane', 4.0), ('nominal_index', '6')]))]) 
+
+OrderedDict([('word', 'for'), ('lemma', 'for'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '7'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'three'), ('lemma', 'three'), ('vocabulary_prop', OrderedDict([('vocab_importane', 4.0), ('nominal_index', '8'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'months'), ('lemma', 'month'), ('vocabulary_prop', OrderedDict([('vocab_importane', 4.0), ('nominal_index', '9'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'and'), ('lemma', 'and'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '10'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'I'), ('lemma', 'I'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '11'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'was'), ('lemma', 'be'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '12'), ('level', 'A1')])), ('grammar_prop', 'PastSimp')]) 
+
+OrderedDict([('word', 'already'), ('lemma', 'already'), ('vocabulary_prop', OrderedDict([('vocab_importane', 4.0), ('nominal_index', '13'), ('level', 'A2')]))]) 
+
+OrderedDict([('word', 'bored'), ('lemma', 'bore'), ('vocabulary_prop', OrderedDict([('vocab_importane', 4.0), ('nominal_index', '14')]))]) 
+
+====================
+OrderedDict([('word', 'The'), ('lemma', 'the'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '1'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'weather'), ('lemma', 'weather'), ('vocabulary_prop', OrderedDict([('vocab_importane', 3.0), ('nominal_index', '2'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'was'), ('lemma', 'be'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '3'), ('level', 'A1')])), ('grammar_prop', 'PastSimp')]) 
+
+OrderedDict([('word', 'bad'), ('lemma', 'bad'), ('vocabulary_prop', OrderedDict([('vocab_importane', 3.0), ('nominal_index', '4'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'the'), ('lemma', 'the'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '6'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'people'), ('lemma', 'people'), ('vocabulary_prop', OrderedDict([('vocab_importane', 3.0), ('nominal_index', '7'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'were'), ('lemma', 'be'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '8'), ('level', 'A1')])), ('grammar_prop', 'PastSimp')]) 
+
+OrderedDict([('word', 'dull'), ('lemma', 'dull'), ('vocabulary_prop', OrderedDict([('vocab_importane', 3.0), ('nominal_index', '9'), ('level', 'B1')]))]) 
+
+OrderedDict([('word', 'and'), ('lemma', 'and'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '11'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'the'), ('lemma', 'the'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '12'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'amusements'), ('lemma', 'amusement'), ('vocabulary_prop', OrderedDict([('vocab_importane', 3.0), ('nominal_index', '13'), ('level', 'B2')]))]) 
+
+OrderedDict([('word', 'of'), ('lemma', 'of'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '14'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'London'), ('lemma', 'London'), ('vocabulary_prop', OrderedDict([('vocab_importane', 3.0), ('nominal_index', '15'), ('level', 'C')]))]) 
+
+OrderedDict([('word', 'seemed'), ('lemma', 'see'), ('vocabulary_prop', OrderedDict([('vocab_importane', 3.0), ('nominal_index', '16'), ('level', 'A1')])), ('grammar_prop', 'PastSimp')]) 
+
+OrderedDict([('word', 'as'), ('lemma', 'as'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '17'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'exciting'), ('lemma', 'exciting'), ('vocabulary_prop', OrderedDict([('vocab_importane', 3.0), ('nominal_index', '18'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'as'), ('lemma', 'as'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '19'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'a'), ('lemma', 'a'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '20'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'glass'), ('lemma', 'glass'), ('vocabulary_prop', OrderedDict([('vocab_importane', 3.0), ('nominal_index', '21'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'of'), ('lemma', 'of'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '22'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'cold'), ('lemma', 'cold'), ('vocabulary_prop', OrderedDict([('vocab_importane', 3.0), ('nominal_index', '23'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'water'), ('lemma', 'water'), ('vocabulary_prop', OrderedDict([('vocab_importane', 3.0), ('nominal_index', '24'), ('level', 'A1')]))]) 
+
+====================
+OrderedDict([('word', 'Richard'), ('lemma', 'Richard'), ('vocabulary_prop', OrderedDict([('vocab_importane', 4.0), ('nominal_index', '2'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'Hannay'), ('lemma', 'Hannay'), ('vocabulary_prop', OrderedDict([('vocab_importane', 4.0), ('nominal_index', '3')]))]) 
+
+OrderedDict([('word', 'I'), ('lemma', 'I'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '6'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'told'), ('lemma', 'tell'), ('vocabulary_prop', OrderedDict([('vocab_importane', 4.0), ('nominal_index', '7'), ('level', 'A1')])), ('grammar_prop', 'PastSimp')]) 
+
+OrderedDict([('word', 'myself'), ('lemma', 'myself'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '8'), ('level', 'A2')]))]) 
+
+OrderedDict([('word', 'you'), ('lemma', 'you'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '11'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'have'), ('lemma', 'have'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '12'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'made'), ('lemma', 'make'), ('vocabulary_prop', OrderedDict([('vocab_importane', 3.0), ('nominal_index', '13'), ('level', 'A1')])), ('grammar_prop', 'PastPerf')]) 
+
+OrderedDict([('word', 'a'), ('lemma', 'a'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '14'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'mistake'), ('lemma', 'mistake'), ('vocabulary_prop', OrderedDict([('vocab_importane', 4.0), ('nominal_index', '15'), ('level', 'A2')]))]) 
+
+OrderedDict([('word', 'and'), ('lemma', 'and'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '17'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'you'), ('lemma', 'you'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '18'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'had'), ('lemma', 'have'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '19'), ('level', 'A1')])), ('grammar_prop', 'PastSimp')]) 
+
+OrderedDict([('word', 'better'), ('lemma', 'better'), ('vocabulary_prop', OrderedDict([('vocab_importane', 4.0), ('nominal_index', '20'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'do'), ('lemma', 'do'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '21'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'something'), ('lemma', 'something'), ('vocabulary_prop', OrderedDict([('vocab_importane', 4.0), ('nominal_index', '22'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'about'), ('lemma', 'about'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '23'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'it'), ('lemma', 'it'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '24'), ('level', 'A1')]))]) 
+
+====================
+OrderedDict([('word', 'It'), ('lemma', 'it'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '1'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'made'), ('lemma', 'make'), ('vocabulary_prop', OrderedDict([('vocab_importane', 3.0), ('nominal_index', '2'), ('level', 'A1')])), ('grammar_prop', 'PastSimp')]) 
+
+OrderedDict([('word', 'me'), ('lemma', 'I'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '3'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'angry'), ('lemma', 'angry'), ('vocabulary_prop', OrderedDict([('vocab_importane', 5.0), ('nominal_index', '4'), ('level', 'A2')]))]) 
+
+OrderedDict([('word', 'when'), ('lemma', 'when'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '5'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'I'), ('lemma', 'I'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '6'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'thought'), ('lemma', 'think'), ('vocabulary_prop', OrderedDict([('vocab_importane', 5.0), ('nominal_index', '7'), ('level', 'A1')])), ('grammar_prop', 'PastSimp')]) 
+
+OrderedDict([('word', 'of'), ('lemma', 'of'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '8'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'the'), ('lemma', 'the'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '9'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'years'), ('lemma', 'year'), ('vocabulary_prop', OrderedDict([('vocab_importane', 3.0), ('nominal_index', '10'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'I'), ('lemma', 'I'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '11'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'had'), ('lemma', 'have'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '12'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'spent'), ('lemma', 'spend'), ('vocabulary_prop', OrderedDict([('vocab_importane', 3.0), ('nominal_index', '13'), ('level', 'A2')])), ('grammar_prop', 'PastPerf')]) 
+
+OrderedDict([('word', 'in'), ('lemma', 'in'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '14'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'Africa'), ('lemma', 'Africa'), ('vocabulary_prop', OrderedDict([('vocab_importane', 5.0), ('nominal_index', '15')]))]) 
+
+====================
+OrderedDict([('word', 'I'), ('lemma', 'I'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '1'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'had'), ('lemma', 'have'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '2'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'spent'), ('lemma', 'spend'), ('vocabulary_prop', OrderedDict([('vocab_importane', 4.0), ('nominal_index', '3'), ('level', 'A2')])), ('grammar_prop', 'PastPerf')]) 
+
+OrderedDict([('word', 'those'), ('lemma', 'those'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '4'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'years'), ('lemma', 'year'), ('vocabulary_prop', OrderedDict([('vocab_importane', 3.0), ('nominal_index', '5'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'working'), ('lemma', 'work'), ('vocabulary_prop', OrderedDict([('vocab_importane', 5.0), ('nominal_index', '6'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'very'), ('lemma', 'very'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '7'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'hard'), ('lemma', 'hard'), ('vocabulary_prop', OrderedDict([('vocab_importane', 5.0), ('nominal_index', '8'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'and'), ('lemma', 'and'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '9'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'making'), ('lemma', 'make'), ('vocabulary_prop', OrderedDict([('vocab_importane', 4.0), ('nominal_index', '10'), ('level', 'A1')])), ('grammar_prop', 'Gerund')]) 
+
+OrderedDict([('word', 'money'), ('lemma', 'money'), ('vocabulary_prop', OrderedDict([('vocab_importane', 4.0), ('nominal_index', '11'), ('level', 'A1')]))]) 
+
+====================
+OrderedDict([('word', 'Not'), ('lemma', 'not'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '1'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'a'), ('lemma', 'a'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '2'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'lot'), ('lemma', 'lot'), ('vocabulary_prop', OrderedDict([('vocab_importane', 6.0), ('nominal_index', '3'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'of'), ('lemma', 'of'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '4'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'money'), ('lemma', 'money'), ('vocabulary_prop', OrderedDict([('vocab_importane', 5.0), ('nominal_index', '5'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'but'), ('lemma', 'but'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '7'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'enough'), ('lemma', 'enough'), ('vocabulary_prop', OrderedDict([('vocab_importane', 6.0), ('nominal_index', '8'), ('level', 'A2')]))]) 
+
+OrderedDict([('word', 'for'), ('lemma', 'for'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '9'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'me'), ('lemma', 'I'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '10'), ('level', 'A1')]))]) 
+
+====================
+OrderedDict([('word', 'I'), ('lemma', 'I'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '1'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'had'), ('lemma', 'have'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '2'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'left'), ('lemma', 'leave'), ('vocabulary_prop', OrderedDict([('vocab_importane', 4.0), ('nominal_index', '3'), ('level', 'A1')])), ('grammar_prop', 'PastPerf')]) 
+
+OrderedDict([('word', 'Scotland'), ('lemma', 'Scotland'), ('vocabulary_prop', OrderedDict([('vocab_importane', 4.0), ('nominal_index', '4'), ('level', 'A2')]))]) 
+
+OrderedDict([('word', 'when'), ('lemma', 'when'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '5'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'I'), ('lemma', 'I'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '6'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'was'), ('lemma', 'be'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '7'), ('level', 'A1')])), ('grammar_prop', 'PastSimp')]) 
+
+OrderedDict([('word', 'six'), ('lemma', 'six'), ('vocabulary_prop', OrderedDict([('vocab_importane', 4.0), ('nominal_index', '8'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'years'), ('lemma', 'year'), ('vocabulary_prop', OrderedDict([('vocab_importane', 2.0), ('nominal_index', '9'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'old'), ('lemma', 'old'), ('vocabulary_prop', OrderedDict([('vocab_importane', 4.0), ('nominal_index', '10'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'and'), ('lemma', 'and'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '12'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'I'), ('lemma', 'I'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '13'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'had'), ('lemma', 'have'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '14'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'never'), ('lemma', 'never'), ('vocabulary_prop', OrderedDict([('vocab_importane', 4.0), ('nominal_index', '15'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'been'), ('lemma', 'be'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '16'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'home'), ('lemma', 'home'), ('vocabulary_prop', OrderedDict([('vocab_importane', 3.0), ('nominal_index', '17'), ('level', 'A1')])), ('grammar_prop', 'PastPerf_Passive')]) 
+
+OrderedDict([('word', 'since'), ('lemma', 'since'), ('vocabulary_prop', OrderedDict([('vocab_importane', 4.0), ('nominal_index', '18'), ('level', 'A2')]))]) 
+
+====================
+OrderedDict([('word', 'For'), ('lemma', 'for'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '1'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'years'), ('lemma', 'year'), ('vocabulary_prop', OrderedDict([('vocab_importane', 10.0), ('nominal_index', '2'), ('level', 'A1')]))]) 
+
+====================
+OrderedDict([('word', 'I'), ('lemma', 'I'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '1'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'had'), ('lemma', 'have'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '2'), ('level', 'A1')])), ('grammar_prop', 'PastSimp')]) 
+
+OrderedDict([('word', 'dreamt'), ('lemma', 'dreamt'), ('vocabulary_prop', OrderedDict([('vocab_importane', 3.0), ('nominal_index', '3')]))]) 
+
+OrderedDict([('word', 'of'), ('lemma', 'of'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '4'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'coming'), ('lemma', 'come'), ('vocabulary_prop', OrderedDict([('vocab_importane', 3.0), ('nominal_index', '5'), ('level', 'A1')])), ('grammar_prop', 'Gerund')]) 
+
+OrderedDict([('word', 'home'), ('lemma', 'home'), ('vocabulary_prop', OrderedDict([('vocab_importane', 3.0), ('nominal_index', '6'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'to'), ('lemma', 'to'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '7'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'Britain'), ('lemma', 'Britain'), ('vocabulary_prop', OrderedDict([('vocab_importane', 3.0), ('nominal_index', '8')]))]) 
+
+OrderedDict([('word', 'and'), ('lemma', 'and'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '9'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'spending'), ('lemma', 'spend'), ('vocabulary_prop', OrderedDict([('vocab_importane', 2.0), ('nominal_index', '10'), ('level', 'A2')])), ('grammar_prop', 'Gerund')]) 
+
+OrderedDict([('word', 'the'), ('lemma', 'the'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '11'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'rest'), ('lemma', 'rest'), ('vocabulary_prop', OrderedDict([('vocab_importane', 3.0), ('nominal_index', '12'), ('level', 'A2')]))]) 
+
+OrderedDict([('word', 'of'), ('lemma', 'of'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '13'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'my'), ('lemma', 'my'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '14'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'life'), ('lemma', 'life'), ('vocabulary_prop', OrderedDict([('vocab_importane', 3.0), ('nominal_index', '15'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'there'), ('lemma', 'there'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '16'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'but'), ('lemma', 'but'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '18'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'I'), ('lemma', 'I'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '19'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'was'), ('lemma', 'be'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '20'), ('level', 'A1')])), ('grammar_prop', 'PastSimp')]) 
+
+OrderedDict([('word', 'disappointed'), ('lemma', 'disappointed'), ('vocabulary_prop', OrderedDict([('vocab_importane', 3.0), ('nominal_index', '21'), ('level', 'B1')]))]) 
+
+OrderedDict([('word', 'with'), ('lemma', 'with'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '22'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'the'), ('lemma', 'the'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '23'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'place'), ('lemma', 'place'), ('vocabulary_prop', OrderedDict([('vocab_importane', 3.0), ('nominal_index', '24'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'after'), ('lemma', 'after'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '25'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'the'), ('lemma', 'the'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '26'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'first'), ('lemma', 'first'), ('vocabulary_prop', OrderedDict([('vocab_importane', 3.0), ('nominal_index', '27'), ('level', 'A1')]))]) 
+
+OrderedDict([('word', 'week'), ('lemma', 'week'), ('vocabulary_prop', OrderedDict([('vocab_importane', 3.0), ('nominal_index', '28'), ('level', 'A1')]))]) 
+
+====================
+
+
+
+====VOCABULARY LISTS===
+====== A1 =======
+('i', 0)
+('to', 0)
+('my', 0)
+('flat', 4.0)
+('at', 0)
+('about', 0)
+('three', 3.0)
+('oclock', 0)
+('on', 0)
+('that', 0)
+('may', 4.0)
+('afternoon', 4.0)
+('very', 0)
+('with', 0)
+('life', 3.0)
+('i', 0)
+('have', 0)
+('be', 0)
+('back', 4.0)
+('in', 0)
+('for', 0)
+('three', 4.0)
+('month', 4.0)
+('and', 0)
+('i', 0)
+('be', 0)
+('the', 0)
+('weather', 3.0)
+('be', 0)
+('bad', 3.0)
+('the', 0)
+('people', 3.0)
+('be', 0)
+('and', 0)
+('the', 0)
+('of', 0)
+('see', 3.0)
+('as', 0)
+('exciting', 3.0)
+('as', 0)
+('a', 0)
+('glass', 3.0)
+('of', 0)
+('cold', 3.0)
+('water', 3.0)
+('richard', 4.0)
+('i', 0)
+('tell', 4.0)
+('you', 0)
+('have', 0)
+('make', 3.0)
+('a', 0)
+('and', 0)
+('you', 0)
+('have', 0)
+('better', 4.0)
+('do', 0)
+('something', 4.0)
+('about', 0)
+('it', 0)
+('it', 0)
+('make', 3.0)
+('i', 0)
+('when', 0)
+('i', 0)
+('think', 5.0)
+('of', 0)
+('the', 0)
+('year', 3.0)
+('i', 0)
+('have', 0)
+('in', 0)
+('i', 0)
+('have', 0)
+('those', 0)
+('year', 3.0)
+('work', 5.0)
+('very', 0)
+('hard', 5.0)
+('and', 0)
+('make', 4.0)
+('money', 4.0)
+('not', 0)
+('a', 0)
+('lot', 6.0)
+('of', 0)
+('money', 5.0)
+('but', 0)
+('for', 0)
+('i', 0)
+('i', 0)
+('have', 0)
+('leave', 4.0)
+('when', 0)
+('i', 0)
+('be', 0)
+('six', 4.0)
+('year', 2.0)
+('old', 4.0)
+('and', 0)
+('i', 0)
+('have', 0)
+('never', 4.0)
+('be', 0)
+('home', 3.0)
+('for', 0)
+('year', 10.0)
+('i', 0)
+('have', 0)
+('of', 0)
+('come', 3.0)
+('home', 3.0)
+('to', 0)
+('and', 0)
+('the', 0)
+('of', 0)
+('my', 0)
+('life', 3.0)
+('there', 0)
+('but', 0)
+('i', 0)
+('be', 0)
+('with', 0)
+('the', 0)
+('place', 3.0)
+('after', 0)
+('the', 0)
+('first', 3.0)
+('week', 3.0)
+====== A2 =======
+('return', 4.0)
+('unhappy', 4.0)
+('already', 4.0)
+('myself', 0)
+('mistake', 4.0)
+('angry', 5.0)
+('spend', 3.0)
+('spend', 4.0)
+('enough', 6.0)
+('scotland', 4.0)
+('since', 4.0)
+('spend', 2.0)
+('rest', 3.0)
+====== B1 =======
+('dull', 3.0)
+('disappointed', 3.0)
+====== B2 =======
+('amusement', 3.0)
+====== C =======
+('britain', 4.0)
+('bore', 4.0)
+('london', 3.0)
+('hannay', 4.0)
+('africa', 5.0)
+('dreamt', 3.0)
+('britain', 3.0)
+====== undefined_level =======
+('britain', 4.0)
+('bore', 4.0)
+('hannay', 4.0)
+('africa', 5.0)
+('dreamt', 3.0)
+('britain', 3.0)
+
+
+
+====VOCABULARY WEIGHTS===
+====== A1 =======
+0.7366
+====== A2 =======
+0.2098
+====== B1 =======
+0.0268
+====== B2 =======
+0.0134
+====== C =======
+0.0134
+
+
+
+====GRAMMAR LIST===
+====== A1 =======
+total occurencies 1
+('May', 'PresSimp')
+====== A2 =======
+total occurencies 15
+('return', 'PastSimp')
+('be', 'PastSimp')
+('be', 'PastSimp')
+('be', 'PastSimp')
+('see', 'PastSimp')
+('tell', 'PastSimp')
+('have', 'PastSimp')
+('make', 'PastSimp')
+('think', 'PastSimp')
+('make', 'Gerund')
+('be', 'PastSimp')
+('have', 'PastSimp')
+('come', 'Gerund')
+('spend', 'Gerund')
+('be', 'PastSimp')
+====== B1 =======
+total occurencies 5
+('be', 'PastPerf')
+('make', 'PastPerf')
+('spend', 'PastPerf')
+('spend', 'PastPerf')
+('leave', 'PastPerf')
+====== B2 =======
+total occurencies 0
+====== C =======
+total occurencies 1
+('home', 'PastPerf_Passive')
+
+
+
+====GRAMMAR WEIGHTS===
+====== A1 =======
+0.0455
+====== A2 =======
+0.6818
+====== B1 =======
+0.2273
+====== B2 =======
+0.0
+====== C =======
+0.0455
+vocab_complexity 75 percentile 40.0
+Grammar_complexity 75 percentile 55.0
+NEW TYPE COMPLEXITY 50.4
+
+
+
+====OVERALL CALCULATION===
+('B1', 9.600000000000001)
+('A2', 10.399999999999999)
+('B2', 29.6)
+('A1', 30.4)
+('C', 49.6)
+{'level': 'B1'}

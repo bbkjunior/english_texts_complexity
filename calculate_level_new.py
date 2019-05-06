@@ -15,6 +15,10 @@ stopWords = set(stopwords.words('english'))
 from string import punctuation
 full_punctuation = punctuation + "–" + "," + "»" + "«" + "…" +'’'
 import operator
+import re
+#import nltk
+#nltk.download('wordnet')
+from nltk.stem import WordNetLemmatizer 
 
 import argparse
 parser = argparse.ArgumentParser(add_help=True)
@@ -104,7 +108,6 @@ def build_subtree_branch(head_word_nominal_index, pos_word_dict,verb_phrases_dic
     if (int(head_word_nominal_index)!= 0):
         current_head_word = pos_word_dict[head_word_nominal_index][0]
         current_head_pos = pos_word_dict[head_word_nominal_index][1][1]
-        #print("current_head_word",pos_word_dict[head_word_nominal_index])
         if(current_head_word in verb_phrases_dict):
             verb_phrases_dict[current_head_word].append(word_leave)
         else:
@@ -217,6 +220,7 @@ def grammar_analysis(conllu_map,text_map_input, show_trees = DEBUG, show_log = D
     return text_map, grammar_properties_log, vocab_properties_log
 def vocabulary_analysis(text_map_input, levels_dictionaries, debug = False):
     """собираем список слов по уровням"""
+    lemmatizer = WordNetLemmatizer()
     text_map = copy.deepcopy(text_map_input)
     level_collected_vocab = OrderedDict([('A1',[]),('A2',[]),('B1',[]), ('B2',[]), ('C',[]),('undefined_level',[])])
     level_collected_weight = OrderedDict([('A1',0),('A2',0),('B1',0),('B2',0),('C',0)])
@@ -241,8 +245,18 @@ def vocabulary_analysis(text_map_input, levels_dictionaries, debug = False):
                     level_collected_weight[level] += word['vocabulary_prop']['vocab_importane']
                     word['vocabulary_prop']['level'] = level
                     found_in_dict = True
-                    break
+                    break                    
             if not found_in_dict:
+                add_lemma = lemmatizer.lemmatize(low_lemma_clean)
+                for level in level_list:
+                    if(add_lemma in levels_dictionaries[level]):
+                        level_collected_vocab[level].append((low_lemma_clean,word['vocabulary_prop']['vocab_importane']))
+                        level_collected_weight[level] += word['vocabulary_prop']['vocab_importane']
+                        word['vocabulary_prop']['level'] = level
+                        found_in_dict = True
+                        break
+            if not found_in_dict and not re.search('[0-9]', low_lemma_clean):
+                level_collected_vocab['C'].append((low_lemma_clean,word['vocabulary_prop']['vocab_importane']))
                 level_collected_vocab['undefined_level'].append((low_lemma_clean,word['vocabulary_prop']['vocab_importane']))
     total_identified_weights = 0
     for key, val in  level_collected_weight.items():
@@ -259,7 +273,7 @@ def calculate_grammar(text_map):
     """анализируем реально присутствующую в тексте грамматику"""
     level_list = ['A1','A2','B1','B2','C']
     a1_gramm = {'PresSimp','PresCont','there_is_are'}
-    a2_gramm = {'PastCont','modal_have_to','ZeroCond','FirstCond','Gerund','PrPerf','FutSimp'}
+    a2_gramm = {'PastCont','modal_have_to','ZeroCond','FirstCond','Gerund','PrPerf','FutSimp','PastSimp'}
     b1_gramm = {'FutCont','PastPerf','PrPerfCont','SecondCond','ThirdCond','PresSimp_Passive', 'PastSimp_Passive','FutSimp_Passive'}
     b2_gramm = {'FutPerfCont', 'FutPerf','PastPerfCont'}
     c_gramm = {'PastPerf_Passive','PrPerf_Passive','FutPerf_Passive','PresCont_Passive','PastCont_Passive'}
@@ -347,7 +361,7 @@ def calculate_level(vocab_dict, vocab_weights_dict, grammar_dict, grammar_count_
                 one_element_list = [key_level_value_dict[key]] 
                 grammar_complexity_list.extend(one_element_list)
     grammar_complexity = np.percentile(grammar_complexity_list, 75)
-    overal_complexity = 0.7 * vocab_complexity + 0.3 * grammar_complexity + 0.1
+    overal_complexity = 0.7 * vocab_complexity + 0.3 * grammar_complexity + 5.9
 
     if args.show_output:
         #print("vocab_complexity_list",vocab_complexity_list )

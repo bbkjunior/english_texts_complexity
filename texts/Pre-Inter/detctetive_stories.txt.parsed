@@ -303,7 +303,7 @@ OrderedDict([('word', 'up'), ('lemma', 'up'), ('vocabulary_prop', OrderedDict([(
 ====================
 OrderedDict([('word', 'Please'), ('lemma', 'please'), ('vocabulary_prop', OrderedDict([('vocab_importane', 8.0), ('nominal_index', '1'), ('level', 'A1')]))]) 
 
-OrderedDict([('word', 'wake'), ('lemma', 'wake'), ('vocabulary_prop', OrderedDict([('vocab_importane', 7.0), ('nominal_index', '3'), ('level', 'A1')]))]) 
+OrderedDict([('word', 'wake'), ('lemma', 'wake'), ('vocabulary_prop', OrderedDict([('vocab_importane', 7.0), ('nominal_index', '3'), ('level', 'A1')])), ('grammar_prop', 'PresSimp')]) 
 
 OrderedDict([('word', 'up'), ('lemma', 'up'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '4'), ('level', 'A1')]))]) 
 
@@ -474,6 +474,14 @@ OrderedDict([('word', 'you'), ('lemma', 'you'), ('vocabulary_prop', OrderedDict(
 ('voice', 6.0)
 ====== B2 =======
 ====== C =======
+('hawaii', 5.0)
+('shin', 5.0)
+('hawaii', 3.0)
+('hawaii', 10.0)
+('los', 6.0)
+('angeles', 6.0)
+('dreamt', 5.0)
+('hawaii', 4.0)
 ====== undefined_level =======
 ('hawaii', 5.0)
 ('shin', 5.0)
@@ -502,19 +510,31 @@ OrderedDict([('word', 'you'), ('lemma', 'you'), ('vocabulary_prop', OrderedDict(
 
 ====GRAMMAR LIST===
 ====== A1 =======
-total occurencies 6
+total occurencies 7
 ('there', 'there_is_are')
 ('sleep', 'PresSimp')
 ('dreamt', 'PresSimp')
 ('there', 'there_is_are')
 ('there', 'there_is_are')
+('wake', 'PresSimp')
 ('want', 'PresSimp')
 ====== A2 =======
-total occurencies 5
+total occurencies 16
+('be', 'PastSimp')
 ('shin', 'PastCont')
+('be', 'PastSimp')
+('be', 'PastSimp')
 ('dream', 'PastCont')
+('be', 'PastSimp')
+('want', 'PastSimp')
+('go', 'PastSimp')
+('ring', 'PastSimp')
 ('dream', 'PastCont')
+('be', 'PastSimp')
+('be', 'PastSimp')
+('be', 'PastSimp')
 ('stand', 'Gerund')
+('be', 'PastSimp')
 ('call', 'PastCont')
 ====== B1 =======
 total occurencies 1
@@ -529,25 +549,25 @@ total occurencies 0
 
 ====GRAMMAR WEIGHTS===
 ====== A1 =======
-0.4615
+0.28
 ====== A2 =======
-0.3846
+0.64
 ====== B1 =======
-0.0769
+0.04
 ====== B2 =======
-0.0769
+0.04
 ====== C =======
 0.0
 vocab_complexity 75 percentile 40.0
 Grammar_complexity 75 percentile 40.0
-NEW TYPE COMPLEXITY 40.1
+NEW TYPE COMPLEXITY 45.9
 
 
 
 ====OVERALL CALCULATION===
-('A2', 0.10000000000000142)
-('B1', 19.9)
-('A1', 20.1)
-('B2', 39.9)
-('C', 59.9)
+('A2', 5.899999999999999)
+('B1', 14.100000000000001)
+('A1', 25.9)
+('B2', 34.1)
+('C', 54.1)
 {'level': 'A2'}

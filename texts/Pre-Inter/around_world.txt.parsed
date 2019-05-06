@@ -112,7 +112,7 @@ OrderedDict([('word', 'read'), ('lemma', 'read'), ('vocabulary_prop', OrderedDic
 
 OrderedDict([('word', 'the'), ('lemma', 'the'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '3'), ('level', 'A1')]))]) 
 
-OrderedDict([('word', 'papers'), ('lemma', 'papers'), ('vocabulary_prop', OrderedDict([('vocab_importane', 5.0), ('nominal_index', '4')]))]) 
+OrderedDict([('word', 'papers'), ('lemma', 'papers'), ('vocabulary_prop', OrderedDict([('vocab_importane', 5.0), ('nominal_index', '4'), ('level', 'A1')]))]) 
 
 OrderedDict([('word', 'at'), ('lemma', 'at'), ('vocabulary_prop', OrderedDict([('vocab_importane', 0), ('nominal_index', '5'), ('level', 'A1')]))]) 
 
@@ -381,6 +381,7 @@ OrderedDict([('word', 'servant'), ('lemma', 'servant'), ('vocabulary_prop', Orde
 ('he', 0)
 ('read', 5.0)
 ('the', 0)
+('papers', 5.0)
 ('at', 0)
 ('the', 0)
 ('and', 0)
@@ -483,9 +484,31 @@ OrderedDict([('word', 'servant'), ('lemma', 'servant'), ('vocabulary_prop', Orde
 ('servant', 7.0)
 ('servant', 5.0)
 ====== C =======
+('1872', 4.0)
 ('reform', 4.0)
 ('london', 5.0)
+('pall', 5.0)
+('phileas', 10.0)
+('fogg', 4.0)
 ('reform', 4.0)
+('7', 0)
+('savile', 3.0)
+('1130', 0)
+('savile', 3.0)
+('phileas', 10.0)
+('fogg', 5.0)
+('31°c', 0)
+('30°c', 0)
+('32°c', 0)
+('937', 0)
+('2nd', 3.0)
+('1872', 3.0)
+('forster', 3.0)
+('30°c', 0)
+('31°c', 0)
+('phileas', 10.0)
+('fogg', 4.0)
+('savile', 4.0)
 ====== undefined_level =======
 ('1872', 4.0)
 ('pall', 5.0)
@@ -494,7 +517,6 @@ OrderedDict([('word', 'servant'), ('lemma', 'servant'), ('vocabulary_prop', Orde
 ('7', 0)
 ('savile', 3.0)
 ('1130', 0)
-('papers', 5.0)
 ('savile', 3.0)
 ('phileas', 10.0)
 ('fogg', 5.0)
@@ -515,15 +537,15 @@ OrderedDict([('word', 'servant'), ('lemma', 'servant'), ('vocabulary_prop', Orde
 
 ====VOCABULARY WEIGHTS===
 ====== A1 =======
-0.7
+0.7055
 ====== A2 =======
-0.137
+0.1345
 ====== B1 =======
-0.063
+0.0618
 ====== B2 =======
-0.0519
+0.0509
 ====== C =======
-0.0481
+0.0473
 
 
 
@@ -532,9 +554,28 @@ OrderedDict([('word', 'servant'), ('lemma', 'servant'), ('vocabulary_prop', Orde
 total occurencies 1
 ("'s", 'PresSimp')
 ====== A2 =======
-total occurencies 2
+total occurencies 21
+('be', 'PastSimp')
+('go', 'PastSimp')
+('leave', 'PastSimp')
+('walk', 'PastSimp')
+('have', 'PastSimp')
+('read', 'PastSimp')
+('play', 'PastSimp')
+('leave', 'PastSimp')
+('walk', 'PastSimp')
+('go', 'PastSimp')
+('be', 'PastSimp')
+('talk', 'PastSimp')
+('know', 'PastSimp')
+('have', 'PastSimp')
 ('wash', 'Gerund')
+('have', 'PastSimp')
+('bring', 'PastSimp')
+('have', 'PastSimp')
 ('go', 'modal_have_to')
+('sit', 'PastSimp')
+('wait', 'PastSimp')
 ====== B1 =======
 total occurencies 0
 ====== B2 =======
@@ -546,25 +587,25 @@ total occurencies 0
 
 ====GRAMMAR WEIGHTS===
 ====== A1 =======
-0.3333
+0.0455
 ====== A2 =======
-0.6667
+0.9545
 ====== B1 =======
 0.0
 ====== B2 =======
 0.0
 ====== C =======
 0.0
-vocab_complexity 75 percentile 40.0
+vocab_complexity 75 percentile 80.0
 Grammar_complexity 75 percentile 40.0
-NEW TYPE COMPLEXITY 40.1
+NEW TYPE COMPLEXITY 73.9
 
 
 
 ====OVERALL CALCULATION===
-('A2', 0.10000000000000142)
-('B1', 19.9)
-('A1', 20.1)
-('B2', 39.9)
-('C', 59.9)
-{'level': 'A2'}
+('B2', 6.099999999999994)
+('B1', 13.900000000000006)
+('C', 26.099999999999994)
+('A2', 33.900000000000006)
+('A1', 53.900000000000006)
+{'level': 'B2'}

@@ -43,7 +43,6 @@ with open("./materials/names.txt", "r") as names_file:
 final_basic_vocabulary = basic_vocabulary
 final_basic_vocabulary.extend(adjectives)
 final_basic_vocabulary.extend(common_uncountable)
-final_basic_vocabulary.extend(countries)
 final_basic_vocabulary.extend(names)
 #print(len(final_basic_vocabulary))
 final_basic_vocabulary = set(final_basic_vocabulary)
@@ -60,6 +59,7 @@ with open("./materials/CEFR/a2_vocab_processed.txt", "r") as voc:
 
 if word_to_find:
     print(len(A2))
+A2.extend(countries)
 A2 = set(A2) - final_basic_vocabulary
 if word_to_find:
     print(len(A2))

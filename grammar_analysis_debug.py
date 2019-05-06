@@ -224,7 +224,7 @@ def get_map(text_line,model):
     
    
 if DEBUG:
-    map, grammar_properties_log, vocab_properties_log = get_map("You must have gone with me", model)
+    map, grammar_properties_log, vocab_properties_log = get_map("So I slept in my chair and I dreamt about Hawaii.", model)
     for word in map[0]:
         print (word,"\n")
 #get_map("I like going there", model) Gerund example
