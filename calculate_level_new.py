@@ -24,7 +24,7 @@ import argparse
 parser = argparse.ArgumentParser(add_help=True)
 parser.add_argument('-d', '--debug', action='store_true')
 parser.add_argument('-s', '--show_output', action='store_true')
-parser.add_argument('file', help='path to the file with raw text')
+parser.add_argument('-f', '--file', help='path to the file with raw text')
 args = parser.parse_args()
 
 DEBUG = args.debug
@@ -273,10 +273,10 @@ def calculate_grammar(text_map):
     """анализируем реально присутствующую в тексте грамматику"""
     level_list = ['A1','A2','B1','B2','C']
     a1_gramm = {'PresSimp','PresCont','there_is_are'}
-    a2_gramm = {'PastCont','modal_have_to','ZeroCond','FirstCond','Gerund','PrPerf','FutSimp','PastSimp'}
-    b1_gramm = {'FutCont','PastPerf','PrPerfCont','SecondCond','ThirdCond','PresSimp_Passive', 'PastSimp_Passive','FutSimp_Passive'}
-    b2_gramm = {'FutPerfCont', 'FutPerf','PastPerfCont'}
-    c_gramm = {'PastPerf_Passive','PrPerf_Passive','FutPerf_Passive','PresCont_Passive','PastCont_Passive'}
+    a2_gramm = {'PastCont','modal_have_to','ZeroCond','Gerund','FutSimp','PastSimp'}
+    b1_gramm = {'FutCont','FirstCond','PresSimp_Passive', 'PastSimp_Passive','FutSimp_Passive','PrPerf'}
+    b2_gramm = {'FutPerfCont', 'FutPerf','SecondCond','PastPerf','PrPerfCont'}
+    c_gramm = {'PastPerf_Passive','PrPerf_Passive','FutPerf_Passive','PresCont_Passive','PastCont_Passive','ThirdCond','PastPerfCont'}
     level_gramm = OrderedDict([('A1',a1_gramm),('A2',a2_gramm),('B1',b1_gramm), ('B2',b2_gramm), ('C',c_gramm)])
     level_collected_gramm = OrderedDict([('A1',[]),('A2',[]),('B1',[]), ('B2',[]), ('C',[])])
     level_grammar_collected_weight = OrderedDict([('A1',0),('A2',0),('B1',0),('B2',0),('C',0)])
@@ -385,6 +385,12 @@ def calculate_level(vocab_dict, vocab_weights_dict, grammar_dict, grammar_count_
     
     return level_repsone
 
+def get_level_from_raw_text(text):
+    text_analysis_map, level_collected_vocab, level_collected_weight, level_collected_gramm, level_grammar_collected_weight = get_map(text, model)
+    level = calculate_level(level_collected_vocab, level_collected_weight, level_collected_gramm, level_grammar_collected_weight)
+    level_val = level['level']
+    return level_val 
+"""
 text = ''
 with open(args.file, "r", encoding = "utf-8") as text_file:
     for line in text_file.readlines():
@@ -401,4 +407,4 @@ if args.show_output:
 level = calculate_level(level_collected_vocab, level_collected_weight, level_collected_gramm, level_grammar_collected_weight)
 
 print (level)
-
+"""
