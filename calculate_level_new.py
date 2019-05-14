@@ -24,7 +24,7 @@ import argparse
 parser = argparse.ArgumentParser(add_help=True)
 parser.add_argument('-d', '--debug', action='store_true')
 parser.add_argument('-s', '--show_output', action='store_true')
-parser.add_argument('-f', '--file', help='path to the file with raw text')
+parser.add_argument('-f','--file', help='path to the file with raw text')
 args = parser.parse_args()
 
 DEBUG = args.debug
@@ -309,6 +309,40 @@ def get_map(text_line,model):
     level_collected_gramm, level_grammar_collected_weight = calculate_grammar(text_map_voc)
     return text_map_voc, level_collected_vocab, level_collected_weight, level_collected_gramm, level_grammar_collected_weight
 
+def get_features(vocab_dict, vocab_weights_dict, grammar_dict, grammar_count_dict):
+    all_features = []
+    vocab_dict_feat = OrderedDict([('A1',0),('A2',0),('B1',0),('B2',0),('C',0)])
+    #vocab_features
+    #print(vocab_dict)
+    vocab_imp_sum = 0
+    for key, values_list in vocab_dict.items():
+        if key != "undefined_level":
+            for val in values_list:
+                vocab_dict_feat[key] += int(val[1])
+                vocab_imp_sum += int(val[1])
+    if(vocab_imp_sum > 0):
+        for key, values_list in vocab_dict_feat.items():
+            vocab_dict_feat[key] /= vocab_imp_sum
+    #print(vocab_dict_feat)
+    all_features.extend(list(vocab_dict_feat.values()))
+
+    #grammar_features
+    gramm_indexes_dict = {'PresSimp':0,'PresCont':1,'there_is_are':2, 'PastCont':3,'modal_have_to':4,'ZeroCond':5,'Gerund':6,'FutSimp':7,'PastSimp':8, 'FutCont':9,'FirstCond':10,'PresSimp_Passive':11, 'PastSimp_Passive':12,'FutSimp_Passive':13,'PrPerf':14,'FutPerfCont':15, 'FutPerf':16,'SecondCond':17,'PastPerf':18,'PrPerfCont':19,'PastPerf_Passive':20,'PrPerf_Passive':21,'FutPerf_Passive':22,'PresCont_Passive':23,'PastCont_Passive':24,'ThirdCond':25,'PastPerfCont':26}
+    gramm_features_list = [0] * 27
+    gramm_features_list_sum = 0
+    for key, values_list in grammar_dict.items():
+        for val in values_list:
+            gramm_features_list[gramm_indexes_dict[val[1]]] += 1
+            gramm_features_list_sum += 1
+    if(gramm_features_list_sum > 0):
+        gramm_features_list = [elt / gramm_features_list_sum for elt in gramm_features_list] 
+    all_features.extend(gramm_features_list)
+    #print(gramm_features_list)
+    #print(all_features)
+    return all_features
+
+
+
 def calculate_level(vocab_dict, vocab_weights_dict, grammar_dict, grammar_count_dict):
     """подсчитываем финальные показатели. Грамматике дается вес 0.3 лексике - 0.7"""
     final_calculation_dict = OrderedDict([('A1',0),('A2',0),('B1',0),('B2',0),('C',0)])
@@ -327,7 +361,7 @@ def calculate_level(vocab_dict, vocab_weights_dict, grammar_dict, grammar_count_
                 one_element_list = [key_level_value_dict[key]] * int(val[1])
                 vocab_complexity_list.extend(one_element_list)
                 
-    vocab_complexity = np.percentile(vocab_complexity_list, 75)
+    vocab_complexity = np.percentile(vocab_complexity_list, 55)#!!!!75>55
     if args.show_output:
         print('\n\n')
         print("====VOCABULARY WEIGHTS===")
@@ -380,9 +414,8 @@ def calculate_level(vocab_dict, vocab_weights_dict, grammar_dict, grammar_count_
         print("====OVERALL CALCULATION===")
         for lvl in sorted_final_calculation:
             print(lvl)
-
-    level_repsone = {'level': sorted_final_calculation[0][0]}
-    
+    cefr2lev = {'A1':"Beginner", 'A2': "Elementary/Pre-intermediate",'B1':"Intermediate",'B2':"Upper-Intermediate",'C':"Advanced"}
+    level_repsone = {'level': cefr2lev[sorted_final_calculation[0][0]]}
     return level_repsone
 
 def get_level_from_raw_text(text):
@@ -390,6 +423,10 @@ def get_level_from_raw_text(text):
     level = calculate_level(level_collected_vocab, level_collected_weight, level_collected_gramm, level_grammar_collected_weight)
     level_val = level['level']
     return level_val 
+def get_features_from_raw_text(text):
+    text_analysis_map, level_collected_vocab, level_collected_weight, level_collected_gramm, level_grammar_collected_weight = get_map(text, model)
+    text_features = get_features(level_collected_vocab, level_collected_weight, level_collected_gramm, level_grammar_collected_weight)
+    return text_features
 """
 text = ''
 with open(args.file, "r", encoding = "utf-8") as text_file:
@@ -403,7 +440,7 @@ if args.show_output:
             print(word,'\n')
         print("====================")
     print('\n\n')
-
+get_features(level_collected_vocab, level_collected_weight, level_collected_gramm, level_grammar_collected_weight)
 level = calculate_level(level_collected_vocab, level_collected_weight, level_collected_gramm, level_grammar_collected_weight)
 
 print (level)

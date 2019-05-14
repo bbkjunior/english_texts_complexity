@@ -1,4 +1,5 @@
 import ufal.udpipe
+#import ufal
 # ufal.udpipe.Model etc. are SWIG-magic and cannot be detected by pylint
 # pylint: disable=no-member
 
