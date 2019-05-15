@@ -361,7 +361,7 @@ def calculate_level(vocab_dict, vocab_weights_dict, grammar_dict, grammar_count_
                 one_element_list = [key_level_value_dict[key]] * int(val[1])
                 vocab_complexity_list.extend(one_element_list)
                 
-    vocab_complexity = np.percentile(vocab_complexity_list, 55)#!!!!75>55
+    vocab_complexity = np.percentile(vocab_complexity_list, 75)#!!!!75>55
     if args.show_output:
         print('\n\n')
         print("====VOCABULARY WEIGHTS===")
@@ -395,7 +395,7 @@ def calculate_level(vocab_dict, vocab_weights_dict, grammar_dict, grammar_count_
                 one_element_list = [key_level_value_dict[key]] 
                 grammar_complexity_list.extend(one_element_list)
     grammar_complexity = np.percentile(grammar_complexity_list, 75)
-    overal_complexity = 0.7 * vocab_complexity + 0.3 * grammar_complexity + 5.9
+    overal_complexity = 0.7 * vocab_complexity + 0.3 * grammar_complexity + 10
 
     if args.show_output:
         #print("vocab_complexity_list",vocab_complexity_list )
@@ -414,7 +414,7 @@ def calculate_level(vocab_dict, vocab_weights_dict, grammar_dict, grammar_count_
         print("====OVERALL CALCULATION===")
         for lvl in sorted_final_calculation:
             print(lvl)
-    cefr2lev = {'A1':"Beginner", 'A2': "Elementary/Pre-intermediate",'B1':"Intermediate",'B2':"Upper-Intermediate",'C':"Advanced"}
+    cefr2lev = {'A1':"Beginner", 'A2': "Elementary/Pre-Intermediate",'B1':"Intermediate",'B2':"Upper-Intermediate",'C':"Advanced"}
     level_repsone = {'level': cefr2lev[sorted_final_calculation[0][0]]}
     return level_repsone
 
@@ -445,3 +445,4 @@ level = calculate_level(level_collected_vocab, level_collected_weight, level_col
 
 print (level)
 """
+
