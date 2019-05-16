@@ -275,8 +275,8 @@ def calculate_grammar(text_map):
     a1_gramm = {'PresSimp','PresCont','there_is_are'}
     a2_gramm = {'PastCont','modal_have_to','ZeroCond','Gerund','FutSimp','PastSimp'}
     b1_gramm = {'FutCont','FirstCond','PresSimp_Passive', 'PastSimp_Passive','FutSimp_Passive','PrPerf'}
-    b2_gramm = {'FutPerfCont', 'FutPerf','SecondCond','PastPerf','PrPerfCont'}
-    c_gramm = {'PastPerf_Passive','PrPerf_Passive','FutPerf_Passive','PresCont_Passive','PastCont_Passive','ThirdCond','PastPerfCont'}
+    b2_gramm = {'FutPerfCont', 'FutPerf','SecondCond','PrPerfCont'}
+    c_gramm = {'PastPerf_Passive','PrPerf_Passive','FutPerf_Passive','PresCont_Passive','PastCont_Passive','ThirdCond','PastPerfCont','PastPerf'}
     level_gramm = OrderedDict([('A1',a1_gramm),('A2',a2_gramm),('B1',b1_gramm), ('B2',b2_gramm), ('C',c_gramm)])
     level_collected_gramm = OrderedDict([('A1',[]),('A2',[]),('B1',[]), ('B2',[]), ('C',[])])
     level_grammar_collected_weight = OrderedDict([('A1',0),('A2',0),('B1',0),('B2',0),('C',0)])
@@ -345,7 +345,6 @@ def get_features(vocab_dict, vocab_weights_dict, grammar_dict, grammar_count_dic
 
 def calculate_level(vocab_dict, vocab_weights_dict, grammar_dict, grammar_count_dict):
     """подсчитываем финальные показатели. Грамматике дается вес 0.3 лексике - 0.7"""
-    final_calculation_dict = OrderedDict([('A1',0),('A2',0),('B1',0),('B2',0),('C',0)])
     if args.show_output:
         print("====VOCABULARY LISTS===")
         for key, values_list in vocab_dict.items():
@@ -353,7 +352,7 @@ def calculate_level(vocab_dict, vocab_weights_dict, grammar_dict, grammar_count_
             for val in values_list:
                 print(val)
      #percentile method   
-    key_level_value_dict = {'A1':20, 'A2':40,'B1':60,'B2':80,'C':100}
+    key_level_value_dict = {'A1':20, 'A2':40,'B1':65,'B2':85,'C':105}
     vocab_complexity_list = []
     for key, values_list in vocab_dict.items():
         if key != "undefined_level":
@@ -366,7 +365,6 @@ def calculate_level(vocab_dict, vocab_weights_dict, grammar_dict, grammar_count_
         print('\n\n')
         print("====VOCABULARY WEIGHTS===")
         for key, level_vocab_weight in vocab_weights_dict.items():
-            final_calculation_dict[key] += 0.7 * level_vocab_weight
             if args.show_output: 
                 print("======",key,"=======")
                 print(level_vocab_weight)
@@ -383,19 +381,20 @@ def calculate_level(vocab_dict, vocab_weights_dict, grammar_dict, grammar_count_
         print('\n\n')
         print("====GRAMMAR WEIGHTS===")
     for key, level_grammar_weight in grammar_count_dict.items():
-        final_calculation_dict[key] += 0.3 * level_grammar_weight
         if args.show_output:
             print("======",key,"=======")
             print(level_grammar_weight)
 
         grammar_complexity_list = []    
+    grammar_adjusting_dict = OrderedDict([('A1',1),('A2',2),('B1',4),('B2',8),('C',12)])
     #percentile method  
     for key, values_list in grammar_dict.items():
             for val in values_list:
-                one_element_list = [key_level_value_dict[key]] 
+                one_element_list = [key_level_value_dict[key]] * int(grammar_adjusting_dict[key])
+                #print("one_element_list",one_element_list) 
                 grammar_complexity_list.extend(one_element_list)
     grammar_complexity = np.percentile(grammar_complexity_list, 75)
-    overal_complexity = 0.7 * vocab_complexity + 0.3 * grammar_complexity + 10
+    overal_complexity = 0.6 * vocab_complexity + 0.4 * grammar_complexity
 
     if args.show_output:
         #print("vocab_complexity_list",vocab_complexity_list )
@@ -405,8 +404,10 @@ def calculate_level(vocab_dict, vocab_weights_dict, grammar_dict, grammar_count_
         print("NEW TYPE COMPLEXITY", overal_complexity)
 
     find_distance_dict = OrderedDict([('A1',0),('A2',0),('B1',0),('B2',0),('C',0)])
+    adjusted_borders_dict = {'A1':30, 'A2':40,'B1':60,'B2':70,'C':85}
     for key, value in key_level_value_dict.items():
-        find_distance_dict[key] = abs(key_level_value_dict[key] - overal_complexity) 
+        #find_distance_dict[key] = abs(key_level_value_dict[key] - overal_complexity) 
+        find_distance_dict[key] = abs(adjusted_borders_dict[key] - overal_complexity) 
     
     sorted_final_calculation = sorted(find_distance_dict.items(), key=operator.itemgetter(1))
     if args.show_output:
@@ -427,6 +428,7 @@ def get_features_from_raw_text(text):
     text_analysis_map, level_collected_vocab, level_collected_weight, level_collected_gramm, level_grammar_collected_weight = get_map(text, model)
     text_features = get_features(level_collected_vocab, level_collected_weight, level_collected_gramm, level_grammar_collected_weight)
     return text_features
+
 """
 text = ''
 with open(args.file, "r", encoding = "utf-8") as text_file:
