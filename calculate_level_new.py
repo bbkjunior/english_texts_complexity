@@ -352,7 +352,7 @@ def calculate_level(vocab_dict, vocab_weights_dict, grammar_dict, grammar_count_
             for val in values_list:
                 print(val)
      #percentile method   
-    key_level_value_dict = {'A1':20, 'A2':40,'B1':65,'B2':85,'C':105}
+    key_level_value_dict =  {'A1':20, 'A2':40,'B1':65,'B2':95,'C':115}
     vocab_complexity_list = []
     for key, values_list in vocab_dict.items():
         if key != "undefined_level":
@@ -404,7 +404,7 @@ def calculate_level(vocab_dict, vocab_weights_dict, grammar_dict, grammar_count_
         print("NEW TYPE COMPLEXITY", overal_complexity)
 
     find_distance_dict = OrderedDict([('A1',0),('A2',0),('B1',0),('B2',0),('C',0)])
-    adjusted_borders_dict = {'A1':30, 'A2':40,'B1':60,'B2':70,'C':85}
+    adjusted_borders_dict =  {'A1':30, 'A2':40,'B1':60,'B2':65,'C':85}
     for key, value in key_level_value_dict.items():
         #find_distance_dict[key] = abs(key_level_value_dict[key] - overal_complexity) 
         find_distance_dict[key] = abs(adjusted_borders_dict[key] - overal_complexity) 
@@ -429,7 +429,7 @@ def get_features_from_raw_text(text):
     text_features = get_features(level_collected_vocab, level_collected_weight, level_collected_gramm, level_grammar_collected_weight)
     return text_features
 
-"""
+
 text = ''
 with open(args.file, "r", encoding = "utf-8") as text_file:
     for line in text_file.readlines():
@@ -446,5 +446,5 @@ get_features(level_collected_vocab, level_collected_weight, level_collected_gram
 level = calculate_level(level_collected_vocab, level_collected_weight, level_collected_gramm, level_grammar_collected_weight)
 
 print (level)
-"""
+
 
