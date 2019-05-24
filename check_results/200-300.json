@@ -1,0 +1,34 @@
+[
+    {
+        "jungle_id":22,
+        "level":"Advanced"
+    },
+    {
+        "jungle_id":167,
+        "level":"Intermediate"
+    },
+    {
+        "jungle_id":193,
+        "level":"Advanced"
+    },
+    {
+        "jungle_id":119,
+        "level":"Intermediate"
+    },
+    {
+        "jungle_id":216,
+        "level":"Advanced"
+    },
+    {
+        "jungle_id":217,
+        "level":"Upper-Intermediate"
+    },
+    {
+        "jungle_id":218,
+        "level":"Upper-Intermediate"
+    },
+    {
+        "jungle_id":221,
+        "level":"Upper-Intermediate"
+    }
+]
