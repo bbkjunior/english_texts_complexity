@@ -1,6 +1,7 @@
 from calculate_level_new import get_level_from_raw_text
 import psycopg2
 import json
+from tqdm import tqdm
 
 def write_response (json_file, start_index, final_index):
     file_name = './check_results/' + str(start_index) + '-' + str(final_index) +'.json'
@@ -12,7 +13,7 @@ conn = psycopg2.connect(dbname='pgstage', user='linguist', password='eDQGK0GCStl
 interval = 100
 #всего страниц в базе 2 262 479
 current_text = {"text": '', 'jungle_id':0}
-for offset_ind in range (4000,100000,interval):
+for offset_ind in tqdm(range (23500,100000,interval)):
     conn.rollback()
     cursor = conn.cursor()   
     request = "SELECT jdesc ->>'page_text' AS page_text, jungle_id FROM public.content_jungle_pages LIMIT " + str(interval) + " OFFSET " + str(offset_ind)
@@ -31,7 +32,7 @@ for offset_ind in range (4000,100000,interval):
                 print("====NEW TEXT (previous texts calculations are above)====\n")
                 current_text = {"text": row[0], 'jungle_id':row[1]}
             else:
-                print("====FIRST ENTRY====\n")
+                print("====FIRST ENTRY====\n")#в середине текста может возникнуть если предыдущий текст был пустым
                 current_text['jungle_id'] = row[1]
                 current_text['text'] += ' ' + row[0]
         else:

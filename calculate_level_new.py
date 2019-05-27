@@ -302,6 +302,8 @@ def get_map(text_line,model):
     conllu = get_conllu(text_line, model, print_output = DEBUG)
     conllu_text_map = get_conllu_text_map(conllu)
     lemm_sentences = lemmatize_from_udmap(conllu_text_map)
+    if not lemm_sentences:
+        return None, None,  None, None, None
     tf_idf_dict = get_tf_idf_dict (lemm_sentences)
     text_map = create_map(conllu_text_map, tf_idf_dict)
     text_analysis_map = grammar_analysis(conllu_text_map, text_map)
@@ -359,10 +361,10 @@ def calculate_level(vocab_dict, vocab_weights_dict, grammar_dict, grammar_count_
             for val in values_list:
                 one_element_list = [key_level_value_dict[key]] * int(val[1])
                 vocab_complexity_list.extend(one_element_list)
-    if len (vocab_complexity_list) > 0            
+    if len (vocab_complexity_list) > 0:           
         vocab_complexity = np.percentile(vocab_complexity_list, 75)#!!!!75>55
     else:
-        vocab_complexity = 0
+        return "Text seems to be empty"
     if args.show_output:
         print('\n\n')
         print("====VOCABULARY WEIGHTS===")
@@ -395,8 +397,13 @@ def calculate_level(vocab_dict, vocab_weights_dict, grammar_dict, grammar_count_
                 one_element_list = [key_level_value_dict[key]] * int(grammar_adjusting_dict[key])
                 #print("one_element_list",one_element_list) 
                 grammar_complexity_list.extend(one_element_list)
-    grammar_complexity = np.percentile(grammar_complexity_list, 75)
+    if (len(grammar_complexity_list)):
+        grammar_complexity = np.percentile(grammar_complexity_list, 75)
+    else:
+        grammar_complexity = 0
     overal_complexity = 0.6 * vocab_complexity + 0.4 * grammar_complexity
+    if (overal_complexity == 0):
+        return "Text seems to be empty"
 
     if args.show_output:
         #print("vocab_complexity_list",vocab_complexity_list )
@@ -423,6 +430,8 @@ def calculate_level(vocab_dict, vocab_weights_dict, grammar_dict, grammar_count_
 
 def get_level_from_raw_text(text):
     text_analysis_map, level_collected_vocab, level_collected_weight, level_collected_gramm, level_grammar_collected_weight = get_map(text, model)
+    if not text_analysis_map:
+       return "Text seems to be empty"
     level = calculate_level(level_collected_vocab, level_collected_weight, level_collected_gramm, level_grammar_collected_weight)
     level_val = level['level']
     return level_val 
