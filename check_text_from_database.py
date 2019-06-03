@@ -22,6 +22,10 @@ for offset_ind in tqdm(range (32600,2262500,interval)):
     level_json = []
     check_index = 0
     #start_index = check_index
+    texts_in_one_object = 0
+    midle_calc_level = []
+    level2digit = {"Beginner":0, "Elementary/Pre-Intermediate":1,"Intermediate":2,"Upper-Intermediate":3,"Advanced":4}
+    cefr2lev = {'0':"Beginner", '1': "Elementary/Pre-Intermediate",'2':"Intermediate",'3':"Upper-Intermediate",'4':"Advanced"}
     for row in cursor:
         if(row[1] != current_text['jungle_id']):
             if len(current_text['text']) > 0:
@@ -36,6 +40,7 @@ for offset_ind in tqdm(range (32600,2262500,interval)):
                 current_text['jungle_id'] = row[1]
                 current_text['text'] += ' ' + row[0]
         else:
+	   if texts_in_one_object >5:
             print("====ADD TEXT TO EXISTING====\n")
             current_text['text'] += ' ' + row[0]
         #print(current_text)     
