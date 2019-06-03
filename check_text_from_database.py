@@ -13,7 +13,7 @@ conn = psycopg2.connect(dbname='pgstage', user='linguist', password='eDQGK0GCStl
 interval = 100
 #всего страниц в базе 2 262 479
 current_text = {"text": '', 'jungle_id':0}
-for offset_ind in tqdm(range (23500,100000,interval)):
+for offset_ind in tqdm(range (32600,2262500,interval)):
     conn.rollback()
     cursor = conn.cursor()   
     request = "SELECT jdesc ->>'page_text' AS page_text, jungle_id FROM public.content_jungle_pages LIMIT " + str(interval) + " OFFSET " + str(offset_ind)

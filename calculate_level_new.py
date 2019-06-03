@@ -10,8 +10,8 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 import numpy as np
 import pandas as pd
 import nltk
-from nltk.corpus import stopwords
-stopWords = set(stopwords.words('english'))
+#from nltk.corpus import stopwords
+#stopWords = set(stopwords.words('english'))
 from string import punctuation
 full_punctuation = punctuation + "–" + "," + "»" + "«" + "…" +'’'
 import operator
@@ -76,7 +76,7 @@ def lemmatize_from_udmap(conllu_map):
 
 def get_tf_idf_dict(lemm_text_list, save_to_csv = False):
     """считаем tf-idf, экспортируем словарь со значениями"""
-    vect = TfidfVectorizer(stop_words = stopWords)
+    vect = TfidfVectorizer(stop_words = "english")
     tfidf_matrix = vect.fit_transform(lemm_text_list)
     df = pd.DataFrame(tfidf_matrix.toarray(), columns = vect.get_feature_names())
     #print(df.head())
