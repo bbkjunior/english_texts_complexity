@@ -1,3 +1,5 @@
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
 from calculate_level_new import get_level_from_raw_text
 import psycopg2
 import json
@@ -13,7 +15,7 @@ def write_response (json_file, start_index, final_index):
 
 conn = psycopg2.connect(dbname='pgstage', user='linguist', password='eDQGK0GCStlYlHNV', host='192.168.122.183')
 interval = 100
-#всего страниц в базе 2 262 479
+#total pages in the base  2 262 479
 level2digit = {"Beginner":'0', "Elementary/Pre-Intermediate":'1',"Intermediate":'2',"Upper-Intermediate":'3',"Advanced":'4'}
 digit2level = {'0': "Beginner", '1': "Elementary/Pre-Intermediate",'2':"Intermediate",'3':"Upper-Intermediate",'4':"Advanced"}
 texts_in_one_object = 0
