@@ -15,20 +15,21 @@ def write_response (json_file, start_index, final_index):
     with open(file_name, 'w', encoding = "utf-8") as outfile:
         json.dump(json_file, outfile, indent=4, separators=(',', ':'),ensure_ascii=False)
 
-conn = psycopg2.connect(dbname='pgstage', user='linguist', password='eDQGK0GCStlYlHNV', host='192.168.122.183')
 interval = 100
 #total pages in the base  2 262 479
 level2digit = {"Beginner":'0', "Elementary/Pre-Intermediate":'1',"Intermediate":'2',"Upper-Intermediate":'3',"Advanced":'4'}
 digit2level = {'0': "Beginner", '1': "Elementary/Pre-Intermediate",'2':"Intermediate",'3':"Upper-Intermediate",'4':"Advanced"}
 
     
-def calculate_level_from_range(offset):
+def calculate_level_from_offset(offset, thread_name):
     texts_in_one_object = 0
     midle_calc_level = []
     current_text = {"text": '', 'jungle_id':0}
-    conn.rollback()
+    #conn.rollback()
+    conn = psycopg2.connect(dbname='pgstage', user='linguist', password='eDQGK0GCStlYlHNV', host='192.168.122.183')
     cursor = conn.cursor()   
     request = "SELECT jdesc ->>'page_text' AS page_text, jungle_id FROM public.content_jungle_pages LIMIT " + str(interval) + " OFFSET " + str(offset)
+    print("Handling ", thread_name)
     print(request)
     cursor.execute(request)
     level_json = []
@@ -80,15 +81,19 @@ def calculate_level_from_range(offset):
         check_index += 1
         
     #if check_index % 250 == 0 and check_index != 0:
-    write_response(level_json,offset_ind, offset_ind + interval )
+    write_response(level_json,offset, offset + interval)
     level_json = []
     #start_index = check_index  
 
-pr1=multiprocessing.Process(target=calculate_level_from_range(187500,1000000,1))
+def calculate_level_from_range():
+    for offset_ind in tqdm(range (191600,1000000,interval)):
+        calculate_level_from_offset(offset_ind,1)
+        time.sleep(random.random())
+
+pr1=multiprocessing.Process(target=calculate_level_from_range)
 pr1.start()
 
-calculate_level_from_range(1000000,2262500,2)
+for offset_ind in tqdm(range (1000900,2262500,interval)):
+    calculate_level_from_offset(offset_ind, 2)
+    time.sleep(random.random())
 
-
-for offset_ind in tqdm(range (187500,1000000,100)):
-    calculate_level_from_range(offset_ind)
