@@ -86,14 +86,14 @@ def calculate_level_from_offset(offset, thread_name):
     #start_index = check_index  
 
 def calculate_level_from_range():
-    for offset_ind in tqdm(range (281500,500000,interval)):
+    for offset_ind in tqdm(range (500000,1000000,interval)):
         calculate_level_from_offset(offset_ind,1)
         time.sleep(random.random())
 
 pr1=multiprocessing.Process(target=calculate_level_from_range)
 pr1.start()
 
-for offset_ind in tqdm(range (1001700,1750000,interval)):
+for offset_ind in tqdm(range (1750000,2262500,interval)):
     calculate_level_from_offset(offset_ind, 2)
     time.sleep(random.random())
 
