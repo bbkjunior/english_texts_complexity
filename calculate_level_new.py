@@ -20,14 +20,10 @@ import re
 #nltk.download('wordnet')
 from nltk.stem import WordNetLemmatizer 
 
-import argparse
-parser = argparse.ArgumentParser(add_help=True)
-parser.add_argument('-d', '--debug', action='store_true')
-parser.add_argument('-s', '--show_output', action='store_true')
-parser.add_argument('-f','--file', help='path to the file with raw text')
-args = parser.parse_args()
 
-DEBUG = args.debug
+
+DEBUG = False
+
 model = Model('./UDPIPE/english-ud-2.0-170801.udpipe')
 
 def get_conllu(text_line, model, print_output = DEBUG):
@@ -349,9 +345,9 @@ def get_features(vocab_dict, vocab_weights_dict, grammar_dict, grammar_count_dic
 
 
 
-def calculate_level(vocab_dict, vocab_weights_dict, grammar_dict, grammar_count_dict):
+def calculate_level(vocab_dict, vocab_weights_dict, grammar_dict, grammar_count_dict, show_output = False):
     """подсчитываем финальные показатели. Грамматике дается вес 0.3 лексике - 0.7"""
-    if args.show_output:
+    if show_output:
         print("====VOCABULARY LISTS===")
         for key, values_list in vocab_dict.items():
             print("======",key,"=======")
@@ -369,15 +365,15 @@ def calculate_level(vocab_dict, vocab_weights_dict, grammar_dict, grammar_count_
         vocab_complexity = np.percentile(vocab_complexity_list, 75)#!!!!75>55
     else:
         return "Text seems to be empty"
-    if args.show_output:
+    if show_output:
         print('\n\n')
         print("====VOCABULARY WEIGHTS===")
         for key, level_vocab_weight in vocab_weights_dict.items():
-            if args.show_output: 
+            if show_output: 
                 print("======",key,"=======")
                 print(level_vocab_weight)
 
-    if args.show_output:
+    if show_output:
         print('\n\n')
         print("====GRAMMAR LIST===")
         for key, values_list in grammar_dict.items():
@@ -389,7 +385,7 @@ def calculate_level(vocab_dict, vocab_weights_dict, grammar_dict, grammar_count_
         print('\n\n')
         print("====GRAMMAR WEIGHTS===")
     for key, level_grammar_weight in grammar_count_dict.items():
-        if args.show_output:
+        if show_output:
             print("======",key,"=======")
             print(level_grammar_weight)
 
@@ -409,7 +405,7 @@ def calculate_level(vocab_dict, vocab_weights_dict, grammar_dict, grammar_count_
     if (overal_complexity == 0):
         return "Text seems to be empty"
 
-    if args.show_output:
+    if show_output:
         #print("vocab_complexity_list",vocab_complexity_list )
         print("vocab_complexity 75 percentile",vocab_complexity ) 
         #print("grammar_complexity_list",grammar_complexity_list)
@@ -423,7 +419,7 @@ def calculate_level(vocab_dict, vocab_weights_dict, grammar_dict, grammar_count_
         find_distance_dict[key] = abs(adjusted_borders_dict[key] - overal_complexity) 
     
     sorted_final_calculation = sorted(find_distance_dict.items(), key=operator.itemgetter(1))
-    if args.show_output:
+    if show_output:
         print('\n\n')
         print("====OVERALL CALCULATION===")
         for lvl in sorted_final_calculation:
@@ -447,24 +443,9 @@ def get_features_from_raw_text(text):
     text_features = get_features(level_collected_vocab, level_collected_weight, level_collected_gramm, level_grammar_collected_weight)
     return text_features
 
-"""
-text = ''
-with open(args.file, "r", encoding = "utf-8") as text_file:
-    for line in text_file.readlines():
-        text += line + ' '
-text_analysis_map, level_collected_vocab, level_collected_weight, level_collected_gramm, level_grammar_collected_weight = get_map(text, model)
 
-if args.show_output:
-    for sentence in text_analysis_map[0]:
-        for word in sentence:
-            print(word,'\n')
-        print("====================")
-    print('\n\n')
-get_features(level_collected_vocab, level_collected_weight, level_collected_gramm, level_grammar_collected_weight)
-level = calculate_level(level_collected_vocab, level_collected_weight, level_collected_gramm, level_grammar_collected_weight)
 
-print (level)
-"""
+
 
 
 
