@@ -1,8 +1,8 @@
 import json
 import os
-
+from collections import OrderedDict
 direstions = os.listdir("./check_results")
-level2digit = {"Beginner":0, "Elementary/Pre-Intermediate":0,"Intermediate":0,"Upper-Intermediate":0,"Advanced":0,"Text seems to be empty":0}
+level2digit =OrderedDict([("Beginner",0),("Elementary/Pre-Intermediate",0),("Intermediate",0),("Upper-Intermediate",0),("Advanced",0),("Text seems to be empty",0),("Level calculation failed",0)])
 total_texts = 0
 for path in direstions:
     json_path = os.path.join("./check_results",path )
