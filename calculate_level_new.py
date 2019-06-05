@@ -77,6 +77,8 @@ def lemmatize_from_udmap(conllu_map):
 def get_tf_idf_dict(lemm_text_list, save_to_csv = False):
     """считаем tf-idf, экспортируем словарь со значениями"""
     vect = TfidfVectorizer(stop_words = "english")
+    if len(lemm_text_list) == 0:
+        return None
     tfidf_matrix = vect.fit_transform(lemm_text_list)
     df = pd.DataFrame(tfidf_matrix.toarray(), columns = vect.get_feature_names())
     #print(df.head())
@@ -305,6 +307,8 @@ def get_map(text_line,model):
     if not lemm_sentences:
         return None, None,  None, None, None
     tf_idf_dict = get_tf_idf_dict (lemm_sentences)
+    if not tf_idf_dict:
+        return None, None,  None, None, None
     text_map = create_map(conllu_text_map, tf_idf_dict)
     text_analysis_map = grammar_analysis(conllu_text_map, text_map)
     text_map_voc, level_collected_vocab, level_collected_weight = vocabulary_analysis(text_analysis_map, cefr_dictionary)
@@ -429,12 +433,15 @@ def calculate_level(vocab_dict, vocab_weights_dict, grammar_dict, grammar_count_
     return level_repsone
 
 def get_level_from_raw_text(text):
-    text_analysis_map, level_collected_vocab, level_collected_weight, level_collected_gramm, level_grammar_collected_weight = get_map(text, model)
-    if not text_analysis_map:
-       return "Text seems to be empty"
-    level = calculate_level(level_collected_vocab, level_collected_weight, level_collected_gramm, level_grammar_collected_weight)
-    level_val = level['level']
-    return level_val 
+    try:
+        text_analysis_map, level_collected_vocab, level_collected_weight, level_collected_gramm, level_grammar_collected_weight = get_map(text, model)
+        if not text_analysis_map:
+            return "Text seems to be empty"
+        level = calculate_level(level_collected_vocab, level_collected_weight, level_collected_gramm, level_grammar_collected_weight)
+        level_val = level['level']
+        return level_val 
+    except:
+        return "Level calculation failed"
 def get_features_from_raw_text(text):
     text_analysis_map, level_collected_vocab, level_collected_weight, level_collected_gramm, level_grammar_collected_weight = get_map(text, model)
     text_features = get_features(level_collected_vocab, level_collected_weight, level_collected_gramm, level_grammar_collected_weight)
