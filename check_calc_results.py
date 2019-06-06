@@ -7,14 +7,14 @@ parser = argparse.ArgumentParser(add_help=True)
 parser.add_argument('-l', '--look_for_index', type = int)
 args = parser.parse_args()
 
-direstions = os.listdir("./check_results")
+direstions = os.listdir("./check_results_ordered")
 level2digit =OrderedDict([("Beginner",0),("Elementary/Pre-Intermediate",0),("Intermediate",0),("Upper-Intermediate",0),("Advanced",0),("Text seems to be empty",0),("Level calculation failed",0)])
 total_texts = 0
 if args.look_for_index: found_list = []
 for path in direstions:
-    json_path = os.path.join("./check_results",path )
+    json_path = os.path.join("./check_results_ordered",path )
     if json_path.endswith(".json"):
-        with open (json_path, "r", encoding = "ISO 8859-1") as f:
+        with open (json_path, "r") as f:
             #print(json_path)
             data = json.load(f)
             for el in data:
