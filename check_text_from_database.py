@@ -5,10 +5,12 @@ import psycopg2
 import json
 from tqdm import tqdm
 import statistics
+import time
+import random
 
 
 def write_response (json_file, start_index, final_index):
-    file_name = './check_results/' + str(start_index) + '-' + str(final_index) +'.json'
+    file_name = './check_results_ordered/' + str(start_index) + '-' + str(final_index) +'.json'
     print("\nNOW SAVING", file_name,'\n')
     with open(file_name, 'w', encoding = "utf-8") as outfile:
         json.dump(json_file, outfile, indent=4, separators=(',', ':'),ensure_ascii=False)
@@ -21,10 +23,10 @@ digit2level = {'0': "Beginner", '1': "Elementary/Pre-Intermediate",'2':"Intermed
 texts_in_one_object = 0
 midle_calc_level = []
 current_text = {"text": '', 'jungle_id':0}
-for offset_ind in tqdm(range (41300,2262500,interval)):
+for offset_ind in tqdm(range (677600,1000000,interval)):
     conn.rollback()
     cursor = conn.cursor()   
-    request = "SELECT jdesc ->>'page_text' AS page_text, jungle_id FROM public.content_jungle_pages LIMIT " + str(interval) + " OFFSET " + str(offset_ind)
+    request = "SELECT jdesc ->>'page_text' AS page_text, jungle_id FROM public.content_jungle_pages ORDER BY jungle_id LIMIT " + str(interval) + " OFFSET " + str(offset_ind)
     print(request)
     cursor.execute(request)
     level_json = []
