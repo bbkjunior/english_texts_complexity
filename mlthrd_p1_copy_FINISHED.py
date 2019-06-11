@@ -10,7 +10,7 @@ import time
 import random
 
 def write_response (json_file, start_index, final_index):
-    file_name = './check_results_ordered/' + str(start_index) + '-' + str(final_index) +'.json'
+    file_name = './additional_save/' + str(start_index) + '-' + str(final_index) +'.json'
     print("\nNOW SAVING", file_name,'\n')
     with open(file_name, 'w', encoding = "utf-8") as outfile:
         json.dump(json_file, outfile, indent=4, separators=(',', ':'),ensure_ascii=False)
@@ -37,7 +37,7 @@ def calculate_level_from_offset(offset, thread_name, thread_session_index):
     #start_index = check_index
     
     for row in cursor:
-         if(row[1] != current_text['jungle_id']):
+        if(row[1] != current_text['jungle_id']):
             if len(current_text['text']) > 0:
                 if len(midle_calc_level) > 0:
                     int_level = int(round(statistics.mean(midle_calc_level),0))
@@ -70,7 +70,7 @@ def calculate_level_from_offset(offset, thread_name, thread_session_index):
                     texts_in_one_object += 1
                     current_text['jungle_id'] = row[1]
                     current_text['text'] += ' ' + row[0]
-         else:
+        else:
             if texts_in_one_object <10:
                 print("Handling ", thread_name,"session index", thread_session_index)
                 print("====ADD TEXT TO EXISTING ", row[1], "====\n")
@@ -98,20 +98,20 @@ def calculate_level_from_offset(offset, thread_name, thread_session_index):
 thread_one_session = 0 
 thread_two_session = 0 
 def calculate_level_from_range(thread_session):
-    for offset_ind in tqdm(range (1164200,1500000,interval)):
+    for offset_ind in tqdm(range (590600,1000000,interval)):
         calculate_level_from_offset(offset_ind,1, thread_session)
         thread_session +=1
         time.sleep(random.uniform(0.001,0.01))
 
 def calculate_level_from_range_two(thread_session):
-    for offset_ind in tqdm(range (1500000,2262500,interval)):
+    for offset_ind in tqdm(range (80000,500000,interval)):
         calculate_level_from_offset(offset_ind,2, thread_session)
         thread_session +=1
         time.sleep(random.uniform(0.001,0.01))
 
 
-pr1=multiprocessing.Process(target=calculate_level_from_range(thread_one_session))
-pr1.start()
+#pr1=multiprocessing.Process(target=calculate_level_from_range(thread_one_session))
+#pr1.start()
 
-#pr2=multiprocessing.Process(target=calculate_level_from_range_two(thread_two_session))
-#pr2.start()
+pr2=multiprocessing.Process(target=calculate_level_from_range_two(thread_two_session))
+pr2.start()!!!ВСЕ

@@ -9,27 +9,25 @@ import multiprocessing
 import time
 import random
 
-
 def write_response (json_file, start_index, final_index):
-    file_name = './check_results_ordered/' + str(start_index) + '-' + str(final_index) +'.json'
+    file_name = './additional_save/' + str(start_index) + '-' + str(final_index) +'.json'
     print("\nNOW SAVING", file_name,'\n')
     with open(file_name, 'w', encoding = "utf-8") as outfile:
         json.dump(json_file, outfile, indent=4, separators=(',', ':'),ensure_ascii=False)
 
+conn = psycopg2.connect(dbname='pgstage', user='linguist', password='eDQGK0GCStlYlHNV', host='192.168.122.183')
+cursor = conn.cursor()
 interval = 200
 #total pages in the base  2 262 479
 level2digit = {"Beginner":'0', "Elementary/Pre-Intermediate":'1',"Intermediate":'2',"Upper-Intermediate":'3',"Advanced":'4'}
 digit2level = {'0': "Beginner", '1': "Elementary/Pre-Intermediate",'2':"Intermediate",'3':"Upper-Intermediate",'4':"Advanced"}
-conn = psycopg2.connect(dbname='pgstage', user='linguist', password='eDQGK0GCStlYlHNV', host='192.168.122.183')
-cursor = conn.cursor()  
 
 def calculate_level_from_offset(offset, thread_name, thread_session_index):
     texts_in_one_object = 0
     midle_calc_level = []
     current_text = {"text": '', 'jungle_id':0}
-    #conn.rollback()
-    
-     
+    conn.rollback()
+       
     request = "SELECT jdesc ->>'page_text' AS page_text, jungle_id FROM public.content_jungle_pages ORDER BY jungle_id LIMIT " + str(interval) + " OFFSET " + str(offset)
     print("START HANDLing ", thread_name,"session index", thread_session_index)
     print(request)
@@ -39,7 +37,7 @@ def calculate_level_from_offset(offset, thread_name, thread_session_index):
     #start_index = check_index
     
     for row in cursor:
-        if(row[1] != current_text['jungle_id']):
+         if(row[1] != current_text['jungle_id']):
             if len(current_text['text']) > 0:
                 if len(midle_calc_level) > 0:
                     int_level = int(round(statistics.mean(midle_calc_level),0))
@@ -72,7 +70,7 @@ def calculate_level_from_offset(offset, thread_name, thread_session_index):
                     texts_in_one_object += 1
                     current_text['jungle_id'] = row[1]
                     current_text['text'] += ' ' + row[0]
-        else:
+         else:
             if texts_in_one_object <10:
                 print("Handling ", thread_name,"session index", thread_session_index)
                 print("====ADD TEXT TO EXISTING ", row[1], "====\n")
@@ -100,20 +98,20 @@ def calculate_level_from_offset(offset, thread_name, thread_session_index):
 thread_one_session = 0 
 thread_two_session = 0 
 def calculate_level_from_range(thread_session):
-    for offset_ind in tqdm(range (677600,1000000,interval)):
+    for offset_ind in tqdm(range (1082400,1500000,interval)):
         calculate_level_from_offset(offset_ind,1, thread_session)
         thread_session +=1
         time.sleep(random.uniform(0.001,0.01))
 
 def calculate_level_from_range_two(thread_session):
-    for offset_ind in tqdm(range (0,500000,interval)):
+    for offset_ind in tqdm(range (1935200,2262500,interval)):
         calculate_level_from_offset(offset_ind,2, thread_session)
         thread_session +=1
         time.sleep(random.uniform(0.001,0.01))
 
 
-pr1=multiprocessing.Process(target=calculate_level_from_range(thread_one_session))
-pr1.start()
+#pr1=multiprocessing.Process(target=calculate_level_from_range(thread_one_session))
+#pr1.start()
 
-#pr2=multiprocessing.Process(target=calculate_level_from_range_two(thread_two_session))
-#pr2.start()
+pr2=multiprocessing.Process(target=calculate_level_from_range_two(thread_two_session))
+pr2.start()
