@@ -100,11 +100,12 @@ def calculate_level_from_offset(jungle_id_offset, thread_name, thread_session_in
                     print("====TOO MUCH TEXT INFO INSIDE ONE OBJECT CALCULATE AVERAGE COMPLEXITY", row[1], "====\n")
                 level  = get_level_from_raw_text(current_text['text'])
                 current_text['text'] = ''
-                int_level = int(level2digit[level])
-                midle_calc_level.append(int_level)
-                if debug:
-                    print("Handling ", thread_name,"session index", thread_session_index)
-                    print("CURRENT COMPLEXITY LIST IS", row[1],midle_calc_level)
+                if level in level2digit:
+                    int_level = int(level2digit[level])
+                    midle_calc_level.append(int_level)
+                    if debug:
+                        print("Handling ", thread_name,"session index", thread_session_index)
+                        print("CURRENT COMPLEXITY LIST IS", row[1],midle_calc_level)
                 texts_in_one_object = 0
         #check_index += 1
     if  len(midle_calc_level) > 0:
