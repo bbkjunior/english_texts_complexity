@@ -98,6 +98,7 @@ def calculate_level_from_offset(offset, thread_name, thread_session_index):
 thread_one_session = 0 
 thread_two_session = 0 
 def calculate_level_from_range(thread_session):
+    #jungle_id 431712 454360
     for offset_ind in tqdm(range (1429600,1500000,interval)):
         calculate_level_from_offset(offset_ind,1, thread_session)
         thread_session +=1

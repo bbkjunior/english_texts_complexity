@@ -16,7 +16,7 @@ def write_response (json_file, start_index, final_index):
     with open(file_name, 'w', encoding = "utf-8") as outfile:
         json.dump(json_file, outfile, indent=4, separators=(',', ':'),ensure_ascii=False)
 
-interval = 50
+interval = 20
 #total pages in the base  2 262 479
 level2digit = {"Beginner":'0', "Elementary/Pre-Intermediate":'1',"Intermediate":'2',"Upper-Intermediate":'3',"Advanced":'4'}
 digit2level = {'0': "Beginner", '1': "Elementary/Pre-Intermediate",'2':"Intermediate",'3':"Upper-Intermediate",'4':"Advanced"}
@@ -100,16 +100,17 @@ def calculate_level_from_offset(offset, thread_name, thread_session_index):
 thread_one_session = 0 
 thread_two_session = 0 
 def calculate_level_from_range(thread_session):
+    #jung id 294594 - 307000
     for offset_ind in tqdm(range (946600,1000000,interval)):
         calculate_level_from_offset(offset_ind,1, thread_session)
         thread_session +=1
-        time.sleep(5)
+        time.sleep(random.uniform(0.001,0.01))
 
 def calculate_level_from_range_two(thread_session):
     for offset_ind in tqdm(range (0,500000,interval)):
         calculate_level_from_offset(offset_ind,2, thread_session)
         thread_session +=1
-        time.sleep(5)
+        time.sleep(random.uniform(0.001,0.01))
 
 
 pr1=multiprocessing.Process(target=calculate_level_from_range(thread_one_session))
