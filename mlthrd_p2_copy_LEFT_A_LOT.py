@@ -9,7 +9,7 @@ import multiprocessing
 import time
 import random
 
-DEBUG = False 
+DEBUG = True 
 
 def write_response (json_file, start_index, debug = DEBUG):
     file_name = './save_jung_id/563392-621000/' + str(start_index) + '.json'
@@ -86,7 +86,12 @@ def calculate_level_from_offset(jungle_id_offset, thread_name, thread_session_in
                         print("====FIRST ENTRY", row[1], "====\n")#в середине текста может возникнуть если предыдущий текст был пустым
                     texts_in_one_object += 1
                     current_text['jungle_id'] = row[1]
-                    current_text['text'] += ' ' + row[0]
+                    if row[0]:
+                        current_text['text'] += ' ' + row[0]
+                    else:
+                        current_text['level'] = "Text seems to be empty"
+                        level_json.append(current_text)
+                        break
          else:
             if texts_in_one_object <3:
                 if debug:
@@ -143,9 +148,9 @@ def calculate_level_from_range(thread_session):
 def calculate_level_from_range_two(thread_session):
     # page id 1935200,2262500
     #for jungle_id_offset_ind in tqdm(range (563392,621000)):
-    jungle_id_offset_ind = 565421
+    jungle_id_offset_ind = 620922
     #while jungle_id_offset_ind <= 621000:
-    for i in tqdm(range (565421, 621000)):
+    for i in tqdm(range (620922, 621000)):
         if jungle_id_offset_ind > 621000: break
         jungle_id_offset_ind = calculate_level_from_offset(jungle_id_offset_ind,2, thread_session)
         thread_session +=1
