@@ -1,0 +1,723 @@
+/* Two-columns liquid layout thanks to http://alistapart.com/articles/multicolumnlayouts */
+
+/****************************************
+ ** GLOBAL RESET ************************
+ ****************************************/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset,
+form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+  font-size: 100%;
+  vertical-align: baseline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+}
+
+body {
+  line-height: 1.2;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+/* remember to define focus styles! */
+:focus {
+  outline: 0;
+}
+
+/* remember to highlight inserts somehow! */
+ins {
+  text-decoration: none;
+}
+
+del {
+text-decoration: line-through;
+}
+
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/*****************************************
+ *** GENERAL STYLES **********************
+ *****************************************/
+
+/* ~~~~~~~~~~~~~~~ DOCUMENT ~~~~~~~~~~~~~~~ */
+html,
+body {
+  width: 100%;
+	min-width: 80em;
+	margin: 0;
+	font-family: Verdana, "Bitstream Vera Sans", "Lucida Grande", "DejaVu Sans", Tahoma, "Luxi Sans", sans-serif;
+	font-size: 10px;
+	color: #333;
+	text-align: left;
+	background: #FFF;
+}
+
+/* ~~~~~~~~~~~~~~~ GENERIC ELEMENTS ~~~~~~~~~~~~~~~ */
+
+/* Headings & Strong */
+h1, h2, h3, h4, h5, h6, strong {
+	font-family: Verdana, "Bitstream Vera Sans", "Lucida Grande", "DejaVu Sans", Tahoma, "Luxi Sans", sans-serif;
+	font-weight: bold;
+}
+strong {
+	font-weight: bold;
+}
+
+/* Links */
+
+a {
+  text-decoration: none;
+}
+
+
+/* a {
+  text-decoration: none;
+  color: #0000cc;
+}
+
+a:visited {
+  color: #017fae;
+}
+
+a:hover,
+a:active {
+  color: #777e99;
+} 
+*/
+
+/* Lists */
+.list_check li {
+  list-style-image: url('../img/icon-tick.gif');
+}
+
+.list_arrow li {
+  list-style-image: url('../img/icon-arrow-small-blue.gif');
+}
+
+.list_dot li {
+  list-style-image: url('../img/icon-dot.gif');
+}
+
+.list_numbers li {
+  list-style: decimal;
+  margin-left: 2.5em;
+}
+
+/* Equal Columns */
+.col_equal1,
+.col_equal2 {
+  float: left;
+  width: 46%;
+}
+
+.col_equal1 {
+  padding: 0.3em 1.0em 0.3em 0;
+}
+
+.col_equal2 {
+  margin-left: 0;
+  padding: 0.3em 0 5px 15px;
+}
+
+/* Sections */
+.section {
+	padding: 1.5em 0;
+	border-top: dotted 1px #d2d3d5; 
+}
+
+.section+.section {
+  clear: left;
+}
+
+/* Notes */
+#content_main .note {
+	clear: left;
+	float: left;
+	width: 100%;
+	font-style: italic;
+	font-size: 1.1em;
+	color: #808080;
+	margin: 2em 0 0 0;
+}
+
+/* ~~~~~~~~~~~~~~~ Headings ~~~~~~~~~~~~~~~ */
+#content_main h2 {
+  color: #000000;
+  font-size: 1.6em;
+  line-height: 2em;
+  margin: 0;
+  padding-left: 0.2em;
+  border-top: thin solid #E2E2D6;
+  border-bottom: thin solid #E2E2D6;
+}
+
+#content_main h3 {
+  color: #000000;
+  font-size: 1.4em;
+  margin: 2em 0 0;
+}
+
+#content_main h4,
+#content_main h5,
+#content_main h6 {
+  color: #000000;
+  font-size: 1.1em;
+  margin: 1.5em 0 0;
+}
+
+#content_main h4 {
+  font-size: 1.2em;
+}
+    
+/* ~~~~~~~~~~~~~~~ Paragraphs & Addresses ~~~~~~~~~~~~~~~ */
+#content_main p { 
+	margin-top: 0.6em; 
+	margin-bottom: 1.3em; 
+	font-size: 1.1em;
+}
+
+#content_main h5+p {
+	margin-top: 0;
+}
+
+/* ~~~~~~~~~~~~~~~ Lists ~~~~~~~~~~~~~~~ */
+#content_main ol {
+  font-size: 1.1em;
+}
+
+#content_main ul {
+  list-style-type: disc;
+  font-size: 1.1em;
+  margin: 1.3em 0 1.3em 25px;
+}
+
+/* ~~~~~~~~~~~~~~~ Forms ~~~~~~~~~~~~~~~ */
+
+/* Generic Styles */
+#content_main legend {
+  color: #000;
+  font-size: 1.3em;
+}
+
+#content_main fieldset .section {
+  clear: left;
+  float: left;
+  width: 100%;
+}
+
+#content_main legend+.section {
+  border: none;
+}
+
+#content_main .form_field_wrapper {
+  clear: left;
+  float: left;
+  width: 100%;
+  margin: 0.5em 0 0;
+}
+
+#content_main h4+.form_field_wrapper {
+  display: block;
+  margin-top: 1.5em;
+}
+
+#content_main label {
+  float: left;
+  min-width: 10em;
+  font-size: 1.1em;
+}
+
+#content_main input,
+#content_main select {
+  float: left;
+  font-size: 1.1em;
+  margin: 0 5px 0.5em 0;
+}
+
+/* Terms and conditions section */
+#content_main #terms label {
+  width: 94%;
+}
+
+/* Layout inside 2 equal columns */
+#content_main .col_equal1 .form_field_wrapper {
+  margin-bottom: 1.5em;
+}
+
+#content_main .col_equal1 .form_field_wrapper+h5 {
+  clear: left;
+}
+
+#content_main .col_equal1 label {
+  display: block;
+  float: none;
+  width: 100%;
+}
+
+#content_main .col_equal1 input,
+#content_main .col_equal1 select {
+  float: none;
+  margin: 0;
+}
+
+/* Content Areas */
+#content_main {
+	width: 100%;
+	text-align: left;
+	padding: 0;
+	background: #FFF;
+}
+
+.browse_box {
+	height: 10em;
+}
+
+/**********************************************************************************************************
+ **********************************************************************************************************
+ ** IDM Styles ********************************************************************************************
+ **********************************************************************************************************
+ **********************************************************************************************************/
+ 
+/*
+ * Global styles
+ */
+ 
+.folded {
+  display: none;
+}
+
+/*
+ * Banner
+ */
+
+.banner {
+  width: 100%;
+  /*height: 14em;*/
+  min-height: 14em;
+  background-color: #54a1d5;
+  margin-bottom: 1em;
+}
+
+* html .banner {
+  height: 20em;
+}
+
+.banner img {
+  width: 80em;
+  height: 14em;
+}
+
+/*
+ * Wrapper (around search panel and content)
+ */
+#wrapper {
+  background-color:#fff;
+  overflow:hidden;
+  margin:0;
+  padding-left: 24em; /* The width of the rail */
+} 
+
+* html #wrapper {
+    height:1%; /* So IE plays nice */
+}
+/*
+ * Navigation panel || Search form
+ */
+
+.navigation-panel {
+  width: 24em;
+  height: 68.4em;
+  color: #FFF;
+  margin-left: -24em;
+  float: left;
+  display: inline;
+}
+
+.search-open-panel {
+  height: 52.7em;
+}
+
+.search-close-panel {
+  height: 33em;
+} 
+
+.searchform-container {
+  margin: 0 1em 0 1em;
+}
+
+.searchform {
+  position: absolute;
+  margin: 0;
+  padding: .5em;
+  width:22em;
+}
+
+.searchform-bg {
+  height: 48.7em;
+  width: 22em;
+  position: absolute;
+}
+
+.search-close-panel .searchform-bg {
+  height: 28.9em;
+}
+
+.searchform-label {
+  font-weight: bold;
+  font-size: 120%;
+  font-family: Tahoma, "DejaVu Sans Condensed", Arial, Helvetica, "Nimbus Sans L", sans-serif;
+  margin: 0 0 .1em 0;
+}
+
+.searchform-textbox {
+  width: 15.2em;
+  height: 1.4em;
+  font-family: Tahoma, "DejaVu Sans Condensed", Arial, Helvetica, "Nimbus Sans L", sans-serif;
+  font-size: 1.3em;
+  margin: 0 0 0.8em 0;
+  padding: 0 0.3em;
+}
+
+/* hack ie6 */
+* html .searchform-textbox {
+  margin: 0 0 0.8em -1em;
+}
+
+/* hack ie7 */
+*+html .searchform-textbox {
+  margin: 0 0 0.8em -1em;
+}
+
+.searchform-btn-container {
+  width: 21em;
+}
+
+#searchform-search-btn,
+#searchform-clear-btn {
+  float: right;
+  width: 6em;
+  font-family: Tahoma, "DejaVu Sans Condensed", Arial, Helvetica, "Nimbus Sans L", sans-serif;
+  font-weight: bold;
+  color: #FFF;
+  margin: .4em 0 0 0;
+  padding: 0;
+  border: 0.1em solid #CCDAE5;
+  background-color: #990F0F;
+  cursor: pointer;
+  margin-right: 0.45em;
+  clear: both;
+}
+
+#searchform-clear-btn {
+  clear: both;
+  width: 7em;
+  background-color: #243A76;
+  margin: 0.1em 0.5em 0 0;
+}
+
+/*
+ * Navigation panel - Language buttons
+ */
+
+.navbtn-container {
+  margin: 0 0 0 0 !important;
+  padding-left: 1.0em !important;
+  padding-right: 0em !important;
+  padding-bottom: 0em !important;
+  padding-top: 0em !important;
+  background-color: #FFF !important;
+
+}
+
+.navbtn-container a {
+  display: block;
+  float: left;
+}
+
+.navbtn-container img {
+  width: 11em;
+  height: 4.1em;
+  cursor: pointer;
+}
+
+/*
+ * Navigation panel - Wordlists
+ */
+
+.wlblock {
+  float: left;
+  width: 8em;
+  margin: .4em 1em;
+}
+
+.wlblock div {
+  height: 1.6em;
+}
+
+.wlblock input {
+  width: 1em;
+  height: 1em;
+  margin: 0 .4em 0 0;
+}
+
+.wlblock span {
+  vertical-align: top;
+  font-family: Tahoma, "DejaVu Sans Condensed", Arial, Helvetica, "Nimbus Sans L", sans-serif;
+  font-weight: bold;
+  font-size: 120%;
+}
+
+/*
+ * Navigation panel - Advanced search
+ */
+
+.advsearch-container {
+  width: 21em;
+  height: 23em; 
+  margin: 0;
+  padding: 0;
+}
+
+.search-close-panel .advsearch-container {
+  height: 3.3em;
+}
+
+.advsearch-bg {
+  position: absolute;
+  width: 21em;
+  height: 23em;
+}
+
+.search-close-panel .advsearch-bg {
+  height: 3.3em;
+}
+
+.advsearch-filters-bg {
+  position: absolute; 
+  width: 21em;
+}
+
+.advsearch-title {
+  padding: .8em .5em 1em .5em;
+  cursor: pointer;
+}
+
+.advsearch-title span {
+  font-family: Tahoma, "DejaVu Sans Condensed", Arial, Helvetica, "Nimbus Sans L", sans-serif;
+  font-weight: bold;
+  font-size: 120%;
+  color: #FFF;
+  margin: 0 0 0 0.4em;
+  display: inline;
+}
+
+.advsearch-title img {
+  width: .7em;
+  height: .8em;
+  display: block;
+  float: right;
+  margin: 0.2em 1em 0 0;
+}
+
+.advsearch-filterlist {
+  clear: left;
+  color: #000;
+  padding-top: 0.5em;
+}
+
+.advsearch-filter {
+  clear: both;
+}
+
+.advsearch-filter div {
+  float: left;
+  font-family: Tahoma, "DejaVu Sans Condensed", Arial, Helvetica, "Nimbus Sans L", sans-serif;
+  font-size: 110%;
+  margin: .6em 0 0 .3em;
+}
+
+.advsearch-filter select {
+  float: right;
+  width: 11em;
+  font-family: Tahoma, "DejaVu Sans Condensed", Arial, Helvetica, "Nimbus Sans L", sans-serif;
+  font-size: 110%;
+  color: red;
+  margin: .2em .2em .2em 0;
+}
+
+/*
+ * Navigation panel - Links panel
+ */
+
+.links-panel {
+  width: 22em;
+  height: 13em;
+  margin: 0 1em 0 1em;
+}
+
+.links-panel-bg {
+  width: 22em;
+  height: 13em;
+  position: absolute;
+}
+
+.links-content {
+  position: absolute;
+  padding: .6em .5em 0 1em;
+}
+
+.lp-link,
+.lp-link:visited {
+  display: block;
+  font-family: Tahoma, "DejaVu Sans Condensed", Arial, Helvetica, "Nimbus Sans L", sans-serif;
+  font-size: 120%;
+  color: #FFF;
+  margin: 0;
+  padding: .2em 0 .3em .2em;
+  border: 0;
+}
+
+.lp-link:hover, 
+.lp-link:active {
+  color: #CCDAE5; /*EPP Blue-Grey*/
+} 
+
+
+
+
+
+/*
+ * Content
+ */
+
+.content-panel {
+  width: 100%;
+  border-left: 24em solid #FFF;
+  margin-left: -24em;
+  float: right;
+}
+
+.dict-content-panel {
+  min-height: 53em;
+  margin: 1.5em 1em 1em 0;
+}
+  
+* html .dict-content-panel {
+  height: 53em;
+}
+
+.default-content-panel {
+  min-height: 25em;
+  margin: 1.5em 0 9em 0;
+}
+  
+* html .default-content-panel {
+  height: 25em;
+}
+
+/*
+ * Footer
+ */
+
+.footer-panel {
+  clear: both;
+  width: 100%;
+  margin: 0 0 .2em 0;
+}
+
+.footer-content {
+  margin: 0 1.3em;
+  border-top: 0.1em dotted #000;
+  border-bottom: 0.1em dotted #000;
+}
+
+.footer-bg {
+  width: 78em;
+  height: 4.8em;
+}
+
+.footer-copyright {
+  text-align: center;
+  margin: 1em 0 0 0;
+}
+
+.collaborator-label {
+  width: 24em;
+  font-family: Arial, Helvetica, "Nimbus Sans L", sans-serif;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 125%;
+  color: #00467E;
+  margin: 0 0 .4em 1.4em;
+}
+
+/*
+ * Browse index
+ **/
+.browse-index {
+  font-family: Tahoma, "DejaVu Sans Condensed", Arial, Helvetica, "Nimbus Sans L", sans-serif;
+  font-size:120%;
+  line-height:1.4em;
+  margin:0em 0.4em 0.4em 0em;
+}
+
+.browse-index a {
+  color:white;
+  text-decoration:underline;
+}
+.browse-index a:hover {
+  color: #CCDAE5; /*EPP Blue-Grey*/
+  text-decoration:underline;
+}
+
+/*
+ * Page not found
+ */
+ 
+.pagenotfound, .error{
+  width: 100%;
+  font-family: Tahoma, "DejaVu Sans Condensed", Arial, Helvetica, "Nimbus Sans L", sans-serif;
+  font-weight: bold;
+  font-size: 1.3em;
+  text-align: center;
+  color: #00467E;
+  margin: 80px 0 0 0;
+}
+
+@media screen {
+  div.print-header {
+    display:none;
+  }
+  div.print-footer {
+    display:none
+  }
+}
+
+.show-button {
+  float: left;
+}
+
+/*
+ * Errors (sent by the contact form etc)
+ */
+
+span.errors {
+  color: #990F0F;
+  margin: 0 0 0 2px;
+}
