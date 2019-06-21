@@ -1,0 +1,135 @@
+var engrus = {
+	cols:	function (data)
+	{
+		var enw = $('#en-width').text()
+		var ruw = $('#ru-width').text()
+		var length = (data.eng.length >= data.rus.length) ? data.eng.length : data.rus.length
+		var out = "<"+"tab"+"le"+">"
+		for (var i = 0; i<length; i++)
+		{
+			out += "<"+"t"+"r"+">"
+			out += "  <"+"td style='width:"+enw+"'>"+ data.eng[i] +"<"+"/t"+"d>"
+			out += "  <"+"td style='width:"+ruw+"' class='rus'><d"+"iv class='hide'>"+ data.rus[i] +"</di"+"v></t"+"d>"
+			out += "<"+"/"+"t"+"r"+">"
+		}
+		out += "<"+"/"+"ta"+"ble>"
+		return out
+	},
+	buttons: function (mode) {
+		var buttons = {
+			"onoff" :
+				"<span class='selected'>English</span> | <span onclick='engrus.onon()'>English and Russian</span>",
+			"onon" :
+				"<span onclick='engrus.onoff()'>English</span> | <span class='selected'>English and Russian</span>"
+		}
+		return buttons[mode]
+	},
+	onon: function () {
+		$("#eng-rus").attr("class","on-on")
+		$(".trigger").html(engrus.buttons("onon"))
+		engrus.init()
+	},
+	onoff: function () {
+		$("#eng-rus").attr("class","on-off")
+		$(".trigger").html(engrus.buttons("onoff"))
+		engrus.init()
+	},
+	offon: function ()
+	{
+		$("#eng-rus").attr("class","off-on")
+		$(".trigger").html(engrus.buttons("offon"))
+		engrus.init()
+	},
+	sep: function (selector)
+	{
+		var rus = []
+		var eng = []
+		$(selector).each(function() {
+			var html = $(this).html()
+			if (html.match(/[А-Яа-я]/)) {
+				rus.push('<'+this.nodeName+'>'+html+'</'+this.nodeName+'>')
+			} else {
+				eng.push('<'+this.nodeName+'>'+html+'</'+this.nodeName+'>')
+			}
+		})
+		return {"eng": eng, "rus": rus}
+	},
+	make: function ()
+	{
+		if ($("#eng-rus").length < 1)
+		{
+			$(".trigger-bar .trigger").remove()
+			return
+		}
+		
+		$(".trigger-bar .trigger").html( engrus.buttons("onon") )
+		
+		engrus.init()
+		
+		body = engrus.sep("#eng-rus .body > *")
+		$("#eng-rus .body").html( engrus.cols(body) )
+		
+		if ( $('#eng-rus .excerpt').length > 0 )
+		{
+			excerpt = engrus.sep("#eng-rus .excerpt > *")
+			$("#eng-rus .excerpt").html( engrus.cols(excerpt) )
+		}
+
+		$("#eng-rus").css("display", "block")
+	},
+	init: function() {
+		$(".trigger-bar .trigger span").hover(function(){
+		  $(this).addClass("hover")
+		},function () {
+		  $(this).removeClass("hover")
+		})
+	}
+	
+}
+
+function txp_section ()
+{
+	return $("body").attr("id")
+}
+
+$(function()
+{
+	switch (txp_section())
+	{
+		case "default": 
+			engrus.ruru = false
+		case "about":
+		case "grammar":
+		case "hobby":
+		case "phonetics":
+		case "phrases":
+		case "vocabulary":
+		case "writing":
+		case "miscellany":
+		case "kids":
+		case "idioms":
+			engrus.make()
+			break
+		case "letters":
+			$(".trigger-bar .trigger").remove()
+			if ($("form.zemContactForm").length > 0)
+			{
+				$("form.zemContactForm input:submit")[0].disabled = true
+				$("form.zemContactForm .zemRequired").not("label").keyup( set_submit )
+			}
+	}
+
+})
+
+function set_submit () {
+
+	$("form.zemContactForm input:submit")[0].disabled = false
+
+	$.each(
+		$("form.zemContactForm .zemRequired").not("label").not("select"),
+		function(){
+			if ($.trim(this.value).length < 3)
+			$("form.zemContactForm input:submit")[0].disabled = true
+		}
+	)
+}

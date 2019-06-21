@@ -1,0 +1,177 @@
+var gPageState;
+
+function initPublicPage() {
+}
+
+function initPrivatePage() {
+	gPageState = new PageState();
+	initSearchForm();
+	initPageSizeSelect();
+	
+	gPageState.load();
+	gPageState.save(); // make sure we put something in the cookie!!!
+	
+	initSaveCallbacks(); // make sure that whenever we do something in the search box, it's recorded in the cookie
+	if($("#browselist input[checked]").get(0))
+		$("#id_browse").attr("href",$("#browselist input[checked]").attr("other").toLowerCase());
+    addShowLevelButton();
+    addShowMoreButton();
+}
+
+
+function initSearchForm() {
+    //handle events on the advanced search button
+	//to collapse/uncollapse the box that contains filters
+	$(".advsearch-title").click(function() {
+        setAdvSearchFormState();
+	});
+	//handle event clicking on the link "Browse A-Z"
+	$("#browselist input").click(function(){
+        $("#id_browse").attr("href",$(this).attr("other").toLowerCase());
+    });
+	//handle event on the clear button
+	$("#searchform-clear-btn").click(function() {
+		clearAdvSearchForm();
+        gPageState.saveFormState();
+	});
+}
+
+// save stuff in the cookie as soon as we do anything
+function initSaveCallbacks() {
+    // update the cookie when we change the content of the input box 
+    $("input[name='q']").keyup(function(e) {
+        gPageState.saveFormState();
+    });
+	// update the cookie when we select a level
+    $("input[name='wl']").click(function() {
+        gPageState.saveFormState();
+    });
+    // update the cookie when we select an adv search criterion
+    $("select[name='c']").change(function() {
+        gPageState.saveFormState();
+    });
+    // update the cookie when we fold/unfold the adv search box
+	$(".advsearch-title").click(function() {
+		gPageState.saveFormState();
+	});
+	$("#hide_offensive_words-checkbox").change(function() {
+		gPageState.saveFormState();
+	});
+}
+
+function setAdvSearchFormState() {
+	var $advSearchPanel = $("#search-panel");
+    var $advSearchBg = $("#advsearch-bg");
+    var $advTitle = $("#advsearch-title");
+    var $advFilterBox = $("#advsearch-filterlist");
+
+	var shouldOpen = $advFilterBox.hasClass("folded");
+
+    var srcRegExp = new RegExp("(.*\/)advsearch(?:-[^-]*)-bg\.png");
+    $advSearchBg.attr("src").match(srcRegExp);
+    var pictureSrc = RegExp.$1;
+    $advSearchBg.attr("src", pictureSrc + "advsearch-" + (shouldOpen ? "open" : "close") + "-bg.png");
+    $advTitle.find("img").attr("src", pictureSrc + "advsearch-" + (shouldOpen ? "close" : "open") + "-btn.gif");
+	$advSearchPanel.attr("class", "search-" + (shouldOpen ? "open" : "close") + "-panel");
+
+	if (shouldOpen) {
+    	$advFilterBox.removeClass("folded");
+    } else {
+    	$advFilterBox.addClass("folded");
+    	// reset the filters when we fold the advanced search box
+    	$("select[name='c']").each(function() {
+    		$(this).val("-1");
+    	});
+    }
+}
+
+function clearAdvSearchForm() {
+	//clear advanced search filters
+	$("select[name='c']").each(function() {
+		$(this).val("-1");
+	});
+}
+
+// if we display an entry, we might need to have the 'show selected level' toggle button - this lets us display all senses or just the senses belonging to the current level (A1, A1-B1...)
+function addShowLevelButton() {
+	if (window.location.pathname.match(/\/dictionary\/show\//)) {
+		var wordListLabel = $("*[name='wl'][checked]").next().eq(0).text();
+        var currentWordList = wordListLabel.replace(/ .+$/, '').replace(/-/, '_').toLowerCase();
+        if (currentWordList != "a1_c2") {
+            var showLevel = null;
+            if (window.location.search.match(/\bshowLevel=(\w+)\b/))
+                showLevel = RegExp.$1;
+            if(showLevel == null)
+            	return;
+            // the button is a 'show all' button if 'showLevel' is in the parameters
+            var isShowAll = (showLevel == "showAll"); 
+            var url = null;
+            var baseUrl = window.location.protocol + '//' + window.location.host + window.location.pathname;
+            var splitParams = window.location.search.replace("?", "").split("&");
+            var paramString;
+            var label = null;
+            var paramNoQShowLevel = [];
+            // same URL minus the showLevel param
+            for (var i = 0 ; i < splitParams.length ; i++) {
+                if (!splitParams[i].match(/^showLevel=/))
+                    paramNoQShowLevel.push(splitParams[i]);
+            }
+            if (!isShowAll) {
+                paramNoQShowLevel.push("showLevel=showAll");
+                label = "All levels";
+            }
+            else {
+            	paramNoQShowLevel.push("showLevel=" + currentWordList);
+                label = wordListLabel;
+            }
+            paramString = paramNoQShowLevel.join("&");
+            url = baseUrl + (paramString != "" ? 
+                "?" + paramString :
+                "");
+            $(".head").append("<a href=\"" + url + "\" class=\"head-r\">" + label + "</a>");
+        }
+	}
+}
+// Add Show More/Show Less
+function addShowMoreButton() {
+	if (window.location.pathname.match(/\/dictionary\/show\//)) {
+        var isShowMore = gPageState.states.showMore;
+        var showMoreLabel = "Full view";
+        var showLessLabel = "Outline view";
+        var label = isShowMore ? showMoreLabel : showLessLabel;
+        var node = document.createElement("span");
+        var $node = $(node);
+        $node.addClass("head-r2");
+        $node.text(label);
+        $(".head").append($node);
+        $node.click(function() {
+            var isShowMore = gPageState.states.showMore;
+            var $this = $(this);
+            if (isShowMore) { // switch to show less
+                $("*[@show_less='yes']").show()
+                $this.text(showLessLabel);
+                gPageState.states.showMore = false;
+            }
+            else {
+                $("*[@show_less='yes']").hide()
+                $this.text(showMoreLabel);
+                gPageState.states.showMore = true;
+            }
+            gPageState.save();
+        });
+        if (isShowMore) {
+            $("*[@show_less='yes']").hide();
+        }
+        else {
+            $("*[@show_less='yes']").show();
+        }
+    }
+}
+
+// Initializes the small page size select on the top left corner of the search page
+function initPageSizeSelect() {
+	$("#pageSize").change(function() {
+		$("#pageSizeHidden").val($(this).val());
+		$(".searchform").submit();
+	});
+}

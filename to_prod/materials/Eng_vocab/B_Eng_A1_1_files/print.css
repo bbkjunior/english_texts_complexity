@@ -1,0 +1,31 @@
+@charset "utf-8";
+
+div.print-header { display:block; text-align:left; width:60em; margin-left:1em}
+span.print-header 
+{ 
+  font-family: Verdana, "Bitstream Vera Sans", "Lucida Grande", "DejaVu Sans", Tahoma, "Luxi Sans", sans-serif;
+  font-size:200%;
+  font-weight:bold;
+}
+
+div.print-footer { display:block; text-align:right; width:60em;}
+span.print-footer 
+{
+  font-family: Verdana, "Bitstream Vera Sans", "Lucida Grande", "DejaVu Sans", Tahoma, "Luxi Sans", sans-serif;
+  font-size:120%;
+}
+
+.banner { display:none; }
+.navigation-panel {display:none; }
+.page-size {display: none; }
+.footer-panel {display:none; }
+#wrapper { margin-left:1em; width:auto; padding: 0; overflow: visible; }
+div.dict-content-panel { display:block; width:64em; }
+#dictionary_entry .head-r {display:none;}
+#browse_index .browse-navigation-panel { display:none; }
+#browse_index .navigation-button { display:none; }
+#search-results .search-head-right { display:none; }
+#search-results .navigation-button { display:none; }
+.navigation-button { display:none; }
+.paging { display:none; }
+.noprint{ display:none; }

@@ -1,0 +1,210 @@
+@charset "utf-8";
+
+/* BEGIN: search_results section */
+#search-results {
+  font-size:120%;
+}
+
+#search-results .search-head {
+  font-family: Verdana, "Bitstream Vera Sans", "Lucida Grande", "DejaVu Sans", Tahoma, "Luxi Sans", sans-serif;
+  font-size:100%;
+  font-weight:normal;
+  padding: 0.5em 0.0em 0.5em 0.0em;
+  border-bottom:2px solid #243A76;
+  margin-bottom:0.5em;
+}
+
+#search-results .Previous, .Next
+{
+  font-size: 83%;
+  text-decoration:none;
+  cursor:pointer;
+}
+
+#search-results .matches {
+  font-weight:bold;
+  font-size:100%;
+}
+
+#search-results .search-category {
+  display:block;
+  margin:1.0em 0.0em 0.0em 0.0em;
+  font-size:100%;
+}
+
+#search-results .search-term {
+  font-weight:bold;
+}
+#search-results .search-list {
+  font-weight:bold;
+}
+#search-results .search-level {
+  font-weight:bold;
+}
+/*.match-container {
+  display: inline;
+  position: absolute;
+  right: 1em;
+  font-size:100%;
+}*/
+
+.page-size {
+  
+  text-align: right;
+  font-size:100%;
+}
+
+.page-size form {
+  display: inline;
+  font-family: Verdana, "Bitstream Vera Sans", "Lucida Grande", "DejaVu Sans", Tahoma, "Luxi Sans", sans-serif;
+  font-size:100%;
+}
+
+#search-results .search-category .search-term {
+  font-size:100%; font-weight:bold;
+}
+
+
+#search-results ul {
+  margin:0.5em 0.0em 0.0em 1.5em;
+  list-style-image:none;
+  list-style-position:outside;
+  list-style-type:disc;
+}
+
+#search-results li {
+
+  margin:0.2em 0.0em 0.0em 0.0em;
+}
+#search-results a 
+{
+  color: #243A76;
+  font-weight:bold;
+  
+}
+
+#search-results .paging {
+  clear: both;
+  margin-bottom:0.8em;
+  font-size:120%;
+  /*color: #CCDAE5;*/
+  font-weight:bold;
+}
+
+#search-results .paging a {
+  color:#243a76;
+  font-weight:bold;
+  text-decoration:underline;
+}
+
+#search-results .paging a:link, #search-results .paging a:visited, #search-results .paging a:active {
+  display:inline-block;
+  color:#243a76;
+  padding:0 3px;
+}
+
+
+#search-results .paging span.navigation-button {
+  display:inline-block;
+  border:thin solid #CCDAE5;
+  padding:0.0em 0.2em 0.2em 0.2em;
+  background-color:#243a76;
+  color:#ffffff;
+  font-weight:bold;
+  text-decoration:none;
+}
+
+#search-results .paging .page_info {
+  display:inline-block;
+}
+
+#search-results .base {
+  font-size:100%;
+  color:#243a76;
+}
+
+#search-results .freq-A1, .freq-A2, .freq-B1, .freq-B2, .freq-C1, .freq-C2 
+{
+  display:inline-block;
+  font-size:90%;
+  font-weight:normal;
+  padding:0.08em 0.08em 0.16em 0.08em;
+  color: #fff;
+}
+
+#search-results .freq-A1  {
+  background-color: #ff8000;
+}
+#search-results .freq-A2  {
+  background-color: #00a0a0;
+}
+#search-results .freq-B1  {
+  background-color: #ff0000;
+}
+#search-results .freq-B2  {
+  background-color: #008040;
+}
+#search-results .freq-C1  {
+  background-color: #3060ff;
+}
+#search-results .freq-C2  {
+  background-color: #a030a0;
+}
+
+#search-results .hw {
+  font-size:100%;
+  color:#243a76;
+}
+
+#search-results .phrase {
+  font-size:100%;
+  color:#243a76;
+}
+
+#search-results .gw {
+  font-weight:bold;
+  text-transform:uppercase;
+  color:#243a76;
+  font-size:90%;
+}
+
+#search-results .pos {
+  font-weight:normal;
+  color:black;
+  font-size:100%;
+}
+#search-results .sep {
+  font-weight:normal;
+  color:black;
+  font-size:100%;
+}
+#search-results .result-message
+{
+  margin:0.5em 0.0em 0.0em 0.0em;
+  list-style-image:none;
+  list-style-position:outside;
+  list-style-type:none;
+}
+
+/* END: search_results section */
+
+/*
+ * Spellchecker box
+ */
+
+#spellchecker-results {
+  margin-left: 1.5em !important; /*reduced from 3em as error messages are no longer bullets.*/
+}
+
+#spellchecker-results a,
+.result-message a {
+  color: #243A76;
+  font-weight:bold;
+}
+
+#spellchecker-results a:hover,
+.result-message a:hover {
+  color: #000000;
+  text-decoration: none;
+  font-weight:bold;
+}
