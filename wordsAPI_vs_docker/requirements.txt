@@ -1,0 +1,9 @@
+django
+djangorestframework
+django-cors-headers
+sklearn
+numpy 
+pandas 
+nltk
+ufal.udpipe
+requests

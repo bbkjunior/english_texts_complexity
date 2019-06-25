@@ -1,0 +1,370 @@
+.js-on #eng-rus, .js-off #eng-rus .excerpt {
+	display: none;
+}
+body {
+	width:980px;
+	margin: 10px auto;
+	position: relative;
+}
+@media (min-device-width: 1279px) {
+	body{width:1180px}
+} 
+#eng-rus .excerpt table {
+	width: 100%;
+}
+#eng-rus table {
+	border: none;
+}
+#phrases #eng-rus table {
+	width: 100%;
+}
+#eng-rus td {
+	border: none;
+	padding: 0ex 1em 0ex 0;
+	margin: 0;
+	vertical-align: top;
+}
+.trigger-bar {
+	background-color: #b19d4e;
+	margin-bottom: 10px;
+	height: 2em;
+	padding: 1em;
+	font-size: x-small;
+	position: relative;
+}
+.trigger-bar .trigger {
+	position: absolute;
+	text-align:center;
+	width: 30em;
+	right: 1em;
+	top: 1em;
+	padding: 0;
+	margin: 0;
+	background-color: #cfc;
+	line-height: 2em;
+	color: #c3bca2;
+}
+.trigger-bar .trigger span {
+	text-decoration: underline;
+	cursor: pointer;
+	color: black;
+}
+.trigger-bar .trigger span.hover, .trigger-bar .trigger span:hover {
+	text-decoration: underline;
+	color: #0012ff;
+}
+.trigger-bar .trigger span.selected {
+	text-decoration: none;
+	color: #8b8d8c;
+	cursor: default;
+}
+#eng-rus {
+	margin-left: 20%;
+	padding-left: 35px;
+}
+#eng-rus.on-on .body, #eng-rus.on-off .body, #eng-rus.off-on .excerpt {
+	display: block;
+}
+#phrases #eng-rus .body {
+	width: 99%;
+}
+#eng-rus.off-on .body, #eng-rus.on-on .excerpt, #eng-rus.on-off .excerpt {
+	display: none;
+}
+#eng-rus.on-off .rus {
+	background: #fafafa;
+}
+#eng-rus.on-off .rus .hide {
+	visibility: hidden;
+}
+#eng-rus.on-on .rus {
+	background: #fff;
+}
+#eng-rus.on-on .rus .hide {
+	visibility: visible;
+}
+#eng-rus td h1, #eng-rus td h2, #eng-rus td h3, #eng-rus td h4, #eng-rus td h5, #eng-rus td h6, #eng-rus td p, #eng-rus td ul, #eng-rus td ol, #eng-rus td blockquote {
+	margin: 5px 0;
+}
+/**/
+hr {
+	display: block;
+	width:400px;
+	height:2px;
+	border:none;
+}
+body {
+	font-size: small; 
+	font-family: Verdana, sans-serif;
+	color: black;
+	background: #cfc;
+	line-height: 1.5;
+}
+a:link {
+	color: #0000FF;
+	text-decoration: underline;
+}
+a:visited {
+	color: #800080;
+	text-decoration: underline;
+}
+a:hover {
+	color: #FF0000;
+	text-decoration: underline;
+} 
+#page {
+	background: #b6dfa6;
+}
+#page-inn {
+}
+#page-pad {
+	padding: 1em;
+	background: #fff;
+	_height:1%;
+	overflow: hidden;
+}
+/* main menu */
+#main-menu {
+	width: 100%;
+	border-collapse: collapse;
+	border: none;
+}
+#main-menu td {
+	border: 0 solid #fff;
+	border-width: 0 0 0 3px;
+	text-align: center;
+	padding: 0;
+	width: 9.09%;
+}
+#main-menu td.first-child {
+	border: none;
+}
+#main-menu a {
+	display: block;
+	line-height: 2em;
+	height: 2em;
+	padding: 0 3px;
+	background: #cfc;
+	border-top: 1px solid #b19d4e;
+	text-decoration: none;
+	color: #000;
+}
+#main-menu a:hover {
+	border-color: #000;
+	background: #726c0a;
+	color: #fff;
+}
+#main-menu a:hover.active, #main-menu a.active {
+	border-color: #b19d4e;
+	background: #b19d4e;
+	color: #fff;
+	font-weight: bold;
+}
+/* sidebar */
+#sidebar {
+	float: left;
+	width: 20%;
+	margin: 0px 10px 0 0;
+	padding: 10px 15px 10px 10px;
+	background-color: #cfc;
+	line-height: 1;
+	font-size: 13px;
+}
+#sidebar ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+#sidebar ul ul {
+	margin: 0;
+	padding: 0;
+}
+#sidebar ul li {
+	margin: 0;
+	padding: .1ex 0 .5ex 0;
+}
+#sidebar ul ul li {
+	padding: .1ex 0 .5ex 1em;
+}
+#sidebar a {
+	color: #B19D4E;
+	text-decoration: none;
+}
+#sidebar a:hover {
+	color: #000;
+	text-decoration: none;
+}
+#sidebar ul li.current a {
+	color: #666;
+}
+.zemContactForm label {
+	float: left;
+	clear: both;
+	width: 150px;
+}
+.zemContactForm textarea, .zemContactForm input {
+	width: 550px;
+}
+.zemContactForm select {
+	width: 555px;
+}
+.zemContactForm input, .zemContactForm textarea, .zemContactForm select {
+	font-size: 12pt;
+	font-family: Verdana, sans-serif;
+}
+.zemContactForm .zemSubmit {
+	width: auto;
+}
+.zemContactForm p {
+	line-height: 15pt;
+}
+#header {
+	background: #cfc url(logo.gif) no-repeat 27px 0;
+	height: 55px;
+}
+#header a {
+	text-decoration: none;
+	border: none;
+	height: 45px;
+	width: 270px;
+	display: block;
+	margin-left: 27px;
+	_height: 1%;
+}
+#header h2 {
+	margin: 0;
+	padding: 0;
+	font-size: 12px;
+}
+#header h2 span {
+	visibility: hidden;
+}
+#footer {
+	text-align: center;
+	font-size: 90%;
+	color: #656565;
+	padding-right: 5px;
+}
+#footer a {
+	color: #4d4003;
+	text-decoration: underline;
+}
+#footer a:hover {
+	color: #7a6500;
+	text-decoration: underline;
+}
+ol, ul {
+	margin: 1ex 0;
+	padding: 0;
+}
+li {
+	padding: 0;
+	margin: .1ex 0 .1ex 2em;
+}
+h1 {
+	font-size: 120%;
+}
+h2 {
+	font-size: 110%;
+}
+h3 {
+	font-size: 100%;
+}
+table.layout {
+	width: 100%;
+}
+table.layout td {
+	vertical-align: top;
+}
+div.single p {
+	margin: 0;
+}
+div.textile p {
+	margin: 1em 0;
+}
+#letters div.single p {
+	margin: 1ex 0;
+}
+#letters .wr-a-m {
+	text-align: right;
+}
+div.single table {
+	border-collapse: collapse;
+}
+div.single table td {
+	padding: .5ex 1ex;
+	border: 1px solid #cfc;
+}
+div.single {
+	margin-left: 20%;
+	padding-left: 35px;
+}
+div.single-padding {
+	width: 98%;
+}
+#phrases #eng-rus table {
+	border-collapse: collapse;
+}
+#phrases #eng-rus table td {
+	width: 49.5%;
+	padding: 0 1ex;
+	border: 1px solid #cfc;
+}
+#phrases #eng-rus table td p {
+	padding: 0;
+	margin: 0;
+}
+#phrases #eng-rus .index table {
+	border-collapse: separate;
+}
+#phrases #eng-rus .index table td p {
+	margin: 1ex 0;
+}
+#phrases #eng-rus .index table td {
+	border: none;
+}
+#letters .issue blockquote {
+	margin: 0;
+	padding: 0;
+}
+#letters .pg {
+	text-align: center;
+}
+#letters .issue h3 {
+	margin: 1ex 0;
+}
+#letters .issue h3 small {
+	font-weight: normal;
+}
+#letters .category_list a.active {
+	color: #000;
+}
+#letters .issue {
+	padding: 10px 0;
+}
+#letters div.hr {
+	width: 90%;
+	border-top: 2px solid #b19d4e;
+	margin: 0 auto;
+	font-size: 1px;
+	line-height: 1px;
+}
+.test-form {
+	float: left;
+	width: 720px;
+}
+.test-form form {
+	margin: 0;
+	padding: 0;
+}
+#search {
+	float:right;
+	margin-top:20px;
+	padding-right:27px;
+}
+#search input {
+border:1px solid #b19d4e;
+}
+input[type=text],textarea {
+width:228px;
+}

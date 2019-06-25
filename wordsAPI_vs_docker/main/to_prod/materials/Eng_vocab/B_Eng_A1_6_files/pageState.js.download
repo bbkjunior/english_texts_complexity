@@ -1,0 +1,190 @@
+/*******************************************************************************
+ * ------------------------------- PageState ----------------------------------*
+ ******************************************************************************/
+
+function PageState() {
+	// names of search states passed as parameter
+	this.init();
+}
+
+/**
+ * Constructor
+ */
+PageState.prototype.init = function() {
+	this.states = {};
+	this.states.dictionary = "uk";
+	this.states.lookup = null;
+	this.states.advboxopen = false;
+    this.states.hideOffensiveWords = false;
+    this.states.showMore = false;
+	this.states.c = {};
+}
+
+PageState.prototype.load = function() {
+	var states = $.cookie('PageState');
+	if (states)
+		this.states = eval("(" + states + ")");
+
+	// first step: retrieve page state informations from the url
+	var url = window.location.toString();
+	var s = window.location.search;
+	var params = (s.length > 1 ? s.substr(1).split("&") : []);
+	var searchRegExp = new RegExp("/(search|show|word-list)/(uk|us)/([^\?]*)");
+	var dictionary = this.states.dictionary;
+	var lookup = this.states.lookup;
+	if (url.match(searchRegExp)) {
+		var pageType = RegExp.$1;
+		dictionary = RegExp.$2;
+
+		if (pageType == "search") {
+			// retrieve the search term from the model 
+			// to avoid encoding problems
+			this.states.lookup = (gSearchTerm ? gSearchTerm : "");
+		}
+	}
+
+	var paramRegExp = new RegExp("([^=]*)=([^=]*)");
+
+	// We need to concatenate advanced search codes from the url with the selected wordist
+	// and then save them in a cookie
+	if (dictionary || params.length > 0) {
+		this.states.dictionary = dictionary;
+		if (lookup && lookup.length > 0)
+			this.states.lookup = lookup;
+		var seenC = false;
+		for (i = 0; i < params.length; i++) {
+			params[i].match(paramRegExp);
+			key = RegExp.$1;
+			val = RegExp.$2;
+			// Advanced search codes - several times the same parameter
+			// the wordlist can be passed thanks to the parameter 'c' or 'wl' 
+			if (key == 'c' || key== 'wl') {
+				// if it's the first time we see 'C', reset the values we got
+				// from the cookie
+				// the drawback is that we lose the content of the advanced
+				// search panel
+				if (!seenC)
+					this.states.c = {};
+				seenC = true;
+				if (val != -1)
+					this.states.c["" + val] = true;
+			} else
+				this.states[key] = val;
+		}
+	}
+
+	if (!this.states.pageSize)
+		this.states.pageSize = 40;
+	this.restoreState();
+	var me = this;
+}
+
+/**
+ * Restore page state
+ */
+PageState.prototype.restoreState = function() {
+	// second step: read cookie informations to restore the state of the page
+
+	// selects the correct dictionary
+	var me = this;
+	$(".navbtn-container").find("img").each(
+			function() {
+				var srcRegExp = new RegExp(
+						"(.*\/)(nav-lang-)(uk|us)(?:-active)?(-btn\.png)");
+				$(this).attr("src").match(srcRegExp);
+				var image = RegExp.$1 + RegExp.$2 + RegExp.$3
+						+ (me.states.dictionary == RegExp.$3 ? "-active" : "")
+						+ RegExp.$4;
+				var src = $(this).attr("src", image);
+			}).click(
+				function() {
+					var hiddenActionId = $(this).attr("id").replace(/[^-]*$/, "searchurl");
+					var action = $("#" + hiddenActionId).attr("value");
+					$(".searchform").attr("action", action);
+					$(".searchform").submit();
+				}
+			);
+
+     $("#hide_offensive_words-checkbox").attr("checked", this.states.hideOffensiveWords);
+	// fills the search term in the input box
+	var lookup = (this.states.lookup ? this.states.lookup : "");
+	$("[name='q']").val(lookup);
+	this.restoreFilterWordlistStates();
+	// use the callback to restore advanced search box states
+	if (this.states.advboxopen)
+		$(".advsearch-title").triggerHandler("click");
+
+	if (this.states.pageSize) {
+		$("#pageSize").val(this.states.pageSize); // small form on top of the
+													// page
+		$("#pageSizeHidden").val(this.states.pageSize); // the big search form
+														// on the left
+	}
+}
+
+/**
+ * Restore the radio buttons for the simple search and the advanced search
+ * combos
+ */
+PageState.prototype.restoreFilterWordlistStates = function() {
+	// selects the correct radio button (A1, etc...)
+	// and correct items in the the advanced search combos
+	var advCodes = this.states.c;
+	if (advCodes != {}) {
+		for ( var code in advCodes) {
+            $("*[name='wl'][value='" + code + "']").attr("checked", "checked");
+            if (code != -1) // do this because all selects will have a -1
+                $("*[name='c'] option[value='" + code + "']").parent().val(
+                        code);
+		}
+	}
+}
+
+/**
+ * Preserve the states of all forms controls and saves to the cookie
+ */
+PageState.prototype.saveFormState = function() {
+	this.states.lookup = $("#searchform-textbox").val();
+	this.states.advboxopen = !$("#advsearch-filterlist").hasClass("folded");
+	this.states.c = {};
+    this.states.hideOffensiveWords = $("#hide_offensive_words-checkbox").attr("checked");
+	this.saveWordListState();
+	this.saveFiltersState();
+	this.save();
+}
+
+/**
+ * Preserve the states of the advanced search combos
+ */
+PageState.prototype.saveFiltersState = function() {
+	var me = this;
+	var $advFilterBox = $("#advsearch-filterlist");
+	$advFilterBox.find("*[name='c']").each( function() {
+		me.states.c[$(this).val() + ""] = true;
+	});
+}
+
+/**
+ * Save the current word list code when the user clicks in the search box - we
+ * need to remember it for the browse list
+ */
+PageState.prototype.saveWordListState = function() {
+	var me = this;
+	$("*[name='wl']").each( function() {
+		if ($(this).attr("checked"))
+			me.states.c[$(this).val() + ""] = true;
+		else
+			delete me.states.c[$(this).val()]
+	});
+}
+
+/**
+ * Save page state
+ */
+PageState.prototype.save = function() {
+	// third step: save the cookie
+	var states = JSON.serialize(this.states);
+	$.cookie('PageState', states, {
+		path :'/'
+	});
+}

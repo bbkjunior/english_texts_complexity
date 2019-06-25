@@ -1,0 +1,55 @@
+document.write('<HR align=left width=95% size=3 color="#104D84">');
+document.write('<table border=0 cellpadding=0>');
+document.write('<tr>');
+document.write('<td valign=middle>');
+document.write('<a href="index.htm">'); 
+document.write('<img width=55 height=55 ALT="logo" border=0 hspace=2 align=bottom src="images/logo_sm.gif"></a>');
+document.write('</td>');
+document.write('<td valign=middle>');
+document.write('<a href="index.htm">');
+document.write('<SPAN STYLE="font-size: 110%; font-family: Arial, Helvetica;  font-weight: bold;">');
+document.write('Guide to Grammar<br>');
+document.write('and Writing</SPAN></a>');
+document.write('</td>');
+document.write('<td><img border=0 height=1 width=15 src="cleardot.gif">');
+document.write('</td>');
+
+document.write('<td valign=middle>');
+
+document.write('<a href="composition/composition.htm">');
+document.write('<img width=55 height=55 ALT="logo" border=0 hspace=2 align=bottom src="images/logo_sm.gif">');
+document.write('</td><td valign=middle>');
+document.write('<a href="composition/composition.htm">');
+document.write('<SPAN STYLE="font-size: 110%; font-family: Arial, Helvetica;  font-weight: bold;">');
+document.write('Principles of<br>Composition</SPAN></a>');
+document.write('</td>');
+document.write('<td><img border=0 height=1 width=15 src="cleardot.gif">');
+document.write('</td>');
+document.write('<td valign=middle>');
+document.write('<a href="index2.htm">');
+document.write('<img width=55 height=55 ALT="logo" border=0 hspace=2 align=bottom src="images/logo_sm.gif">');
+document.write('</td><td valign=middle>');
+document.write('<a href="index2.htm">');
+document.write('<SPAN STYLE="font-size: 110%; font-family: Arial, Helvetica;  font-weight: bold;">');
+document.write('Index</SPAN></a>');
+document.write('</td>');
+document.write('&nbsp;');
+document.write('</td>');
+document.write('</tr></table>');
+
+document.write('<DIV STYLE="border: 3px double darkred; margin: 11px; background-color: #D4E6FF; padding: 15px; text-align: left;">');
+document.write('<SPAN STYLE="font-size: 90%; color: #000000; font-family: Arial, Helvetica;">');
+document.write('The Guide to Grammar and Writing is sponsored by the ');
+document.write('<a href="http://www.ccc.commnet.edu/giving/">Capital Community College Foundation</a>, ');
+document.write('a nonprofit 501 c-3 organization that supports scholarships, faculty development, and curriculum innovation.');
+document.write(' If you feel we have provided something of value and wish to show your appreciation, ');
+document.write('you can assist the College and its students with a tax-deductible contribution.<br><br>');
+
+document.write('For more about giving to Capital, write to CCC Foundation, ');
+document.write('950 Main Street, Hartford, CT 06103. ');
+document.write('Phone (860) 906-5102 or email: ');
+document.write('<a href="mailto:jmcnamara@ccc.commnet.edu">');
+document.write('jmcnamara@ccc.commnet.edu</a>. ');
+document.write('Contributions are tax-deductible to the extent allowed by law.</SPAN>');
+
+document.write('</DIV>');
