@@ -121,6 +121,7 @@ def calculate_level_from_offset(jungle_id_offset, thread_name, thread_session_in
         print("FINISHED HANDLing ", thread_name,"session index", thread_session_index)
     
     return int(current_text['jungle_id'])
+    
 thread_one_session = 0 
 thread_two_session = 0 
 def calculate_level_from_range(thread_session):
